@@ -5,7 +5,7 @@ using namespace sf;
 
 
 Inimigo :: Inimigo (int _x, int _y):
-Personagem(_x, _y) 
+Personagem(_x, _y), nivel_maldade(10)
 {
     move_speed = 3;
 
@@ -16,19 +16,4 @@ Personagem(_x, _y)
 Inimigo :: ~Inimigo()
 {
 
-}
-
-void Inimigo::executar()
-{
-    x = x + move_speed;
-
-    if (x > 350 || x < 0)
-        move_speed = -move_speed;
-
-    sprite.setPosition((float)x, (float)y);
-}
-
-void Inimigo::desenhar(sf::RenderWindow& window) 
-{
-    window.draw(sprite);
 }

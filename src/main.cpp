@@ -1,15 +1,15 @@
 #include <SFML/Graphics.hpp>
 
 #include "jogador.hpp"
-#include "inimigo.hpp"
+#include "inimigo_facil.hpp"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(400, 400), "Jogo nada boring, voce que é boring vinicius");
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "Jogo foda");
     window.setFramerateLimit(60);
 
     Jogador j1(200, 300);
-    Inimigo i1(200,100);
+    InimigoFacil i1(200,100);
 
     while (window.isOpen()) {
         sf::Event event;

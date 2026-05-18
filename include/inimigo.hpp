@@ -6,6 +6,7 @@
 class Inimigo : public Personagem 
 {
     protected:
+        int vida;
         int nivel_maldade;
         int move_speed;
         sf::RectangleShape sprite;
@@ -13,8 +14,10 @@ class Inimigo : public Personagem
         Inimigo(int _x, int _y);
         ~Inimigo();
         //void salvarDataBuffer();
-        /*virtual*/ void executar();
+        virtual void executar()=0;
         //virtual void danificar(Jogador* p) = 0;
         //virtual void salva() = 0;
-        void desenhar (sf::RenderWindow &window);
+        virtual void desenhar (sf::RenderWindow &window)=0;
+        virtual const int get_vida() const =0;
+    
 };
