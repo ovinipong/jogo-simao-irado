@@ -2,6 +2,7 @@
 
 using namespace std;
 using namespace sf;
+using namespace entidades;
 
 InimigoDificil :: InimigoDificil(int _x, int _y): Inimigo(_x, _y)
 {
@@ -31,4 +32,14 @@ void InimigoDificil :: desenhar(sf::RenderWindow &window)
 const int InimigoDificil :: get_vida() const
 {
     return vida;
+}
+
+sf::RectangleShape& InimigoDificil :: getSprite()
+{
+    return sprite;
+}
+
+void InimigoDificil :: inverterDirecao()
+{
+    move_speed = -move_speed;
 }

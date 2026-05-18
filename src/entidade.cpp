@@ -1,6 +1,8 @@
 #include "entidade.hpp"
+#include "gerenciador_colisoes.hpp"
 
 using namespace std;
+using namespace entidades;
 
 // Construtora
 Entidade::Entidade(int _x, int _y)

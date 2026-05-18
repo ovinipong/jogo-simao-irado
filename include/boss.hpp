@@ -2,6 +2,8 @@
 
 #include "inimigo.hpp"
 
+namespace entidades {
+
 class Boss : public Inimigo
 {
     private:
@@ -17,4 +19,8 @@ class Boss : public Inimigo
         const int get_vida() const;
         const int get_fraqueza() const;
         void set_fraqueza();
+        virtual sf::RectangleShape& getSprite();
+        virtual void inverterDirecao();
 };
+
+}

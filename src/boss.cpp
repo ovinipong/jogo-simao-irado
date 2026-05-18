@@ -2,6 +2,7 @@
 
 using namespace std;
 using namespace sf;
+using namespace entidades;
 
 Boss:: Boss(int _x, int _y) : 
 Inimigo(_x,_y)
@@ -41,4 +42,17 @@ void Boss:: set_fraqueza()
     fraqueza--;
 }
 
+void Boss :: desenhar(sf::RenderWindow &window)
+{
+    window.draw(sprite);
+}
 
+sf::RectangleShape& Boss :: getSprite()
+{
+    return sprite;
+}
+
+void Boss :: inverterDirecao()
+{
+    move_speed = -move_speed;
+}

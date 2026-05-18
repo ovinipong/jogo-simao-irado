@@ -2,14 +2,20 @@
 
 #include "jogador.hpp"
 #include "inimigo_facil.hpp"
+#include "gerenciador_colisoes.hpp"
+
+using namespace entidades;
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Jogo foda");
     window.setFramerateLimit(60);
 
-    Jogador j1(200, 300);
+    GerenciadorColisoes gc;
+    Jogador j1(100, 100);
     InimigoFacil i1(200,100);
+    gc.setJogador(&j1);
+    gc.incluirInimigo(&i1);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -22,6 +28,7 @@ int main()
         }
 
         window.clear();
+            gc.executar();
             j1.executar();
             j1.desenhar(window);
             i1.executar();

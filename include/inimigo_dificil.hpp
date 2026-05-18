@@ -2,6 +2,8 @@
 
 #include "inimigo.hpp"
 
+namespace entidades {
+
 class InimigoDificil : public Inimigo
 {
     private:
@@ -15,4 +17,8 @@ class InimigoDificil : public Inimigo
         //void salva()=0;
         void desenhar (sf::RenderWindow &window);
         const int get_vida() const;
+        virtual sf::RectangleShape& getSprite();
+        virtual void inverterDirecao();
 };
+
+}

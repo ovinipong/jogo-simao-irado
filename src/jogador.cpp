@@ -2,6 +2,7 @@
 
 using namespace std;
 using namespace sf;
+using namespace entidades;
 
 // Construtora
 Jogador::Jogador(int _x, int _y):
@@ -22,6 +23,7 @@ Jogador::~Jogador()
 
 void Jogador::executar()
 {
+    x_anterior=x;
     // Move o player para a direita e para a esquerda
     if (Keyboard::isKeyPressed(Keyboard::Left))
         x = x - (move_speed);
@@ -36,3 +38,15 @@ void Jogador::desenhar(sf::RenderWindow& window)
 {
     window.draw(sprite);
 }
+
+sf::RectangleShape& Jogador :: getSprite()
+{
+    return sprite;
+}
+
+void Jogador :: reverterPosicao()
+{
+    x=x_anterior;
+    sprite.setPosition((float)x, (float)y);
+}
+

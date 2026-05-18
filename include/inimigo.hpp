@@ -3,13 +3,14 @@
 #include "jogador.hpp"
 #include "personagem.hpp"
 
+namespace entidades {
+
 class Inimigo : public Personagem 
 {
     protected:
         int vida;
         int nivel_maldade;
         int move_speed;
-        sf::RectangleShape sprite;
     public:
         Inimigo(int _x, int _y);
         ~Inimigo();
@@ -19,5 +20,8 @@ class Inimigo : public Personagem
         //virtual void salva() = 0;
         virtual void desenhar (sf::RenderWindow &window)=0;
         virtual const int get_vida() const =0;
-    
+        virtual sf::RectangleShape& getSprite() = 0;
+        virtual void inverterDirecao() =0;
 };
+
+}
