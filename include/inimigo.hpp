@@ -8,7 +8,7 @@ class Inimigo : public Personagem
     protected:
         int nivel_maldade;
         int move_speed;
-        sf::RectangleShape sprite;
+
     public:
         Inimigo(int _x, int _y);
         ~Inimigo();

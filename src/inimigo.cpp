@@ -9,8 +9,8 @@ Personagem(_x, _y)
 {
     move_speed = 3;
 
-    sprite.setSize(sf::Vector2f(50.0f, 50.0f));
-    sprite.setFillColor(sf::Color::Red);
+    colisao.setSize(sf::Vector2f(50.0f, 50.0f));
+    colisao.setFillColor(sf::Color::Red);
 }
 
 Inimigo :: ~Inimigo()
@@ -25,10 +25,10 @@ void Inimigo::executar()
     if (x > 350 || x < 0)
         move_speed = -move_speed;
 
-    sprite.setPosition((float)x, (float)y);
+    colisao.setPosition((float)x, (float)y);
 }
 
 void Inimigo::desenhar(sf::RenderWindow& window) 
 {
-    window.draw(sprite);
+    window.draw(colisao);
 }
