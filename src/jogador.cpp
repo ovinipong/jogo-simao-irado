@@ -1,5 +1,7 @@
 #include "jogador.hpp"
 
+#include "bloco.hpp"
+
 using namespace std;
 using namespace sf;
 
@@ -31,20 +33,10 @@ void Jogador::executar()
     if (Keyboard::isKeyPressed(Keyboard::Right))
         x = x + (move_speed);
 
-    int altura_chao = 300;
     float gravidade_velocidade = 0.5;
-    float pulo_velocidade = -15;
+    float pulo_velocidade = -10;
 
-    // Aplica a gravidade
-    if (y < altura_chao)
-    {
-        velocidade_y = velocidade_y + gravidade_velocidade;
-    }
-    else
-    {
-        velocidade_y = 0;
-        no_chao = true;
-    }
+    velocidade_y = velocidade_y + gravidade_velocidade;
 
     // Pulo
     if (Keyboard::isKeyPressed(Keyboard::Up) && no_chao)
@@ -80,4 +72,29 @@ bool Jogador::aabb(RectangleShape r)
         return(false);
     }
 
+}
+
+void Jogador::colisao_bloco(Bloco *b)
+{
+    FloatRect jogador_colisao = colisao.getGlobalBounds();
+    FloatRect bloco_colisao = b->get_colisao().getGlobalBounds();
+    FloatRect interseccao;
+
+    // Se colidir com o bloco
+    if (jogador_colisao.intersects(bloco_colisao, interseccao))
+    {
+        // Colisao vertical
+        if (interseccao.height < interseccao.width)
+        {
+            // Colisao por cima
+            if (jogador_colisao.top < bloco_colisao.top)
+            {
+                y = y - interseccao.height;
+                velocidade_y = 0.0f;
+                no_chao = true;
+            }
+        }
+
+        colisao.setPosition((float)y, (float)x);
+    }
 }

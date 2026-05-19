@@ -6,12 +6,12 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(400, 400), "Jogo nada boring, voce que é boring vinicius");
+    sf::RenderWindow window(sf::VideoMode(800, 400), "Jogo nada boring, voce que é boring vinicius");
     window.setFramerateLimit(60);
 
     Jogador j1(200, 100);
     Inimigo i1(200,100);
-    Bloco b1(10, 350);
+    Bloco b1(50, 300);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -24,8 +24,9 @@ int main()
         }
 
         window.clear();
-            j1.executar();
             j1.desenhar(window);
+            j1.colisao_bloco(&b1);
+            j1.executar();
 
             if (j1.aabb(i1.get_colisao()))
             {

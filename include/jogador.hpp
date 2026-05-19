@@ -2,6 +2,8 @@
 
 #include "personagem.hpp"
 
+class Bloco;
+
 class Jogador : public Personagem
 {
     protected:
@@ -18,4 +20,6 @@ class Jogador : public Personagem
         void executar();
         void desenhar(sf::RenderWindow &window);
         bool aabb(sf::RectangleShape r);
+
+        void colisao_bloco(Bloco *b);
 };
