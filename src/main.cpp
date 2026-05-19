@@ -2,7 +2,9 @@
 
 #include "jogador.hpp"
 #include "inimigo_facil.hpp"
+#include "bloco.hpp"
 #include "gerenciador_colisoes.hpp"
+
 
 using namespace entidades;
 
@@ -14,10 +16,16 @@ int main()
     GerenciadorColisoes gc;
     Jogador j1(100, 100);
     InimigoFacil i1(200,100);
+    Bloco b1(50, 300);
+    Bloco b2(50, 150);
+
     gc.setJogador(&j1);
     gc.incluirInimigo(&i1);
+    gc.incluirObstaculo(&b1);
+    gc.incluirObstaculo(&b2);
 
-    while (window.isOpen()) {
+    while (window.isOpen()) 
+    {
         sf::Event event;
         while (window.pollEvent(event)) 
         {
@@ -26,13 +34,19 @@ int main()
                 window.close();
             }
         }
+        // Executa
+        j1.executar();
+        gc.executar();
+        i1.executar();
 
         window.clear();
-            gc.executar();
-            j1.executar();
-            j1.desenhar(window);
-            i1.executar();
-            i1.desenhar(window);
+
+        // Desenha
+        j1.desenhar(window);
+        i1.desenhar(window);
+        b1.desenhar(window);
+        b2.desenhar(window);
+        
         window.display();
     }
 

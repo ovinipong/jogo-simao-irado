@@ -5,7 +5,7 @@
 #include "inimigo.hpp"
 #include "jogador.hpp"
 #include "entidade.hpp"
-//#include 
+#include "obstaculo.hpp"
 //#include 
 
 using namespace std;
@@ -15,7 +15,7 @@ class GerenciadorColisoes
 {
     private:
         vector <Inimigo*> inimigos;
-    //    list <Obstaculo*> obstaculos;
+        list <Obstaculo*> obstaculos;
     //    set <Projetil*> projeteis;
         Jogador* pJog;
     private:
@@ -28,5 +28,6 @@ class GerenciadorColisoes
         ~GerenciadorColisoes();
         void incluirInimigo(Inimigo *pi);
         void setJogador(Jogador *pj);
+        void incluirObstaculo(Obstaculo *po);
         void executar();
 };

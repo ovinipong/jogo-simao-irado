@@ -2,6 +2,7 @@
 #include "gerenciador_colisoes.hpp"
 
 using namespace std;
+using namespace sf;
 using namespace entidades;
 
 // Construtora
@@ -15,4 +16,9 @@ Entidade::Entidade(int _x, int _y)
 Entidade::~Entidade()
 {
     
+}
+
+RectangleShape &Entidade::getSprite()
+{
+    return(sprite);
 }
