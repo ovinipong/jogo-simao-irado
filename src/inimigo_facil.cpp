@@ -7,6 +7,7 @@ using namespace entidades;
 InimigoFacil :: InimigoFacil(int _x, int _y): Inimigo(_x, _y)
 {
     dano=nivel_maldade*1;
+    velocidade_y = 0;
 }
 
 InimigoFacil :: ~InimigoFacil()
@@ -20,6 +21,22 @@ void InimigoFacil :: executar()
 
     if (x > 350 || x < 0)
         move_speed = -move_speed;
+
+
+    float gravidade_velocidade = 0.5;
+    
+    if (no_chao)
+    {
+        velocidade_y = 0.0f;
+    }
+    else
+    {
+        velocidade_y = velocidade_y + gravidade_velocidade;
+    }
+
+    no_chao = false;
+    
+    y = y + velocidade_y;    
 
     sprite.setPosition((float)x, (float)y);
 }

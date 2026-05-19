@@ -34,7 +34,14 @@ void Jogador :: executar()
     float gravidade_velocidade = 0.5;
     float pulo_velocidade = -10;
 
-    velocidade_y = velocidade_y + gravidade_velocidade;
+    if (no_chao)
+    {
+        velocidade_y = 0.0f;
+    }
+    else
+    {
+        velocidade_y = velocidade_y + gravidade_velocidade;
+    }
 
     // Pulo
     if (Keyboard::isKeyPressed(Keyboard::Up) && no_chao)
@@ -42,6 +49,8 @@ void Jogador :: executar()
         velocidade_y = pulo_velocidade;
         no_chao = false;
     }
+
+    no_chao = false;
 
     y = y + velocidade_y;
 
@@ -65,13 +74,13 @@ void Jogador :: reverterPosicao()
     sprite.setPosition((float)x, (float)y);
 }
 
-void Jogador :: colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *jogador, sf::FloatRect *interseccao)
+void Jogador :: colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, sf::FloatRect *interseccao)
 {
     // Colisao vertical (eixo Y)
     if (interseccao->height < interseccao->width)
     {
         // Colisao por cima (jogador em cima do bloco)
-        if (jogador->top < bloco->top)
+        if (personagem->top < bloco->top)
         {
             y = y - interseccao->height;
             velocidade_y = 0.0f;
@@ -88,7 +97,7 @@ void Jogador :: colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *jogador, sf::
     else
     {
         // Colisao pela esquerda (jogador a direita do bloco)
-        if (jogador->left < bloco->left)
+        if (personagem->left < bloco->left)
         {
             x = x - interseccao->width;
         }

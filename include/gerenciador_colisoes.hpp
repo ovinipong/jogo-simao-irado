@@ -23,6 +23,8 @@ class GerenciadorColisoes
         void tratarColisoesJogObst();
         void tratarColisoesJogInim();
         void tratarColisoesJogProj();
+        void tratarColisoesEnemObst();
+
     public:
         GerenciadorColisoes();
         ~GerenciadorColisoes();

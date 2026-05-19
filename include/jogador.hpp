@@ -19,7 +19,7 @@ class Jogador : public Personagem
         void desenhar(sf::RenderWindow &window);
         virtual sf::RectangleShape& getSprite();
         void reverterPosicao();
-        void colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *jogador, sf::FloatRect *interseccao);
+        void colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, sf::FloatRect *interseccao);
 };
 
 }

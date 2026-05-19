@@ -9,6 +9,7 @@ class InimigoFacil : public Inimigo
     private:
         int dano;
         bool atacar;
+        
     public:
         InimigoFacil(int _x, int _y);
         ~InimigoFacil();

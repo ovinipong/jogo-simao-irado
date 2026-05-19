@@ -15,7 +15,7 @@ int main()
 
     GerenciadorColisoes gc;
     Jogador j1(100, 100);
-    InimigoFacil i1(200,100);
+    InimigoFacil i1(200, 50);
     Bloco b1(50, 300);
     Bloco b2(50, 150);
 
@@ -36,8 +36,8 @@ int main()
         }
         // Executa
         j1.executar();
-        gc.executar();
         i1.executar();
+        gc.executar();
 
         window.clear();
 

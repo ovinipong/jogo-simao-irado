@@ -28,8 +28,6 @@ void GerenciadorColisoes :: tratarColisoesJogObst()
         {
             pJog->colidir_bloco(&bloco_colisao, &jogador_colisao, &interseccao);
         }
-        
-        
     }
 }
 
@@ -70,8 +68,30 @@ void GerenciadorColisoes :: tratarColisoesJogInim()
 }
 
 
+void GerenciadorColisoes :: tratarColisoesEnemObst()
+{
+    std::list<Obstaculo*>::iterator it1;
+    std::vector<Inimigo *>::iterator it2;
+    for (it1 = obstaculos.begin(); it1 != obstaculos.end(); ++it1)
+    {
+        for (it2 = inimigos.begin(); it2 != inimigos.end(); ++it2)
+        {
+            FloatRect interseccao;
+            FloatRect inimigo_colisao = (*it2)->getSprite().getGlobalBounds();
+            FloatRect bloco_colisao = (*it1)->getSprite().getGlobalBounds();
+
+            // Se estiver colidindo
+            if (inimigo_colisao.intersects(bloco_colisao, interseccao))
+            {
+                (*it2)->colidir_bloco(&bloco_colisao, &inimigo_colisao, &interseccao);
+            }
+        }
+    }
+}
+
 void GerenciadorColisoes :: executar()
 {
+    tratarColisoesEnemObst();
     tratarColisoesJogInim();
     tratarColisoesJogObst();
 }
