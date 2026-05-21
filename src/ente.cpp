@@ -19,7 +19,7 @@ void Ente::desenhar(RenderWindow &window)
 }
 
 // Retorna a colisao
-RectangleShape Ente::getColisao()
+const RectangleShape& Ente::getColisao() const
 {
     return(colisao);
 }
