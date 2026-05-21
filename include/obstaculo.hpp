@@ -10,5 +10,4 @@ class Obstaculo : public entidades::Entidade
         Obstaculo(int _x, int _y);
         virtual ~Obstaculo();
         virtual void executar() = 0;
-        virtual void desenhar(sf::RenderWindow &window) = 0;
 };

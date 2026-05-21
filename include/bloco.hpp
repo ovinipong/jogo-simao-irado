@@ -10,8 +10,5 @@ class Bloco : public Obstaculo
     public:
         Bloco(int _x, int _y);
         ~Bloco();
-
         void executar();
-        void desenhar(sf::RenderWindow &window);
-
 };

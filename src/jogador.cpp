@@ -13,8 +13,8 @@ Personagem(_x, _y)
     velocidade_y = 0;
     no_chao = false;
 
-    sprite.setSize(sf::Vector2f(50.0f, 50.0f));
-    sprite.setFillColor(sf::Color::Green);
+    colisao.setSize(sf::Vector2f(50.0f, 50.0f));
+    colisao.setFillColor(sf::Color::Green);
 }
 
 // Destrutora
@@ -54,24 +54,14 @@ void Jogador :: executar()
 
     y = y + velocidade_y;
 
-    // Atualiza a posicao do sprite (temporario)
-    sprite.setPosition((float)x, (float)y);
-}
-
-void Jogador::desenhar(sf::RenderWindow& window) 
-{
-    window.draw(sprite);
-}
-
-sf::RectangleShape& Jogador :: getSprite()
-{
-    return sprite;
+    // Atualiza a posicao da colisao (temporario)
+    colisao.setPosition((float)x, (float)y);
 }
 
 void Jogador :: reverterPosicao()
 {
     x=x_anterior;
-    sprite.setPosition((float)x, (float)y);
+    colisao.setPosition((float)x, (float)y);
 }
 
 void Jogador :: colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, sf::FloatRect *interseccao)
@@ -108,6 +98,6 @@ void Jogador :: colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, s
         }
     }
 
-    sprite.setPosition(x, y);
+    colisao.setPosition(x, y);
 }
 

@@ -11,8 +11,8 @@ Personagem(_x, _y), nivel_maldade(10)
     velocidade_y = 0.0f;
     no_chao = false;
 
-    sprite.setSize(sf::Vector2f(50.0f, 50.0f));
-    sprite.setFillColor(sf::Color::Red);
+    colisao.setSize(sf::Vector2f(50.0f, 50.0f));
+    colisao.setFillColor(sf::Color::Red);
 }
 
 Inimigo :: ~Inimigo()
@@ -54,5 +54,5 @@ void Inimigo :: colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, s
         }
     }
 
-    sprite.setPosition(x, y);
+    colisao.setPosition(x, y);
 }

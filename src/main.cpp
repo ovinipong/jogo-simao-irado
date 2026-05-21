@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 
+#include "ente.hpp"
 #include "jogador.hpp"
 #include "inimigo_facil.hpp"
 #include "bloco.hpp"

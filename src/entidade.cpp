@@ -17,8 +17,3 @@ Entidade::~Entidade()
 {
     
 }
-
-RectangleShape &Entidade::getSprite()
-{
-    return(sprite);
-}

@@ -15,9 +15,7 @@ class InimigoDificil : public Inimigo
         void executar();//descomentar virtual
         //void danificar(Jogador* p); sem implementação
         //void salva()=0;
-        void desenhar (sf::RenderWindow &window);
         const int get_vida() const;
-        virtual sf::RectangleShape& getSprite();
         virtual void inverterDirecao();
 };
 

@@ -20,8 +20,8 @@ void GerenciadorColisoes :: tratarColisoesJogObst()
     for (it = obstaculos.begin(); it != obstaculos.end(); ++it)
     {
         FloatRect interseccao;
-        FloatRect jogador_colisao = pJog->getSprite().getGlobalBounds();
-        FloatRect bloco_colisao = (*it)->getSprite().getGlobalBounds();
+        FloatRect jogador_colisao = pJog->getColisao().getGlobalBounds();
+        FloatRect bloco_colisao = (*it)->getColisao().getGlobalBounds();
 
         // Se estiver colidindo
         if (jogador_colisao.intersects(bloco_colisao, interseccao))
@@ -48,7 +48,7 @@ void GerenciadorColisoes :: incluirObstaculo(Obstaculo *po)
 
 const bool GerenciadorColisoes :: verificarColisao (Entidade *pe1, Entidade *pe2)
 {
-    if (pe1->getSprite().getGlobalBounds().intersects(pe2->getSprite().getGlobalBounds()))
+    if (pe1->getColisao().getGlobalBounds().intersects(pe2->getColisao().getGlobalBounds()))
         return true;
     else 
         return false;
@@ -77,8 +77,8 @@ void GerenciadorColisoes :: tratarColisoesEnemObst()
         for (it2 = inimigos.begin(); it2 != inimigos.end(); ++it2)
         {
             FloatRect interseccao;
-            FloatRect inimigo_colisao = (*it2)->getSprite().getGlobalBounds();
-            FloatRect bloco_colisao = (*it1)->getSprite().getGlobalBounds();
+            FloatRect inimigo_colisao = (*it2)->getColisao().getGlobalBounds();
+            FloatRect bloco_colisao = (*it1)->getColisao().getGlobalBounds();
 
             // Se estiver colidindo
             if (inimigo_colisao.intersects(bloco_colisao, interseccao))

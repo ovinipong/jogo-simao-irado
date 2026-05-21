@@ -24,7 +24,7 @@ void Boss:: executar()
     if (x > 350 || x < 0)
         move_speed = -move_speed;
 
-    sprite.setPosition((float)x, (float)y);
+    colisao.setPosition((float)x, (float)y);
 }
 
 const int Boss:: get_vida() const 
@@ -40,16 +40,6 @@ const int Boss:: get_fraqueza() const
 void Boss:: set_fraqueza()
 {
     fraqueza--;
-}
-
-void Boss :: desenhar(sf::RenderWindow &window)
-{
-    window.draw(sprite);
-}
-
-sf::RectangleShape& Boss :: getSprite()
-{
-    return sprite;
 }
 
 void Boss :: inverterDirecao()

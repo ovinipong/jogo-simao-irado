@@ -21,9 +21,7 @@ class Inimigo : public Personagem
         virtual void executar()=0;
         //virtual void danificar(Jogador* p) = 0;
         //virtual void salva() = 0;
-        virtual void desenhar (sf::RenderWindow &window)=0;
         virtual const int get_vida() const =0;
-        virtual sf::RectangleShape& getSprite() = 0;
         virtual void inverterDirecao() =0;
         void colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, sf::FloatRect *interseccao);
 };

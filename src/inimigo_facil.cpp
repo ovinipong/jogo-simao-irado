@@ -38,22 +38,12 @@ void InimigoFacil :: executar()
     
     y = y + velocidade_y;    
 
-    sprite.setPosition((float)x, (float)y);
-}
-
-void InimigoFacil :: desenhar(sf::RenderWindow &window)
-{
-    window.draw(sprite);
+    colisao.setPosition((float)x, (float)y);
 }
 
 const int InimigoFacil :: get_vida() const
 {
     return vida;
-}
-
-sf::RectangleShape& InimigoFacil :: getSprite()
-{
-    return sprite;
 }
 
 void InimigoFacil :: inverterDirecao()

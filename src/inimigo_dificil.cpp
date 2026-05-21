@@ -21,22 +21,12 @@ void InimigoDificil :: executar()
     if (x > 350 || x < 0)
         move_speed = -move_speed;
 
-    sprite.setPosition((float)x, (float)y);
-}
-
-void InimigoDificil :: desenhar(sf::RenderWindow &window)
-{
-    window.draw(sprite);
+    colisao.setPosition((float)x, (float)y);
 }
 
 const int InimigoDificil :: get_vida() const
 {
     return vida;
-}
-
-sf::RectangleShape& InimigoDificil :: getSprite()
-{
-    return sprite;
 }
 
 void InimigoDificil :: inverterDirecao()
