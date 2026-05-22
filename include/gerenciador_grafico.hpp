@@ -8,8 +8,8 @@ namespace gerenciadores{
 
 class GerenciadorGrafico {
     
-    private:
-        sf::RenderWindow* obj;//uml ta obj mas chamaria d pJanela 
+    public:
+        sf::RenderWindow* window;//uml ta obj mas chamaria d pJanela 
     public:
         GerenciadorGrafico();
         ~GerenciadorGrafico();

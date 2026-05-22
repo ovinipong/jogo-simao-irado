@@ -20,4 +20,11 @@ class Jogador : public Personagem
         void colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, sf::FloatRect *interseccao);
 };
 
+
+    enum class EstadoJogador {
+        PARADO,
+        CORRENDO,
+        PULANDO
+    };
+
 }

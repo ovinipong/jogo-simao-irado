@@ -5,16 +5,21 @@
 #include "inimigo_facil.hpp"
 #include "bloco.hpp"
 #include "gerenciador_colisoes.hpp"
+#include "gerenciador_grafico.hpp"
 
 
 using namespace entidades;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "Jogo foda");
-    window.setFramerateLimit(60);
+    //sf::RenderWindow window(sf::VideoMode(1280, 720), "Jogo foda");
+    //window.setFramerateLimit(60);
 
+    GerenciadorGrafico gg;
     GerenciadorColisoes gc;
+
+    Ente::setGG(&gg);
+
     Jogador j1(100, 100);
     InimigoFacil i1(200, 50);
     Bloco b1(50, 300);
@@ -25,14 +30,14 @@ int main()
     gc.incluirObstaculo(&b1);
     gc.incluirObstaculo(&b2);
 
-    while (window.isOpen()) 
+    while (gg.window->isOpen()) 
     {
         sf::Event event;
-        while (window.pollEvent(event)) 
+        while (gg.window->pollEvent(event)) 
         {
             if (event.type == sf::Event::Closed) 
             {
-                window.close();
+                gg.window->close();
             }
         }
         // Executa
@@ -40,15 +45,15 @@ int main()
         i1.executar();
         gc.executar();
 
-        window.clear();
+        gg.window->clear();
 
         // Desenha
-        j1.desenhar(window);
-        i1.desenhar(window);
-        b1.desenhar(window);
-        b2.desenhar(window);
+        j1.desenhar();
+        i1.desenhar();
+        b1.desenhar();
+        b2.desenhar();
         
-        window.display();
+        gg.window->display();
     }
 
     return 0;

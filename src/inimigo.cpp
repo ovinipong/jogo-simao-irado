@@ -11,13 +11,24 @@ Personagem(_x, _y), nivel_maldade(10)
     velocidade_y = 0.0f;
     no_chao = false;
 
+    pFig = new Figura ("assets/inimigo.png");
+
+    pFig->frame_atual= 0;
+    pFig->total_frames= 2;
+    pFig->frame_largura= 64;
+    pFig->frame_altura= 64;
+    pFig->contador= 0;
+    pFig->v_animacao= 8;
+
+    pFig->sprite.setTextureRect(sf::IntRect(0, 0, pFig->frame_largura, pFig->frame_altura));
+
     colisao.setSize(sf::Vector2f(50.0f, 50.0f));
     colisao.setFillColor(sf::Color::Red);
 }
 
 Inimigo :: ~Inimigo()
 {
-
+    delete pFig;
 }
 
 void Inimigo :: colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, sf::FloatRect *interseccao)

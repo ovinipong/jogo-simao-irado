@@ -13,13 +13,28 @@ Ente::~Ente()
 }
 
 // Essa funcao e para desenhar, mas por enquanto desenha a colisao
-void Ente::desenhar(RenderWindow &window)
+/*void Ente::desenhar(RenderWindow &window)
 {
     window.draw(colisao);
-}
+}*/
 
 // Retorna a colisao
 const RectangleShape& Ente::getColisao() const
 {
     return(colisao);
 }
+
+void Ente :: desenhar()
+{
+    pGG->desenharEnte(this);
+}
+
+GerenciadorGrafico* Ente :: pGG = NULL;
+
+void Ente :: setGG(GerenciadorGrafico *pG)
+{
+    pGG = pG;
+}
+
+
+
