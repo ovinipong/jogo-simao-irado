@@ -11,7 +11,7 @@ Obstaculo(_x, _y)
     colisao.setFillColor(cor);
     colisao.setPosition(_x, _y);
 
-    pFig = new Figura ("assets/obstaculo.png");
+    pFig = new Figura ("assets/chao.png");
 }
 
 Bloco::~Bloco()

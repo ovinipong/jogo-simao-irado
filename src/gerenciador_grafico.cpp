@@ -11,7 +11,7 @@ GerenciadorGrafico::GerenciadorGrafico()
     int largura = 640;
     int altura = 480;
 
-    float escala = 0.5;
+    float escala = 1.5;
 
     window = new sf::RenderWindow(sf::VideoMode(largura * escala, altura * escala), "Jogo Irado");
 
