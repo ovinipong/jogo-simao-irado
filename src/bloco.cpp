@@ -3,10 +3,10 @@
 using namespace std;
 using namespace sf;
 
-Bloco::Bloco(int _x, int _y):
+Bloco::Bloco(int _x, int _y, float largura, float altura):
 Obstaculo(_x, _y)
 {
-    colisao.setSize(sf::Vector2f(700.0f, 50.0f));
+    colisao.setSize(sf::Vector2f(largura, altura));
     colisao.setFillColor(sf::Color::White);
     colisao.setPosition(_x, _y);
 

@@ -26,7 +26,7 @@ void GerenciadorColisoes :: tratarColisoesJogObst()
         // Se estiver colidindo
         if (jogador_colisao.intersects(bloco_colisao, interseccao))
         {
-            pJog->colidir_bloco(&bloco_colisao, &jogador_colisao, &interseccao);
+            arrumarColisoes(pJog, &bloco_colisao, &interseccao);
         }
     }
 }
@@ -83,10 +83,51 @@ void GerenciadorColisoes :: tratarColisoesEnemObst()
             // Se estiver colidindo
             if (inimigo_colisao.intersects(bloco_colisao, interseccao))
             {
-                (*it2)->colidir_bloco(&bloco_colisao, &inimigo_colisao, &interseccao);
+                arrumarColisoes(*it2, &bloco_colisao, &interseccao);
             }
         }
     }
+}
+
+void GerenciadorColisoes::arrumarColisoes(Entidade *pEnt, sf::FloatRect *bloco, sf::FloatRect *interseccao)
+{
+    sf::Vector2f pos = pEnt->getXY();
+    sf::FloatRect ent_colisao = pEnt->getColisao().getGlobalBounds();
+
+    // Colisao vertical (eixo Y)
+    if (interseccao->height < interseccao->width)
+    {
+        // Colisao por cima (entidade em cima do bloco)
+        if (ent_colisao.top < bloco->top)
+        {
+            pos.y -= interseccao->height;
+            pEnt->setVelocidadeY(0.0f);
+            pEnt->setNoChao(true);
+        }
+        // Colisao por baixo (entidade em baixo do bloco)
+        else
+        {
+            pos.y += interseccao->height;
+            pEnt->setVelocidadeY(0.0f);
+        }
+    }
+    // Colisao horizontal (eixo X)
+    else
+    {
+        // Colisao pela esquerda (entidade a direita do bloco)
+        if (ent_colisao.left < bloco->left)
+        {
+            pos.x -= interseccao->width;
+        }
+        // Colisao pela direita (entidade a esquerda do bloco)
+        else
+        {
+            pos.x += interseccao->width;
+        }
+    }
+
+    // Aplica a nova posição e atualiza a caixa de colisão da entidade
+    pEnt->setXY(pos);
 }
 
 void GerenciadorColisoes :: executar()

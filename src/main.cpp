@@ -22,9 +22,8 @@ int main()
 
     Jogador j1(100, 100);
     InimigoFacil i1(200, 50);
-    Bloco b1(50, 300);
-    Bloco b2(50, 150);
-
+    Bloco b1(0, 380, 500, 100);
+    Bloco b2(400, 280, 20, 80);
     gc.setJogador(&j1);
     gc.incluirInimigo(&i1);
     gc.incluirObstaculo(&b1);

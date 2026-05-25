@@ -9,15 +9,12 @@ class Jogador : public Personagem
     protected:
         int pontos;
         int move_speed;
-        float velocidade_y;
-        bool no_chao;
         int x_anterior;
     public:
         Jogador(int _x, int _y);
         ~Jogador();
         void executar();
         void reverterPosicao();
-        void colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, sf::FloatRect *interseccao);
 };
 
 

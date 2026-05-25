@@ -8,8 +8,6 @@ Inimigo :: Inimigo (int _x, int _y):
 Personagem(_x, _y), nivel_maldade(10)
 {
     move_speed = 3;
-    velocidade_y = 0.0f;
-    no_chao = false;
 
     pFig = new Figura ("assets/inimigo.png");
 

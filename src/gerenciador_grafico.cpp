@@ -8,7 +8,16 @@ using namespace sf;
 
 GerenciadorGrafico::GerenciadorGrafico()
 {
-    window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Jogo foda");
+    int largura = 640;
+    int altura = 480;
+
+    float escala = 1.5;
+
+    window = new sf::RenderWindow(sf::VideoMode(largura * escala, altura * escala), "Jogo Irado");
+
+    View camera (FloatRect(0.f, 0.f, (float)largura, (float)altura));
+    window->setView(camera);
+
     window->setFramerateLimit(60);
 }
 
