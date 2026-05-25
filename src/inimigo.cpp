@@ -19,6 +19,7 @@ Personagem(_x, _y), nivel_maldade(10)
     pFig->v_animacao= 8;
 
     pFig->sprite.setTextureRect(sf::IntRect(0, 0, pFig->frame_largura, pFig->frame_altura));
+    pFig->offset = {0.f, 3.f};//ajustar sprite
 
     colisao.setSize(sf::Vector2f(50.0f, 50.0f));
     colisao.setFillColor(sf::Color::Red);

@@ -57,6 +57,6 @@ void GerenciadorGrafico :: desenharEnte(Ente *pE)
     );
     //fig->sprite.setPosition(pE->getColisao().getPosition());
 
-    window->draw(pE->getColisao());//ate arrumar o sprite
+    //window->draw(pE->getColisao());//ate arrumar o sprite
     window->draw(pE->pFig->sprite);  
 }

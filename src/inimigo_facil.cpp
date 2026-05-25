@@ -17,6 +17,8 @@ InimigoFacil :: ~InimigoFacil()
 
 void InimigoFacil :: executar()
 {
+    pFig->frame_inicial = 0;
+    pFig->frame_final = 1;
     x = x + move_speed;
 
     if (x > 350 || x < 0)

@@ -20,14 +20,29 @@ int main()
 
     Ente::setGG(&gg);
 
-    Jogador j1(100, 100);
-    InimigoFacil i1(200, 50);
-    Bloco b1(0, 380, 500, 100);
-    Bloco b2(400, 280, 20, 80);
+    Jogador j1(400, 100);
+    InimigoFacil i1(0, 50);
+    Bloco b1(0, 380, 64, 16);
+    Bloco b2(64, 380, 64, 16);
+    Bloco b3(128, 380, 64, 16);
+    Bloco b4(192, 380, 64, 16);
+    Bloco b5(256, 380, 64, 16);
+    Bloco b6(400, 280, 64, 16);
+    Bloco b7(320, 380, 64, 16);
+    Bloco b8(384, 380, 64, 16);
+    Bloco b9(448, 380, 64, 16);
     gc.setJogador(&j1);
     gc.incluirInimigo(&i1);
     gc.incluirObstaculo(&b1);
     gc.incluirObstaculo(&b2);
+    gc.incluirObstaculo(&b3);
+    gc.incluirObstaculo(&b4);
+    gc.incluirObstaculo(&b5);
+    gc.incluirObstaculo(&b6);
+    gc.incluirObstaculo(&b7);
+    gc.incluirObstaculo(&b8);
+    gc.incluirObstaculo(&b9);
+
 
     while (gg.window->isOpen()) 
     {
@@ -47,10 +62,19 @@ int main()
         gg.window->clear();
 
         // Desenha
-        j1.desenhar();
-        i1.desenhar();
         b1.desenhar();
         b2.desenhar();
+        b3.desenhar();
+        b4.desenhar();
+        b5.desenhar();
+        b6.desenhar();
+        b7.desenhar();
+        b8.desenhar();
+        b9.desenhar();
+        j1.desenhar();
+        i1.desenhar();
+        
+
         
         gg.window->display();
     }
