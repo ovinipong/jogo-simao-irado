@@ -24,6 +24,9 @@ class Fase : public Ente
         virtual void criarInimigos()=0;
         virtual void criarObstaculos()=0;
         virtual void criarCenario()=0;
+
+        virtual int getMaxInimFaceis()=0;
+        virtual int getMaxPlataformas()=0;
 };
 
 }
