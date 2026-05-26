@@ -61,13 +61,29 @@ Lista<TL>::~Lista()
 template <typename TL>
 void Lista<TL>::incluir(TL* p)
 {
-    
+     if (p == NULL) return;
+
+    Elemento<TL>* novo = new Elemento<TL>();
+    novo->incluir(p);
+    novo->pProx = pPrimeiro;
+    pPrimeiro = novo;
+
+    if (pUltimo == NULL)
+    {
+        pUltimo = novo;
+    }
 }
 
 template <typename TL>
 void Lista<TL>::limpar()
 {
-
+    while(pPrimeiro != NULL)
+    {
+        Elemento<TL>* aux = pPrimeiro;
+        pPrimeiro = pPrimeiro->pProx;
+        delete(aux);
+    }
+    pUltimo = NULL;
 }
 
 template <typename TL>

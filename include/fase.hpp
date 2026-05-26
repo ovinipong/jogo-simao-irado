@@ -5,7 +5,7 @@
 using namespace listas;
 using namespace gerenciadores;
 
-class PrimeiraFase;
+//class PrimeiraFase;
 
 namespace fases {
 
