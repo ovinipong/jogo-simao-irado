@@ -1,0 +1,19 @@
+#include "lista.hpp"
+#include "entidade.hpp"
+
+using namespace entidades;
+
+namespace listas{
+
+class ListaEntidades
+{
+    private:
+        Lista<Entidade> LEs;
+    public:
+        ListaEntidades();
+        ~ListaEntidades();
+        void incluir(Entidade* pE);
+        void percorrer();
+};
+
+}
