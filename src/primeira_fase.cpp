@@ -6,7 +6,10 @@ PrimeiraFase:: PrimeiraFase() :
                                 maxPlataformas(5),
                                 maxObstMedios(5)
 {
-
+    srand(time(nullptr));
+    criarInimigos();
+    criarObstaculos();
+    criarCenario();
 }
 
 PrimeiraFase :: ~PrimeiraFase()

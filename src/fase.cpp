@@ -22,13 +22,23 @@ void Fase :: executar()
 void Fase :: criarInimFaceis()
 {
     int n_faceis = getMaxInimFaceis();
-    //criar inimigos c rand
-    //chamar incluir da classe ListaEntidades
+    int qntd = rand() % n_faceis + 1;
+
+    for (int i = 0; i < qntd; i++)
+    {
+        InimigoFacil* inim = new InimigoFacil(/*como vamos definir o parametro?*/);
+        lista_ents.incluir(inim); 
+    }
 }
 
 void Fase :: criarPlataformas()
 {
     int n_plataf = getMaxPlataformas();
-    //criar c rand
-    //incluir na lista
+    int qntd = rand() % n_plataf + 1;
+
+    for (int i = 0; i < qntd; i++)
+    {
+        Plataforma* plat = new Plataforma(/*como vamos definir o parametro?*/);
+        lista_ents.incluir(plat); 
+    }
 }

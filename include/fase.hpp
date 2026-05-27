@@ -1,7 +1,13 @@
 #include "lista_entidades.hpp"
 #include "gerenciador_colisoes.hpp"
 #include "ente.hpp"
+#include "inimigo_facil.hpp"
+//#include "plataforma.hpp"
 
+#include <cstdlib>
+#include <ctime>
+
+using namespace entidades;
 using namespace listas;
 using namespace gerenciadores;
 
