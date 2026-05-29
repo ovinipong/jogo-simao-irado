@@ -1,17 +1,21 @@
 #include <SFML/Graphics.hpp>
-
 #include "ente.hpp"
 #include "jogador.hpp"
 #include "inimigo_facil.hpp"
 #include "bloco.hpp"
 #include "gerenciador_colisoes.hpp"
 #include "gerenciador_grafico.hpp"
+#include "plataforma.hpp"
 
+#include <stdlib.h>
+#include <time.h>
 
 using namespace entidades;
 
 int main()
 {
+    srand(time(NULL));
+
     //sf::RenderWindow window(sf::VideoMode(1280, 720), "Jogo foda");
     //window.setFramerateLimit(60);
 
@@ -31,6 +35,8 @@ int main()
     Bloco b7(320, 380, 64, 16);
     Bloco b8(384, 380, 64, 16);
     Bloco b9(448, 380, 64, 16);
+    Plataforma p1(100, 320);
+
     gc.setJogador(&j1);
     gc.incluirInimigo(&i1);
     gc.incluirObstaculo(&b1);
@@ -42,6 +48,7 @@ int main()
     gc.incluirObstaculo(&b7);
     gc.incluirObstaculo(&b8);
     gc.incluirObstaculo(&b9);
+    gc.incluirObstaculo(&p1);
 
 
     while (gg.window->isOpen()) 
@@ -73,6 +80,7 @@ int main()
         b9.desenhar();
         j1.desenhar();
         i1.desenhar();
+        p1.desenhar();
         
 
         

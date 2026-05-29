@@ -27,6 +27,7 @@ void GerenciadorColisoes :: tratarColisoesJogObst()
         if (jogador_colisao.intersects(bloco_colisao, interseccao))
         {
             arrumarColisoes(pJog, &bloco_colisao, &interseccao);
+            (*it)->obstaculizar(pJog);
         }
     }
 }

@@ -1,5 +1,3 @@
-#pragma once
-
 #include "jogo.hpp"
 
 Jogo :: Jogo() : pJog1 (NULL)

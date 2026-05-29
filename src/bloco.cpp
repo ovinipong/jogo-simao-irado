@@ -37,3 +37,8 @@ void Bloco::executar()
 {
 
 }
+
+void Bloco::obstaculizar(entidades::Jogador* pJog)
+{
+
+}

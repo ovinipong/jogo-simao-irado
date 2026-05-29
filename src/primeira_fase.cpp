@@ -41,7 +41,7 @@ void PrimeiraFase :: criarObstaculos()
     criarObstMedios();
 }
 
-void criarCenario()
+void PrimeiraFase :: criarCenario()
 {
     //chao e fundo
 }

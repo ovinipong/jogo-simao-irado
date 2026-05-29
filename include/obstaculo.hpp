@@ -1,6 +1,7 @@
 #pragma once
 
 #include "entidade.hpp"
+#include "jogador.hpp"
 
 class Obstaculo : public entidades::Entidade
 {
@@ -10,4 +11,5 @@ class Obstaculo : public entidades::Entidade
         Obstaculo(int _x, int _y);
         virtual ~Obstaculo();
         virtual void executar() = 0;
+        virtual void obstaculizar(entidades::Jogador* pJog) = 0;
 };

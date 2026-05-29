@@ -27,4 +27,5 @@ void ListaEntidades :: percorrer()
             aux->pInfo->executar();
         }
         aux = aux->getProx();
+    }
 }

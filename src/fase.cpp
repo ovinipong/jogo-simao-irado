@@ -26,8 +26,8 @@ void Fase :: criarInimFaceis()
 
     for (int i = 0; i < qntd; i++)
     {
-        InimigoFacil* inim = new InimigoFacil(/*como vamos definir o parametro?*/);
-        lista_ents.incluir(inim); 
+        // InimigoFacil* inim = new InimigoFacil(/*como vamos definir o parametro?*/);
+        // lista_ents.incluir(inim); 
     }
 }
 
@@ -38,7 +38,7 @@ void Fase :: criarPlataformas()
 
     for (int i = 0; i < qntd; i++)
     {
-        Plataforma* plat = new Plataforma(/*como vamos definir o parametro?*/);
-        lista_ents.incluir(plat); 
+        // Plataforma* plat = new Plataforma(/*como vamos definir o parametro?*/);
+        // lista_ents.incluir(plat); 
     }
 }

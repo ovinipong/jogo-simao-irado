@@ -12,6 +12,8 @@ Entidade::Entidade(int _x, int _y)
     x = _x;
     y = _y;
 
+    colisao.setPosition(x, y);
+
     velocidade_y = 0;
     no_chao = false;
 }
