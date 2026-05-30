@@ -61,7 +61,7 @@ void GerenciadorGrafico :: desenharEnte(Ente *pE)
     window->draw(pE->pFig->sprite);  
 }
 
-void GerenciadorGrafico :: executar()
+/*void GerenciadorGrafico :: executar()
 {
     while (window->isOpen()) 
     {
@@ -77,4 +77,22 @@ void GerenciadorGrafico :: executar()
         window->clear();
         window->display();
     }
+}*/
+
+void GerenciadorGrafico::executar()
+{
+    sf::Event event;
+    while (window->pollEvent(event)) 
+    {
+        if (event.type == sf::Event::Closed) 
+            window->close();
+    }
+
+    window->clear();
+
+}
+
+void GerenciadorGrafico::mostrar()
+{
+    window->display();
 }

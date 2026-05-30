@@ -8,6 +8,10 @@ PrimeiraFase:: PrimeiraFase(Jogador* pJog) : Fase(),
 {
     lista_ents.incluir(pJog);
     srand(time(nullptr));
+    gc.setJogador(pJog);
+    criarCenario();
+    criarInimigos();
+    criarObstaculos();
 }
 
 PrimeiraFase :: ~PrimeiraFase()
@@ -47,17 +51,17 @@ void PrimeiraFase :: criarCenario()
     {
         Bloco* bloco = new Bloco(x, 380, 64, 16);
         lista_ents.incluir(bloco);
+        gc.incluirBloco(bloco);
+        x+=64;
     }
 
     Bloco* b = new Bloco(400, 280, 64, 16);
     lista_ents.incluir(b);
+    gc.incluirBloco(b);
 
 }
 
 void PrimeiraFase :: executar()
 {
-    criarCenario();
-    criarInimigos();
-    criarObstaculos();
     Fase::executar();
 }

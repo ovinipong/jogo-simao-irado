@@ -1,4 +1,5 @@
 #include "fase.hpp"
+#include <iostream>
 
 using namespace fases;
 
@@ -17,7 +18,7 @@ void Fase :: criarInimFaceis()
     int n_faceis = getMaxInimFaceis();
     int qntd = rand() % n_faceis + 1;
 
-    int x=0;
+    int x=10;
     int y=50;
 
     if (qntd<3)
@@ -52,7 +53,12 @@ void Fase :: criarPlataformas()
 
 void Fase::executar()
 {
-    lista_ents.percorrer();
-    gc.executar();
+    //std::cout << "1" << std::endl;
     pGG->executar();
+    //std::cout << "2" << std::endl;
+    lista_ents.percorrer();
+    //std::cout << "3" << std::endl;
+    gc.executar();
+    //std::cout << "4" << std::endl;
+    pGG->mostrar();
 }

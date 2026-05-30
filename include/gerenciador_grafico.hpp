@@ -15,6 +15,7 @@ class GerenciadorGrafico {
         ~GerenciadorGrafico();
         void desenharEnte(Ente* pE);
         void executar();
+        void mostrar();
 };
 
 }

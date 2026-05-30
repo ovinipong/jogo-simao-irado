@@ -26,7 +26,7 @@ class GerenciadorColisoes
         void tratarColisoesJogObst();
         void tratarColisoesJogInim();
         void tratarColisoesJogProj();
-        void tratarColisoesEnemObst();
+        void tratarColisoesInimObst();
         void tratarColisioesJogBloco();
         void tratarColisoesInimBloco();
         void arrumarColisoes(Entidade *pEnt, sf::FloatRect *bloco, sf::FloatRect *interseccao);

@@ -49,7 +49,7 @@ void GerenciadorColisoes :: tratarColisoesJogInim()
     }
 }
 
-void GerenciadorColisoes :: tratarColisoesEnemObst()
+void GerenciadorColisoes :: tratarColisoesInimObst()
 {
     std::list<Obstaculo*>::iterator it1;
     std::vector<Inimigo *>::iterator it2;
@@ -188,7 +188,7 @@ void GerenciadorColisoes::arrumarColisoes(Entidade *pEnt, sf::FloatRect *bloco, 
 
 void GerenciadorColisoes :: executar()
 {
-    tratarColisoesEnemObst();
+    tratarColisoesInimObst();
     tratarColisoesJogInim();
     tratarColisoesJogObst();
     tratarColisioesJogBloco();

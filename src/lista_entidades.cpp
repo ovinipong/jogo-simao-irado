@@ -30,3 +30,8 @@ void ListaEntidades :: percorrer()
         aux = aux->getProx();
     }
 }
+
+void ListaEntidades :: remover(Entidade* pE)
+{
+    LEs.remover(pE);
+}

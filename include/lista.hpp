@@ -36,6 +36,7 @@ class Lista
         ~Lista();
         void incluir(TL* p);
         void limpar();
+        void remover(TL* p);
         const Elemento<TL>* getPrimeiro() const
         {
             return pPrimeiro;
@@ -86,6 +87,32 @@ void Lista<TL>::limpar()
         delete(aux);
     }
     pUltimo = NULL;
+}
+
+template <typename TL>
+void Lista<TL>::remover(TL* p)
+{
+    Elemento<TL>* ant = NULL;
+    Elemento<TL>* aux = pPrimeiro;
+
+    while (aux != NULL)
+    {
+        if (aux->pInfo == p)
+        {
+            if (ant == NULL)
+                pPrimeiro = aux->pProx;
+            else
+                ant->pProx = aux->pProx;
+
+            if (aux == pUltimo)
+                pUltimo = ant;
+
+            delete aux;
+            return;
+        }
+        ant = aux;
+        aux = aux->pProx;
+    }
 }
 
 template <typename TL>

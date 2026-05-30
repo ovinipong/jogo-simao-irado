@@ -16,6 +16,7 @@ class ListaEntidades
         ~ListaEntidades();
         void incluir(Entidade* pE);
         void percorrer();
+        void remover(Entidade* pE);
 };
 
 }
