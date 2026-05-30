@@ -60,3 +60,21 @@ void GerenciadorGrafico :: desenharEnte(Ente *pE)
     //window->draw(pE->getColisao());//ate arrumar o sprite
     window->draw(pE->pFig->sprite);  
 }
+
+void GerenciadorGrafico :: executar()
+{
+    while (window->isOpen()) 
+    {
+        sf::Event event;
+        while (window->pollEvent(event)) 
+        {
+            if (event.type == sf::Event::Closed) 
+            {
+                window->close();
+            }
+        }
+
+        window->clear();
+        window->display();
+    }
+}

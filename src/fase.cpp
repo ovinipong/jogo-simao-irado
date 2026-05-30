@@ -15,8 +15,8 @@ Fase :: ~Fase()
 void Fase :: executar()
 {
     lista_ents.percorrer();
-    //trata colisoes
-    //executar do ggrafico
+    gc.executar();
+    pGG->executar();
 }
 
 void Fase :: criarInimFaceis()
@@ -24,10 +24,15 @@ void Fase :: criarInimFaceis()
     int n_faceis = getMaxInimFaceis();
     int qntd = rand() % n_faceis + 1;
 
+    int x=0;
+    int y=50;
+
     for (int i = 0; i < qntd; i++)
     {
-        // InimigoFacil* inim = new InimigoFacil(/*como vamos definir o parametro?*/);
-        // lista_ents.incluir(inim); 
+        InimigoFacil* inim = new InimigoFacil(x, y);
+        lista_ents.incluir(inim); 
+        gc.incluirInimigo(inim);
+        x+=50;
     }
 }
 
@@ -38,7 +43,10 @@ void Fase :: criarPlataformas()
 
     for (int i = 0; i < qntd; i++)
     {
-        // Plataforma* plat = new Plataforma(/*como vamos definir o parametro?*/);
-        // lista_ents.incluir(plat); 
+        int x = (rand() % 545);//544 nao passa a tela
+        int y = (rand() % 321);
+        Plataforma* plat = new Plataforma(x, y, PRATELEIRA);
+        lista_ents.incluir(plat); 
+        gc.incluirObstaculo(plat);
     }
 }

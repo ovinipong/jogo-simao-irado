@@ -2,7 +2,7 @@
 #include "gerenciador_colisoes.hpp"
 #include "ente.hpp"
 #include "inimigo_facil.hpp"
-//#include "plataforma.hpp"
+#include "plataforma.hpp"
 
 #include <cstdlib>
 #include <ctime>

@@ -25,6 +25,7 @@ void ListaEntidades :: percorrer()
         if (aux->pInfo != NULL)
         {
             aux->pInfo->executar();
+            aux->pInfo->desenhar();
         }
         aux = aux->getProx();
     }
