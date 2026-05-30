@@ -35,7 +35,9 @@ int main()
     Bloco b7(320, 380, 64, 16);
     Bloco b8(384, 380, 64, 16);
     Bloco b9(448, 380, 64, 16);
-    Plataforma p1(100, 320);
+    Plataforma p1(100, 320, PRATELEIRA);
+    Plataforma p2 (0, 316, CRISTALEIRA);
+    Plataforma p3 (150, 338, MESA);
 
     gc.setJogador(&j1);
     // gc.incluirInimigo(&i1);
@@ -49,6 +51,8 @@ int main()
     gc.incluirBloco(&b8);
     gc.incluirBloco(&b9);
     gc.incluirObstaculo(&p1);
+    gc.incluirObstaculo(&p2);
+    gc.incluirObstaculo(&p3);
 
 
     while (gg.window->isOpen()) 
@@ -79,7 +83,10 @@ int main()
         b8.desenhar();
         b9.desenhar();
         p1.desenhar();
+        p2.desenhar();
+        p3.desenhar();
         j1.desenhar();
+
         // i1.desenhar();
         
 

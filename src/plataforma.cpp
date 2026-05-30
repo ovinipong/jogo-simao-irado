@@ -3,27 +3,83 @@
 
 using namespace std;
 
-Plataforma::Plataforma(int _x, int _y):
-Obstaculo(_x, _y)
+Plataforma::Plataforma(int _x, int _y, TipoPlataforma tipo):
+Obstaculo(_x, _y), altura(0), pode_colidir (false)
 {
-    altura = (rand() % 64) + 32;
-    y -= altura;
-    pode_colidir = false;
-    
-    pFig = new Figura("assets/plataforma.png");
-    pFig->frame_atual= 0;
-    pFig->total_frames= 1;
-    pFig->frame_largura= 96;
-    pFig->frame_altura= 32;
-    pFig->contador= 0;
-    pFig->v_animacao= 0;
+    switch(tipo)
+    {
+        case PRATELEIRA:
+        {
+            altura = (rand() % 64) + 32;
+            y -= altura;
+            
+            pFig = new Figura("assets/prateleira.png");
+            pFig->frame_atual= 0;
+            pFig->total_frames= 1;
+            pFig->frame_largura= 96;
+            pFig->frame_altura= 64;
+            pFig->contador= 0;
+            pFig->v_animacao= 0;
 
-    pFig->sprite.setTextureRect(sf::IntRect(0, 0, pFig->frame_largura, pFig->frame_altura));
-    pFig->offset = {0.f, 0.95f};//ajustar sprite
+            //em todos so pra evitar problemas ja que nao tem animaçao
+            pFig->frame_inicial=0;
+            pFig->frame_final=0;
 
-    colisao.setSize(sf::Vector2f(pFig->frame_largura, pFig->frame_altura));
-    colisao.setFillColor(sf::Color::Red);
-    colisao.setPosition(x, y);
+            pFig->sprite.setTextureRect(sf::IntRect(0, 0, pFig->frame_largura, pFig->frame_altura));
+            //pFig->offset = {0.f, 0.95f};//ajustar sprite
+
+            colisao.setSize(sf::Vector2f(pFig->frame_largura, 4));
+            colisao.setFillColor(sf::Color::Red);
+            colisao.setPosition(x, y);
+
+            break;
+        }
+        case MESA:
+        {        
+            pFig = new Figura("assets/mesa.png");
+            pFig->frame_atual= 0;
+            pFig->total_frames= 1;
+            pFig->frame_largura= 64;
+            pFig->frame_altura= 64;
+            pFig->contador= 0;
+            pFig->v_animacao= 0;
+
+            pFig->frame_inicial=0;
+            pFig->frame_final=0;
+
+            pFig->sprite.setTextureRect(sf::IntRect(0, 0, pFig->frame_largura, pFig->frame_altura));
+            //pFig->offset = {0.f, 0.95f};//ajustar sprite
+
+            colisao.setSize(sf::Vector2f(pFig->frame_largura, 42));
+            colisao.setFillColor(sf::Color::Red);
+            colisao.setPosition(x, y);
+
+            break;
+        }
+        case CRISTALEIRA:
+        {
+            pFig = new Figura("assets/cristaleira.png");
+            pFig->frame_atual= 0;
+            pFig->total_frames= 1;
+            pFig->frame_largura= 64;
+            pFig->frame_altura= 64;
+            pFig->contador= 0;
+            pFig->v_animacao= 0;
+
+            pFig->frame_inicial=0;
+            pFig->frame_final=0;
+
+            pFig->sprite.setTextureRect(sf::IntRect(0, 0, pFig->frame_largura, pFig->frame_altura));
+            //pFig->offset = {0.f, 0.95f};//ajustar sprite
+
+            colisao.setSize(sf::Vector2f(32, 4));
+            colisao.setFillColor(sf::Color::Red);
+            colisao.setPosition(x, y);
+
+            break;    
+        }
+
+    }
 }
 
 Plataforma::~Plataforma()
