@@ -12,13 +12,6 @@ Fase :: ~Fase()
 
 }
 
-void Fase :: executar()
-{
-    lista_ents.percorrer();
-    gc.executar();
-    pGG->executar();
-}
-
 void Fase :: criarInimFaceis()
 {
     int n_faceis = getMaxInimFaceis();
@@ -26,6 +19,9 @@ void Fase :: criarInimFaceis()
 
     int x=0;
     int y=50;
+
+    if (qntd<3)
+        qntd=3;
 
     for (int i = 0; i < qntd; i++)
     {
@@ -41,6 +37,9 @@ void Fase :: criarPlataformas()
     int n_plataf = getMaxPlataformas();
     int qntd = rand() % n_plataf + 1;
 
+    if (qntd<3)
+        qntd=3;
+
     for (int i = 0; i < qntd; i++)
     {
         int x = (rand() % 545);//544 nao passa a tela
@@ -49,4 +48,11 @@ void Fase :: criarPlataformas()
         lista_ents.incluir(plat); 
         gc.incluirObstaculo(plat);
     }
+}
+
+void Fase::executar()
+{
+    lista_ents.percorrer();
+    gc.executar();
+    pGG->executar();
 }

@@ -6,6 +6,11 @@
 #include "gerenciador_colisoes.hpp"
 #include "gerenciador_grafico.hpp"
 #include "plataforma.hpp"
+#include "jogo.hpp"
+#include "fase.hpp"
+#include "primeira_fase.hpp"
+#include "lista.hpp"
+#include "lista_entidades.hpp"
 
 #include <stdlib.h>
 #include <time.h>
@@ -19,12 +24,15 @@ int main()
     //sf::RenderWindow window(sf::VideoMode(1280, 720), "Jogo foda");
     //window.setFramerateLimit(60);
 
-    GerenciadorGrafico gg;
-    GerenciadorColisoes gc;
+    Jogo jogo;
 
-    Ente::setGG(&gg);
+    jogo.executar();
+    //GerenciadorGrafico gg;
+    //GerenciadorColisoes gc;
 
-    Jogador j1(400, 100);
+    //Ente::setGG(&gg);
+
+    /*Jogador j1(400, 100);
     // InimigoFacil i1(0, 50);
     Bloco b1(0, 380, 64, 16);
     Bloco b2(64, 380, 64, 16);
@@ -92,7 +100,7 @@ int main()
 
         
         gg.window->display();
-    }
+    }*/
 
     return 0;
 }

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "fase.hpp"
 
 using namespace fases;
@@ -12,9 +14,11 @@ class PrimeiraFase : public Fase
         int maxInimMedios;
         int maxPlataformas;
         int maxObstMedios;
-    protected:
-        PrimeiraFase();
+    public:
+        PrimeiraFase(Jogador* pJog);
         ~PrimeiraFase();
+        virtual void executar();
+    protected:
         void criarInimMedios();
         void criarObstMedios();
         virtual void criarInimigos();

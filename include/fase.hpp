@@ -1,9 +1,12 @@
+#pragma once
+
 #include "lista_entidades.hpp"
 #include "gerenciador_colisoes.hpp"
 #include "ente.hpp"
 #include "inimigo_facil.hpp"
 #include "plataforma.hpp"
 #include "bloco.hpp"
+#include "jogador.hpp"
 
 #include <cstdlib>
 #include <ctime>
@@ -24,7 +27,7 @@ class Fase : public Ente
     public:
         Fase();
         ~Fase();
-        virtual void executar();
+        void executar();
     protected:
         void criarInimFaceis();
         void criarPlataformas();

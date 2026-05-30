@@ -1,15 +1,13 @@
 #include "primeira_fase.hpp"
 
-PrimeiraFase:: PrimeiraFase() :
+PrimeiraFase:: PrimeiraFase(Jogador* pJog) : Fase(),
                                 maxInimFaceis(5),
                                 maxInimMedios(5),
                                 maxPlataformas(5),
                                 maxObstMedios(5)
 {
+    lista_ents.incluir(pJog);
     srand(time(nullptr));
-    criarInimigos();
-    criarObstaculos();
-    criarCenario();
 }
 
 PrimeiraFase :: ~PrimeiraFase()
@@ -32,13 +30,13 @@ void PrimeiraFase :: criarObstMedios()
 void PrimeiraFase :: criarInimigos()
 {
     criarInimFaceis();
-    criarInimMedios();
+    //criarInimMedios();
 }
 
 void PrimeiraFase :: criarObstaculos()
 {
     criarPlataformas();
-    criarObstMedios();
+    //criarObstMedios();
 }
 
 void PrimeiraFase :: criarCenario()
@@ -54,4 +52,12 @@ void PrimeiraFase :: criarCenario()
     Bloco* b = new Bloco(400, 280, 64, 16);
     lista_ents.incluir(b);
 
+}
+
+void PrimeiraFase :: executar()
+{
+    criarCenario();
+    criarInimigos();
+    criarObstaculos();
+    Fase::executar();
 }
