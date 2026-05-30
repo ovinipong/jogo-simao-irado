@@ -6,6 +6,7 @@
 #include "gerenciador_colisoes.hpp"
 #include "gerenciador_grafico.hpp"
 #include "plataforma.hpp"
+#include "agua.hpp"
 
 #include <stdlib.h>
 #include <time.h>
@@ -38,6 +39,7 @@ int main()
     Plataforma p1(100, 320, PRATELEIRA);
     Plataforma p2 (0, 316, CRISTALEIRA);
     Plataforma p3 (150, 338, MESA);
+    Agua a1(380, 374);
 
     gc.setJogador(&j1);
     // gc.incluirInimigo(&i1);
@@ -53,6 +55,7 @@ int main()
     gc.incluirObstaculo(&p1);
     gc.incluirObstaculo(&p2);
     gc.incluirObstaculo(&p3);
+    gc.incluirObstaculo(&a1);
 
 
     while (gg.window->isOpen()) 
@@ -86,6 +89,7 @@ int main()
         p2.desenhar();
         p3.desenhar();
         j1.desenhar();
+        a1.desenhar();
 
         // i1.desenhar();
         
