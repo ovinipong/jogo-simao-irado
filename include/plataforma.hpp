@@ -7,6 +7,7 @@ class Plataforma : public Obstaculo
 {
     private:
         int altura;
+        bool pode_colidir;
 
     public:
         Plataforma(int _x, int _y);

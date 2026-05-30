@@ -50,7 +50,7 @@ void Jogador :: executar()
     }
 
     float gravidade_velocidade = 0.5;
-    float pulo_velocidade = -10;
+    float pulo_velocidade = -12;
 
     if (no_chao)
     {
@@ -66,6 +66,11 @@ void Jogador :: executar()
     {
         velocidade_y = pulo_velocidade;
         no_chao = false;
+    }
+    // Se estiver no ar mas nao estiver apertando a tecla de pular, ele vai fazer cair
+    if (!Keyboard::isKeyPressed(Keyboard::Up) && velocidade_y < 0.0f)
+    {
+        velocidade_y = velocidade_y * 0.8f; 
     }
 
     pFig->frame_inicial = 2;   //so corre

@@ -25,7 +25,7 @@ int main()
     Ente::setGG(&gg);
 
     Jogador j1(400, 100);
-    InimigoFacil i1(0, 50);
+    // InimigoFacil i1(0, 50);
     Bloco b1(0, 380, 64, 16);
     Bloco b2(64, 380, 64, 16);
     Bloco b3(128, 380, 64, 16);
@@ -38,7 +38,7 @@ int main()
     Plataforma p1(100, 320);
 
     gc.setJogador(&j1);
-    gc.incluirInimigo(&i1);
+    // gc.incluirInimigo(&i1);
     gc.incluirBloco(&b1);
     gc.incluirBloco(&b2);
     gc.incluirBloco(&b3);
@@ -63,7 +63,7 @@ int main()
         }
         // Executa
         j1.executar();
-        i1.executar();
+        // i1.executar();
         gc.executar();
 
         gg.window->clear();
@@ -78,9 +78,9 @@ int main()
         b7.desenhar();
         b8.desenhar();
         b9.desenhar();
-        j1.desenhar();
-        i1.desenhar();
         p1.desenhar();
+        j1.desenhar();
+        // i1.desenhar();
         
 
         
