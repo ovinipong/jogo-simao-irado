@@ -1,8 +1,8 @@
 #pragma once
 
-#include "obstaculo.hpp"
+#include "entidade.hpp"
 
-class Bloco : public Obstaculo
+class Bloco : public entidades::Entidade
 {
     private:
         sf::Color cor;
@@ -11,5 +11,5 @@ class Bloco : public Obstaculo
         Bloco(int _x, int _y, float largura, float altura);
         ~Bloco();
         void executar();
-        void obstaculizar(entidades::Jogador* pJog);
+        void obstaculizar(entidades::Entidade* pE);
 };

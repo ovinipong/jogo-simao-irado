@@ -39,15 +39,15 @@ int main()
 
     gc.setJogador(&j1);
     gc.incluirInimigo(&i1);
-    gc.incluirObstaculo(&b1);
-    gc.incluirObstaculo(&b2);
-    gc.incluirObstaculo(&b3);
-    gc.incluirObstaculo(&b4);
-    gc.incluirObstaculo(&b5);
-    gc.incluirObstaculo(&b6);
-    gc.incluirObstaculo(&b7);
-    gc.incluirObstaculo(&b8);
-    gc.incluirObstaculo(&b9);
+    gc.incluirBloco(&b1);
+    gc.incluirBloco(&b2);
+    gc.incluirBloco(&b3);
+    gc.incluirBloco(&b4);
+    gc.incluirBloco(&b5);
+    gc.incluirBloco(&b6);
+    gc.incluirBloco(&b7);
+    gc.incluirBloco(&b8);
+    gc.incluirBloco(&b9);
     gc.incluirObstaculo(&p1);
 
 

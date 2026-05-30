@@ -14,6 +14,10 @@ GerenciadorColisoes :: ~GerenciadorColisoes()
     //desalocar vector
 }
 
+/* =============================================== */
+/* =============== TRATAR COLISOES =============== */
+/* =============================================== */
+
 void GerenciadorColisoes :: tratarColisoesJogObst()
 {
     std::list<Obstaculo*>::iterator it;
@@ -32,29 +36,6 @@ void GerenciadorColisoes :: tratarColisoesJogObst()
     }
 }
 
-void GerenciadorColisoes :: incluirInimigo (Inimigo *pi)
-{
-    inimigos.push_back(pi);
-}
-
-void GerenciadorColisoes :: setJogador(Jogador *pj)
-{
-    pJog=pj;
-}
-
-void GerenciadorColisoes :: incluirObstaculo(Obstaculo *po)
-{
-    obstaculos.push_back(po);
-}
-
-const bool GerenciadorColisoes :: verificarColisao (Entidade *pe1, Entidade *pe2)
-{
-    if (pe1->getColisao().getGlobalBounds().intersects(pe2->getColisao().getGlobalBounds()))
-        return true;
-    else 
-        return false;
-}
-
 void GerenciadorColisoes :: tratarColisoesJogInim()
 {
     vector<Inimigo*>::iterator it;
@@ -67,7 +48,6 @@ void GerenciadorColisoes :: tratarColisoesJogInim()
         }
     }
 }
-
 
 void GerenciadorColisoes :: tratarColisoesEnemObst()
 {
@@ -89,6 +69,77 @@ void GerenciadorColisoes :: tratarColisoesEnemObst()
         }
     }
 }
+
+void GerenciadorColisoes :: tratarColisioesJogBloco()
+{
+    vector<Bloco*>::iterator it;
+    for (it = blocos.begin(); it != blocos.end(); it++)
+    {
+        if (verificarColisao((*it), pJog))
+        {
+            (*it)->obstaculizar(pJog);
+        }
+    }
+}
+
+void GerenciadorColisoes :: tratarColisoesInimBloco()
+{
+    std::vector<Inimigo*>::iterator it1;
+    std::vector<Bloco *>::iterator it2;
+    for (it1 = inimigos.begin(); it1 != inimigos.end(); ++it1)
+    {
+        for (it2 = blocos.begin(); it2 != blocos.end(); ++it2)
+        {
+            FloatRect interseccao;
+            FloatRect inimigo_colisao = (*it1)->getColisao().getGlobalBounds();
+            FloatRect bloco_colisao = (*it2)->getColisao().getGlobalBounds();
+
+            // Se estiver colidindo
+            if (inimigo_colisao.intersects(bloco_colisao, interseccao))
+            {
+                (*it2)->obstaculizar(*it1);
+            }
+        }
+    }
+}
+
+
+/* ================================================== */
+/* =============== INCLUIR NAS LISTAS =============== */
+/* ================================================== */
+
+void GerenciadorColisoes :: incluirInimigo (Inimigo *pi)
+{
+    inimigos.push_back(pi);
+}
+
+void GerenciadorColisoes :: setJogador(Jogador *pj)
+{
+    pJog=pj;
+}
+
+void GerenciadorColisoes :: incluirObstaculo(Obstaculo *po)
+{
+    obstaculos.push_back(po);
+}
+
+void GerenciadorColisoes :: incluirBloco(Bloco *pb)
+{
+    if (pb != nullptr) blocos.push_back(pb);
+}
+
+/* ===================================================== */
+/* =============== VERIFICAR AS COLISOES =============== */
+/* ===================================================== */
+
+const bool GerenciadorColisoes :: verificarColisao (Entidade *pe1, Entidade *pe2)
+{
+    if (pe1->getColisao().getGlobalBounds().intersects(pe2->getColisao().getGlobalBounds()))
+        return true;
+    else 
+        return false;
+}
+
 
 void GerenciadorColisoes::arrumarColisoes(Entidade *pEnt, sf::FloatRect *bloco, sf::FloatRect *interseccao)
 {
@@ -131,9 +182,15 @@ void GerenciadorColisoes::arrumarColisoes(Entidade *pEnt, sf::FloatRect *bloco, 
     pEnt->setXY(pos);
 }
 
+/* ======================================== */
+/* =============== EXECUTAR =============== */
+/* ======================================== */
+
 void GerenciadorColisoes :: executar()
 {
     tratarColisoesEnemObst();
     tratarColisoesJogInim();
     tratarColisoesJogObst();
+    tratarColisioesJogBloco();
+    tratarColisoesInimBloco();
 }
