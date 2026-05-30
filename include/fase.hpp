@@ -3,6 +3,7 @@
 #include "ente.hpp"
 #include "inimigo_facil.hpp"
 #include "plataforma.hpp"
+#include "bloco.hpp"
 
 #include <cstdlib>
 #include <ctime>

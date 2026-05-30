@@ -43,5 +43,15 @@ void PrimeiraFase :: criarObstaculos()
 
 void PrimeiraFase :: criarCenario()
 {
-    //chao e fundo
+    int x = 0;
+
+    for (int i=0; i<9; i++)
+    {
+        Bloco* bloco = new Bloco(x, 380, 64, 16);
+        lista_ents.incluir(bloco);
+    }
+
+    Bloco* b = new Bloco(400, 280, 64, 16);
+    lista_ents.incluir(b);
+
 }
