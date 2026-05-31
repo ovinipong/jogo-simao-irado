@@ -7,6 +7,7 @@
 #include "plataforma.hpp"
 #include "bloco.hpp"
 #include "jogador.hpp"
+#include "agua.hpp"
 
 #include <cstdlib>
 #include <ctime>
@@ -24,6 +25,7 @@ class Fase : public Ente
     protected:
         ListaEntidades lista_ents;
         GerenciadorColisoes gc;
+
     public:
         Fase();
         ~Fase();
@@ -31,12 +33,14 @@ class Fase : public Ente
     protected:
         void criarInimFaceis();
         void criarPlataformas();
+        void criarAgua();
         virtual void criarInimigos()=0;
         virtual void criarObstaculos()=0;
         virtual void criarCenario()=0;
 
         virtual int getMaxInimFaceis()=0;
         virtual int getMaxPlataformas()=0;
+        virtual int getMaxAgua()=0;
 };
 
 }

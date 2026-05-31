@@ -9,7 +9,9 @@ Jogador::Jogador(int _x, int _y):
 Personagem(_x, _y) 
 {
     pontos = 0;
-    move_speed = 3;
+    velocidade_padrao = 4;
+    move_speed = velocidade_padrao;
+    tempo_efeito = 0.0f;
 
     pFig = new Figura("assets/jogador.png");
 
@@ -36,6 +38,15 @@ Jogador::~Jogador()
 
 void Jogador :: executar()
 {
+    // Verifica se nao esta lento
+    if (move_speed < velocidade_padrao)
+    {
+        if (timer_status.getElapsedTime().asSeconds() >= tempo_efeito)
+        {
+            move_speed = velocidade_padrao;
+        }
+    }
+
     if (Keyboard::isKeyPressed(Keyboard::Left))
     {
         x -= move_speed;
@@ -88,4 +99,11 @@ void Jogador :: reverterPosicao()
 {
     x=x_anterior;
     colisao.setPosition((float)x, (float)y);
+}
+
+void Jogador :: aplicarLentidao(int nova_velocidade, float duracao)
+{
+    move_speed = nova_velocidade;
+    tempo_efeito = duracao;
+    timer_status.restart();
 }

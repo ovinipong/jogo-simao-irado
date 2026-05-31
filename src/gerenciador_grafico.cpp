@@ -15,7 +15,8 @@ GerenciadorGrafico::GerenciadorGrafico()
 
     window = new sf::RenderWindow(sf::VideoMode(largura * escala, altura * escala), "Jogo Irado");
 
-    View camera (FloatRect(0.f, 0.f, (float)largura, (float)altura));
+    camera.setSize((float)largura, (float)altura);
+    camera.setCenter((float)largura / 2.f, (float)altura / 2.f);
     window->setView(camera);
 
     window->setFramerateLimit(60);
@@ -95,4 +96,10 @@ void GerenciadorGrafico::executar()
 void GerenciadorGrafico::mostrar()
 {
     window->display();
+}
+
+void GerenciadorGrafico::centralizarCamera(sf::Vector2f posicao)
+{
+    camera.setCenter(posicao);
+    window->setView(camera);
 }

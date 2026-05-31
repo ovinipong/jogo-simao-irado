@@ -51,14 +51,29 @@ void Fase :: criarPlataformas()
     }
 }
 
+void Fase :: criarAgua()
+{
+    int n_agua = getMaxAgua();
+    int qntd = rand() % n_agua + 1;
+
+    if (qntd<3)
+        qntd=3;
+
+    for (int i = 0; i < qntd; i++)
+    {
+        int x = (rand() % 545);//544 nao passa a tela
+        int y = (rand() % 321);
+        Agua* agua = new Agua(x, y);
+        lista_ents.incluir(agua); 
+        gc.incluirObstaculo(agua);
+    }
+}
+
 void Fase::executar()
 {
-    //std::cout << "1" << std::endl;
-    pGG->executar();
-    //std::cout << "2" << std::endl;
-    lista_ents.percorrer();
-    //std::cout << "3" << std::endl;
-    gc.executar();
-    //std::cout << "4" << std::endl;
-    pGG->mostrar();
+    pGG->executar();                    // Limpa tela
+    lista_ents.percorrer();             // Percorre executando
+    gc.executar();                      // Ajusta a colisao
+    lista_ents.percorrer_desenhar();    // Desenha na posicao correta
+    pGG->mostrar();                     // Da display na tela
 }

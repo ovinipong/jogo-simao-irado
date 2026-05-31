@@ -25,6 +25,18 @@ void ListaEntidades :: percorrer()
         if (aux->pInfo != NULL)
         {
             aux->pInfo->executar();
+        }
+        aux = aux->getProx();
+    }
+}
+
+void ListaEntidades :: percorrer_desenhar()
+{
+    auto aux = LEs.getPrimeiro();
+    while (aux != NULL)
+    {
+        if (aux->pInfo != NULL)
+        {
             aux->pInfo->desenhar();
         }
         aux = aux->getProx();
