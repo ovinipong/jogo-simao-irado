@@ -99,6 +99,10 @@ void GerenciadorColisoes :: tratarColisoesInimBloco()
             {
                 (*it2)->obstaculizar(*it1);
             }
+            if (interseccao.height > interseccao.width)
+            {
+                (*it1)->inverterDirecao();
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ class Entidade : public Ente
 
     public:
         Entidade(int _x, int _y);
-        virtual ~Entidade() = 0;
+        virtual ~Entidade();
         virtual void executar() = 0;
         sf::Vector2f getXY();
         void setXY(sf::Vector2f position);

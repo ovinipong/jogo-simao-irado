@@ -40,6 +40,8 @@ void Fase :: criarInimFaceis()//F no txt
         y++;
     }
 
+    if (posicoes.empty()) return;
+
     std::mt19937 rng(time(nullptr));
     std::shuffle(posicoes.begin(), posicoes.end(), rng);
     
@@ -49,6 +51,11 @@ void Fase :: criarInimFaceis()//F no txt
         qntd=minimo_ent;
     if (qntd>max)
         qntd=max;
+
+    if (qntd > (int)posicoes.size())
+    {
+        qntd = (int)posicoes.size();
+    }
 
     for (int i=0; i<qntd; i++)
     {
@@ -91,6 +98,8 @@ void Fase :: criarPlataformas()//P M C no txt
         y++;
     }
 
+    if (posicoes.empty()) return;
+
     std::mt19937 rng(time(nullptr));
     std::shuffle(posicoes.begin(), posicoes.end(), rng);
     
@@ -101,50 +110,17 @@ void Fase :: criarPlataformas()//P M C no txt
     if (qntd>max)
         qntd=max;
 
+    if (qntd > (int)posicoes.size())
+    {
+        qntd = (int)posicoes.size();
+    }
+
+
     for (int i=0; i<qntd; i++)
     {
         Plataforma* plat = new Plataforma(posicoes[i].x, posicoes[i].y, PRATELEIRA);
         lista_ents.incluir(plat); 
         gc.incluirObstaculo(plat);
-    }
-}
-
-void Fase :: criarAgua()// A no txt
-{
-    arquivo.clear();
-    arquivo.seekg(0);
-
-    std::vector<sf::Vector2i> posicoes;
-    std::string linha;
-    int y = 0;
-
-    while (std::getline(arquivo, linha))
-    {
-        for (int x = 0; x < linha.size(); x++)
-        {   
-            if (linha[x]=='A')//compara com o txt 
-            {
-                posicoes.push_back({x * 64, y * 64});
-            }
-        }
-        y++;
-    }
-
-    std::mt19937 rng(time(nullptr));
-    std::shuffle(posicoes.begin(), posicoes.end(), rng);
-    
-    int max = getMaxAgua();
-    int qntd = rand() % ((int)posicoes.size() + 1);
-    if (qntd<minimo_ent)
-        qntd=minimo_ent;
-    if (qntd>max)
-        qntd=max;
-
-    for (int i=0; i<qntd; i++)
-    {
-        Agua* agua = new Agua(posicoes[i].x, posicoes[i].y);
-        lista_ents.incluir(agua); 
-        gc.incluirObstaculo(agua);
     }
 }
 

@@ -11,7 +11,7 @@ class PrimeiraFase : public Fase
     private:
         //lembrar: na implementação min é 3
         int maxInimFaceis; 
-        int maxInimMedios;
+        int maxInimBolo;
         int maxPlataformas;
         int maxAgua;
         Jogador* pJogador;
@@ -22,14 +22,18 @@ class PrimeiraFase : public Fase
         virtual void executar();
         void move_camera();
     protected:
-        void criarInimMedios();
-        void criarObstMedios();
+        void criarInimBolo();
+        void criarObstAgua();
         virtual void criarInimigos();
         virtual void criarObstaculos();
     public:
         int getMaxInimFaceis()
         {
             return maxInimFaceis;
+        }
+        int getMaxInimBolo()
+        {
+            return (maxInimBolo);
         }
         int getMaxPlataformas()
         {
