@@ -11,6 +11,7 @@ class Boss : public Inimigo
         int dano_meelee;
         int fraqueza;
         bool atacar;//depende de distancia
+
     public:
         Boss(int _x, int _y);
         ~Boss();

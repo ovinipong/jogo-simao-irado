@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-PrimeiraFase:: PrimeiraFase(Jogador* pJog) : Fase(),
+PrimeiraFase:: PrimeiraFase(Jogador* pJog) : Fase("assets/mapas/mapa1.txt"),
                                 maxInimFaceis(5),
                                 maxInimMedios(5),
                                 maxPlataformas(5),
@@ -16,13 +16,13 @@ PrimeiraFase:: PrimeiraFase(Jogador* pJog) : Fase(),
     criarCenario();
     criarInimigos();
     criarObstaculos();
-    
+
     pJogador = pJog;
 }
 
 PrimeiraFase :: ~PrimeiraFase()
 {
-    
+       
 }
 
 void PrimeiraFase :: criarInimMedios()
@@ -47,37 +47,6 @@ void PrimeiraFase :: criarObstaculos()
 {
     criarPlataformas();
     criarAgua();
-}
-
-void PrimeiraFase::criarCenario()
-{
-    std::ifstream arquivo("assets/mapas/mapa1.txt");
-
-    if (!arquivo.is_open())
-    {
-        std::cerr << "Erro ao abrir o arquivo de mapa!" << std::endl;
-    }
-
-    std::string linha;
-    int y = 0;
-
-    while (std::getline(arquivo, linha))
-    {
-        for (int x = 0; x < linha.size(); x++)
-        {
-            if (linha[x] == '1')
-            {
-                // x * 64 porque a largura do bloco é 64
-                // y * 40 para distribuir bem as plataformas na altura (480) da tela
-                Bloco* bloco = new Bloco(x * 64, y * 40, 64, 16);
-                lista_ents.incluir(bloco);
-                gc.incluirBloco(bloco);
-            }
-        }
-        y++;
-    }
-
-    arquivo.close();
 }
 
 void PrimeiraFase :: executar()

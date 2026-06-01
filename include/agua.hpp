@@ -7,7 +7,7 @@ class Agua : public Obstaculo
 {
     protected:
         int reducao_velocidade; 
-        float tempo;       
+        float tempo;    
         
     public:
         Agua(int _x, int _y);

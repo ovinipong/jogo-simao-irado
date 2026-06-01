@@ -6,6 +6,7 @@ using namespace entidades;
 
 InimigoFacil :: InimigoFacil(int _x, int _y): Inimigo(_x, _y)
 {
+    id =3;
     dano=nivel_maldade*1;
     velocidade_y = 0;
 }

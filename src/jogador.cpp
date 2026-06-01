@@ -8,6 +8,7 @@ using namespace entidades;
 Jogador::Jogador(int _x, int _y):
 Personagem(_x, _y) 
 {
+    id =2;
     pontos = 0;
     velocidade_padrao = 4;
     move_speed = velocidade_padrao;

@@ -10,6 +10,8 @@ Obstaculo(_x, _y), altura(0), pode_colidir (false)
     {
         case PRATELEIRA:
         {
+            id=7;
+
             altura = (rand() % 64) + 32;
             y -= altura;
             
@@ -35,7 +37,9 @@ Obstaculo(_x, _y), altura(0), pode_colidir (false)
             break;
         }
         case MESA:
-        {        
+        {      
+            id=8;
+
             pFig = new Figura("assets/mesa.png");
             pFig->frame_atual= 0;
             pFig->total_frames= 1;
@@ -58,6 +62,8 @@ Obstaculo(_x, _y), altura(0), pode_colidir (false)
         }
         case CRISTALEIRA:
         {
+            id=9;
+            
             pFig = new Figura("assets/cristaleira.png");
             pFig->frame_atual= 0;
             pFig->total_frames= 1;

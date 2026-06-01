@@ -6,6 +6,7 @@ using namespace entidades;
 Agua::Agua(int _x, int _y):
 Obstaculo(_x, _y)
 {
+    id = 10;
     reducao_velocidade = (rand() % 2) + 1;
     // Gera um float entre 0.0 e 0.1
     float chance = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);

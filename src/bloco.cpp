@@ -6,6 +6,7 @@ using namespace sf;
 Bloco::Bloco(int _x, int _y, float largura, float altura):
 entidades::Entidade(_x, _y)
 {
+    id = 1;
     cor = sf::Color::White;
     colisao.setSize(sf::Vector2f(largura, altura));
     colisao.setFillColor(cor);

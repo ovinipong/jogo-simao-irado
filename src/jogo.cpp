@@ -19,6 +19,7 @@ void Jogo :: executar()
     while (gg.window->isOpen())
     {
         fase1->executar();
-        std::cout<<"onde o jogador morre p eu por isso lista_ents.remover(pJog);"<<std::endl;
+        //std::cout<<"onde o jogador morre p eu por isso lista_ents.remover(pJog);"<<std::endl;
     }
+
 }

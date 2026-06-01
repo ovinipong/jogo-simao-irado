@@ -11,6 +11,9 @@
 
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
+#include <string>
+#include <random>
 
 using namespace entidades;
 using namespace listas;
@@ -25,9 +28,11 @@ class Fase : public Ente
     protected:
         ListaEntidades lista_ents;
         GerenciadorColisoes gc;
+        std::ifstream arquivo;
+        int minimo_ent;
 
     public:
-        Fase();
+        Fase(const std::string& caminhoMapa);
         ~Fase();
         void executar();
     protected:
@@ -36,7 +41,7 @@ class Fase : public Ente
         void criarAgua();
         virtual void criarInimigos()=0;
         virtual void criarObstaculos()=0;
-        virtual void criarCenario()=0;
+        virtual void criarCenario();
 
         virtual int getMaxInimFaceis()=0;
         virtual int getMaxPlataformas()=0;

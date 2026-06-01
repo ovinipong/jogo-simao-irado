@@ -26,7 +26,6 @@ class PrimeiraFase : public Fase
         void criarObstMedios();
         virtual void criarInimigos();
         virtual void criarObstaculos();
-        virtual void criarCenario();
     public:
         int getMaxInimFaceis()
         {
