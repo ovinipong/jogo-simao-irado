@@ -14,18 +14,18 @@ Personagem(_x, _y)
     move_speed = velocidade_padrao;
     tempo_efeito = 0.0f;
 
-    pFig = new Figura("assets/jogador.png");
+    Figura("assets/jogador.png");
 
-    pFig->frame_atual= 0;
-    pFig->total_frames= 17;   
-    pFig->frame_largura=64;
-    pFig->frame_altura=128;  
-    pFig->contador= 0;
-    pFig->v_animacao= 8;// troca de frame a cada 8 ticks
+    frame_atual= 0;
+    total_frames= 17;   
+    frame_largura=64;
+    frame_altura=128;  
+    contador= 0;
+    v_animacao= 8;// troca de frame a cada 8 ticks
 
     //primeiro ta sendo definido aqui
-    pFig->sprite.setTextureRect(sf::IntRect(0, 0, pFig->frame_largura, pFig->frame_altura));
-    pFig->offset = {0.f, -45.f};//ajustar sprite
+    sprite.setTextureRect(sf::IntRect(0, 0, frame_largura, frame_altura));
+    offset = {0.f, -45.f};//ajustar sprite
 
     colisao.setSize(sf::Vector2f(50.0f, 50.0f));
     colisao.setFillColor(sf::Color::Green);
@@ -34,7 +34,7 @@ Personagem(_x, _y)
 // Destrutora
 Jogador::~Jogador()
 {
-    delete pFig;
+    
 }
 
 void Jogador :: executar()
@@ -51,14 +51,14 @@ void Jogador :: executar()
     if (Keyboard::isKeyPressed(Keyboard::Left))
     {
         x -= move_speed;
-        pFig->sprite.setScale(-1.f, 1.f);//inverte sprite p esquerda
-        pFig->sprite.setOrigin(pFig->frame_largura, 0);
+        sprite.setScale(-1.f, 1.f);//inverte sprite p esquerda
+        sprite.setOrigin(frame_largura, 0);
     }
     if (Keyboard::isKeyPressed(Keyboard::Right))
     {
         x += move_speed;
-        pFig->sprite.setScale(1.f, 1.f);
-        pFig->sprite.setOrigin(0, 0);
+        sprite.setScale(1.f, 1.f);
+        sprite.setOrigin(0, 0);
     }
 
     float gravidade_velocidade = 0.5;
@@ -85,8 +85,8 @@ void Jogador :: executar()
         velocidade_y = velocidade_y * 0.8f; 
     }
 
-    pFig->frame_inicial = 2;   //so corre
-    pFig->frame_final   = 9;
+    frame_inicial = 2;   //so corre
+    frame_final   = 9;
 
     no_chao = false;
 

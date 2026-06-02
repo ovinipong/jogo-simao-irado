@@ -5,7 +5,7 @@
 
 class Figura
 {
-    public:
+    protected:
         sf::Sprite sprite;
         sf::Texture texture;
         int frame_atual;

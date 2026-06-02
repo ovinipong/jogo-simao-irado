@@ -12,21 +12,21 @@ entidades::Entidade(_x, _y)
     colisao.setFillColor(cor);
     colisao.setPosition(_x, _y);
 
-    pFig = new Figura ("assets/chao.png");
+    Figura ("assets/chao.png");
 
-    pFig->frame_atual= 0;
-    pFig->total_frames= 1;   
-    pFig->frame_largura=64;
-    pFig->frame_altura=64;  
-    pFig->contador= 0;
-    pFig->v_animacao= 8;// troca de frame a cada 8 ticks
+    frame_atual= 0;
+    total_frames= 1;   
+    frame_largura=64;
+    frame_altura=64;  
+    contador= 0;
+    v_animacao= 8;// troca de frame a cada 8 ticks
 
     //primeiro ta sendo definido aqui
-    pFig->sprite.setTextureRect(sf::IntRect(0, 0, pFig->frame_largura, pFig->frame_altura));
-    pFig->offset = {0.f, -48.f};//ajustar sprite
+    sprite.setTextureRect(sf::IntRect(0, 0, frame_largura, frame_altura));
+    offset = {0.f, -48.f};//ajustar sprite
 
-    pFig->frame_inicial=0;
-    pFig->frame_final=0;
+    frame_inicial=0;
+    frame_final=0;
 }
 
 Bloco::~Bloco()
