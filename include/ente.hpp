@@ -6,13 +6,15 @@
 
 using namespace gerenciadores;
 
-class Ente : public Figura
+class Ente
 {
     protected:
         int id;
         static GerenciadorGrafico* pGG;
         sf::Sprite* pFigura;
         sf::RectangleShape colisao;
+    public:
+        Figura* pFig;
 
     public:
         Ente();
