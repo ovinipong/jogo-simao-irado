@@ -10,6 +10,7 @@ Obstaculo(_x, _y), altura(0), pode_colidir (false)
     {
         case PRATELEIRA:
         {
+            danoso=false;
             id=7;
 
             altura = (rand() % 64) + 32;
@@ -18,7 +19,7 @@ Obstaculo(_x, _y), altura(0), pode_colidir (false)
             pFig = new Figura("assets/prateleira.png");
             pFig->frame_atual= 0;
             pFig->total_frames= 1;
-            pFig->frame_largura= 96;
+            pFig->frame_largura= 64;
             pFig->frame_altura= 64;
             pFig->contador= 0;
             pFig->v_animacao= 0;
@@ -37,7 +38,8 @@ Obstaculo(_x, _y), altura(0), pode_colidir (false)
             break;
         }
         case MESA:
-        {      
+        {
+            danoso=false;
             id=8;
 
             pFig = new Figura("assets/mesa.png");
@@ -62,13 +64,14 @@ Obstaculo(_x, _y), altura(0), pode_colidir (false)
         }
         case CRISTALEIRA:
         {
+            danoso=false;
             id=9;
             
             pFig = new Figura("assets/cristaleira.png");
             pFig->frame_atual= 0;
             pFig->total_frames= 1;
-            pFig->frame_largura= 64;
-            pFig->frame_altura= 64;
+            pFig->frame_largura= 128;
+            pFig->frame_altura= 128;
             pFig->contador= 0;
             pFig->v_animacao= 0;
 
@@ -78,7 +81,7 @@ Obstaculo(_x, _y), altura(0), pode_colidir (false)
             pFig->sprite.setTextureRect(sf::IntRect(0, 0, pFig->frame_largura, pFig->frame_altura));
             //pFig->offset = {0.f, 0.95f};//ajustar sprite
 
-            colisao.setSize(sf::Vector2f(32, 4));
+            colisao.setSize(sf::Vector2f(pFig->frame_largura, 4));
             colisao.setFillColor(sf::Color::Red);
             colisao.setPosition(x, y);
 

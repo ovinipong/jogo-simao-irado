@@ -11,6 +11,17 @@ Fase :: Fase(const std::string& caminhoMapa) : minimo_ent(3)
     {
         std::cerr << "Erro ao abrir o arquivo de mapa!" << std::endl;
     }
+
+    //Usado para padronizar a camera
+    std::string linha;
+    int colunas = 0, linhas = 0;
+    while (std::getline(arquivo, linha)) {
+        if ((int)linha.size() > colunas)
+            colunas = linha.size();
+        linhas++;
+    }
+    mapa_largura = colunas * 64.f;
+    mapa_altura  = linhas  * 64.f;
 }
 
 Fase :: ~Fase()
@@ -126,6 +137,9 @@ void Fase :: criarPlataformas()//P M C no txt
 
 void Fase::criarCenario()
 {
+    arquivo.clear();
+    arquivo.seekg(0);
+    
     std::string linha;
     int y = 0;
 
@@ -135,7 +149,7 @@ void Fase::criarCenario()
         {
             if (linha[x]=='1')//compara com o txt
             {
-                Bloco* bloco = new Bloco(x * 64, y * 64, 64, 16);
+                Bloco* bloco = new Bloco(x * 64, y * 64, 64, 32);
                 lista_ents.incluir(bloco);
                 gc.incluirBloco(bloco);
             }

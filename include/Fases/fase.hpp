@@ -31,6 +31,8 @@ class Fase : public Ente
         GerenciadorColisoes gc;
         std::ifstream arquivo;
         int minimo_ent;
+        float mapa_largura;
+        float mapa_altura;
 
     public:
         Fase(const std::string& caminhoMapa);

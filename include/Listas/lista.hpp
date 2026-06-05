@@ -64,7 +64,23 @@ Lista<TL>::~Lista()
 template <typename TL>
 void Lista<TL>::incluir(TL* p)
 {
-     if (p == NULL) return;
+    if (p == NULL) return;
+
+    Elemento<TL>* novo = new Elemento<TL>();
+    novo->incluir(p);
+    novo->pProx = NULL;
+
+    if (pUltimo == NULL)
+    {
+        pPrimeiro = novo;
+        pUltimo = novo;
+    }
+    else
+    {
+        pUltimo->pProx = novo;
+        pUltimo = novo;
+    }
+    /*if (p == NULL) return;
 
     Elemento<TL>* novo = new Elemento<TL>();
     novo->incluir(p);
@@ -74,7 +90,7 @@ void Lista<TL>::incluir(TL* p)
     if (pUltimo == NULL)
     {
         pUltimo = novo;
-    }
+    }*/
 }
 
 template <typename TL>

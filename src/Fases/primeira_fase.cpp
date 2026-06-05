@@ -10,12 +10,12 @@ PrimeiraFase:: PrimeiraFase(Jogador* pJog) : Fase("assets/mapas/mapa1.txt"),
                                 maxPlataformas(5),
                                 maxAgua(5)
 {
-    lista_ents.incluir(pJog);
     srand(time(nullptr));
-    gc.setJogador(pJog);
     criarCenario();
     criarInimigos();
     criarObstaculos();
+    lista_ents.incluir(pJog);
+    gc.setJogador(pJog);
 
     pJogador = pJog;
 }
@@ -142,17 +142,17 @@ void PrimeiraFase :: executar()
 void PrimeiraFase::move_camera()
 {
     sf::Vector2f pos_camera = pJogador->getColisao().getPosition();
-    // Ajuste para centralizar na figura
     pos_camera.x += 32;
-    pos_camera.y += 64;
 
-    float tamanho_da_tela = 320.f;
-    float limite_esquerda = 0 + tamanho_da_tela;
-    float limite_direita = 2240.f - tamanho_da_tela;
-    float limite_baixo = 240.f;
+    //usar igual no gerenciador grafico
+    float view_largura = 1024.f;
+    float view_altura  = 576.f;
+
+    float limite_esquerda = view_largura / 2.f;
+    float limite_direita  = mapa_largura - (view_largura / 2.f);
 
     pos_camera.x = std::max(limite_esquerda, std::min(pos_camera.x, limite_direita));
-    pos_camera.y = std::min(pos_camera.y, limite_baixo);
+    pos_camera.y = mapa_altura / 2.f;
 
     pGG->centralizarCamera(pos_camera);
 }

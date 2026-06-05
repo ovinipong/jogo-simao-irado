@@ -8,8 +8,8 @@ using namespace sf;
 
 GerenciadorGrafico::GerenciadorGrafico()
 {
-    int largura = 640;
-    int altura = 480;
+    int largura = 1024;
+    int altura = 576;
 
     float escala = 1.5;
 
@@ -83,6 +83,10 @@ void GerenciadorGrafico :: desenharEnte(Ente *pE)
 void GerenciadorGrafico::executar()
 {
     sf::Event event;
+    
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+        window->close();
+
     while (window->pollEvent(event)) 
     {
         if (event.type == sf::Event::Closed) 

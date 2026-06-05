@@ -23,7 +23,7 @@ entidades::Entidade(_x, _y)
 
     //primeiro ta sendo definido aqui
     pFig->sprite.setTextureRect(sf::IntRect(0, 0, pFig->frame_largura, pFig->frame_altura));
-    pFig->offset = {0.f, -48.f};//ajustar sprite
+    pFig->offset = {0.f, -32.f};//ajustar sprite
 
     pFig->frame_inicial=0;
     pFig->frame_final=0;

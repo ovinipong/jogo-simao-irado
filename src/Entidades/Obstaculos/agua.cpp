@@ -6,6 +6,7 @@ using namespace entidades;
 Agua::Agua(int _x, int _y):
 Obstaculo(_x, _y)
 {
+    danoso=false;
     id = 10;
     reducao_velocidade = (rand() % 2) + 1;
     // Gera um float entre 0.0 e 0.1
@@ -24,7 +25,7 @@ Obstaculo(_x, _y)
     pFig->frame_final=1;
 
     pFig->sprite.setTextureRect(sf::IntRect(0, 0, pFig->frame_largura, pFig->frame_altura));
-    pFig->offset = {0.f, -58.f};//ajustar sprite
+    pFig->offset = {0.f, -52.f};//ajustar sprite
 
     colisao.setSize(sf::Vector2f(pFig->frame_largura, 6));
     colisao.setFillColor(sf::Color::Red);

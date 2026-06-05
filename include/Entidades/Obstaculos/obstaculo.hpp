@@ -6,7 +6,7 @@
 class Obstaculo : public entidades::Entidade
 {
     protected:
-
+        bool danoso;
     public:
         Obstaculo(int _x, int _y);
         virtual ~Obstaculo();
