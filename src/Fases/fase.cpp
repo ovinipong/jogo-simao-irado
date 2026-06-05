@@ -6,7 +6,7 @@ using namespace fases;
 Fase :: Fase(const std::string& caminhoMapa, Jogador* pJog) : minimo_ent(3)
 {
     pJogador = pJog;
-    
+
     arquivo.open(caminhoMapa);
 
     if (!arquivo.is_open())
@@ -137,8 +137,13 @@ void Fase :: criarPlataformas()//P M C no txt
     }
 }
 
-void Fase::criarCenario()
+void Fase::criarCenario(const std::string& caminhoFundo)
 {
+    Bloco* fundo = new Bloco(0, 0, 1024, 576);
+    fundo->inicializarSprite(caminhoFundo, 1, 1024, 576, 0, 0, 0, sf::Vector2f(0.f, 0.f));
+    //nao incluir no g_colisoes
+    lista_ents.incluir(fundo);
+
     arquivo.clear();
     arquivo.seekg(0);
     

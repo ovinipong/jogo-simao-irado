@@ -11,7 +11,7 @@ PrimeiraFase:: PrimeiraFase(Jogador* pJog) : Fase("assets/mapas/mapa1.txt", pJog
                                 maxAgua(5)
 {
     srand(time(nullptr));
-    criarCenario();
+    criarCenario("assets/fundo1.png");
     criarInimigos();
     criarObstaculos();
     lista_ents.incluir(pJog);

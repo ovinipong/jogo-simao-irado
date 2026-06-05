@@ -46,7 +46,7 @@ class Fase : public Ente
         void criarPlataformas();
         virtual void criarInimigos()=0;
         virtual void criarObstaculos()=0;
-        virtual void criarCenario();
+        virtual void criarCenario(const std::string& caminhoFundo);
 
         virtual int getMaxInimFaceis()=0;
         virtual int getMaxInimBolo()=0;
