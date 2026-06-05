@@ -14,13 +14,11 @@ class PrimeiraFase : public Fase
         int maxInimBolo;
         int maxPlataformas;
         int maxAgua;
-        Jogador* pJogador;
 
     public:
         PrimeiraFase(Jogador* pJog);
         ~PrimeiraFase();
         virtual void executar();
-        void move_camera();
     protected:
         void criarInimBolo();
         void criarObstAgua();

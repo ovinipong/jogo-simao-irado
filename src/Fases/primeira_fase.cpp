@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-PrimeiraFase:: PrimeiraFase(Jogador* pJog) : Fase("assets/mapas/mapa1.txt"),
+PrimeiraFase:: PrimeiraFase(Jogador* pJog) : Fase("assets/mapas/mapa1.txt", pJog),
                                 maxInimFaceis(5),
                                 maxInimBolo(5),
                                 maxPlataformas(5),
@@ -16,8 +16,6 @@ PrimeiraFase:: PrimeiraFase(Jogador* pJog) : Fase("assets/mapas/mapa1.txt"),
     criarObstaculos();
     lista_ents.incluir(pJog);
     gc.setJogador(pJog);
-
-    pJogador = pJog;
 }
 
 PrimeiraFase :: ~PrimeiraFase()
@@ -136,23 +134,4 @@ void PrimeiraFase :: executar()
 {
     Fase::executar();
     move_camera();
-}
-
-// fase.cpp
-void PrimeiraFase::move_camera()
-{
-    sf::Vector2f pos_camera = pJogador->getColisao().getPosition();
-    pos_camera.x += 32;
-
-    //usar igual no gerenciador grafico
-    float view_largura = 1024.f;
-    float view_altura  = 576.f;
-
-    float limite_esquerda = view_largura / 2.f;
-    float limite_direita  = mapa_largura - (view_largura / 2.f);
-
-    pos_camera.x = std::max(limite_esquerda, std::min(pos_camera.x, limite_direita));
-    pos_camera.y = mapa_altura / 2.f;
-
-    pGG->centralizarCamera(pos_camera);
 }

@@ -12,7 +12,7 @@ Personagem(_x, _y), nivel_maldade(10)
 
 Inimigo :: ~Inimigo()
 {
-    delete pFig;
+
 }
 
 void Inimigo :: colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, sf::FloatRect *interseccao)

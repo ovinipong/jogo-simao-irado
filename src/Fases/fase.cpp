@@ -3,8 +3,10 @@
 
 using namespace fases;
 
-Fase :: Fase(const std::string& caminhoMapa) : minimo_ent(3)
+Fase :: Fase(const std::string& caminhoMapa, Jogador* pJog) : minimo_ent(3)
 {
+    pJogador = pJog;
+    
     arquivo.open(caminhoMapa);
 
     if (!arquivo.is_open())
@@ -165,4 +167,22 @@ void Fase::executar()
     gc.executar();                      // Ajusta a colisao
     lista_ents.percorrer_desenhar();    // Desenha na posicao correta
     pGG->mostrar();                     // Da display na tela
+}
+
+void Fase::move_camera()
+{
+    sf::Vector2f pos_camera = pJogador->getColisao().getPosition();
+    pos_camera.x += 32;
+
+    //usar igual no gerenciador grafico
+    float view_largura = 1024.f;
+    float view_altura  = 576.f;
+
+    float limite_esquerda = view_largura / 2.f;
+    float limite_direita  = mapa_largura - (view_largura / 2.f);
+
+    pos_camera.x = std::max(limite_esquerda, std::min(pos_camera.x, limite_direita));
+    pos_camera.y = mapa_altura / 2.f;
+
+    pGG->centralizarCamera(pos_camera);
 }

@@ -17,7 +17,7 @@ Jogo :: ~Jogo()
 
 void Jogo :: executar()
 {
-    while (gg.window->isOpen())
+    while (gg.janelaAberta())
     {
         switch(estado)
         {

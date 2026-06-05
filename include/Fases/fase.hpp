@@ -33,12 +33,15 @@ class Fase : public Ente
         int minimo_ent;
         float mapa_largura;
         float mapa_altura;
+        Jogador* pJogador;
 
     public:
-        Fase(const std::string& caminhoMapa);
+        Fase(const std::string& caminhoMapa, Jogador* pJog);
         ~Fase();
         void executar();
     protected:
+        void move_camera();
+
         void criarInimFaceis();
         void criarPlataformas();
         virtual void criarInimigos()=0;

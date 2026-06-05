@@ -8,7 +8,7 @@ namespace gerenciadores{
 
 class GerenciadorGrafico {
     
-    public:
+    private:
         sf::RenderWindow* window;//uml ta obj mas chamaria d pJanela 
         sf::View camera;
 
@@ -19,6 +19,14 @@ class GerenciadorGrafico {
         void executar();
         void mostrar();
         void centralizarCamera(sf::Vector2f posicao);
+        bool janelaAberta () const
+        {
+            return window->isOpen();
+        }
+        sf::RenderWindow* getWindow() 
+        { 
+            return window; 
+        }
 };
 
 }

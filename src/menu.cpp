@@ -6,13 +6,7 @@ using namespace sf;
 
 Menu::Menu(Jogo* pJ) : pJogo(pJ)
 {
-    pFig = new Figura("assets/menu_fundo.png");
-    pFig->frame_atual= 0;
-    pFig->total_frames= 1;   
-    pFig->frame_largura=640;
-    pFig->frame_altura=480;  
-    pFig->contador= 0;
-    pFig->v_animacao= 0;// troca de frame a cada 8 ticks
+    inicializarSprite("assets/menu_fundo.png", 1, 640, 480, 0, 0, 0);
 
     tela = PRINCIPAL;
     
@@ -77,7 +71,7 @@ void Menu::executar()
     // ---------------------------------------------------------
     // INTERACAO COM O MOUSE
     // ---------------------------------------------------------
-    sf::RenderWindow* window = Ente::getGG()->window; 
+    sf::RenderWindow* window = Ente::getGG()->getWindow(); 
     static bool mouseSegurado = false;
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))

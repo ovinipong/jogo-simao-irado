@@ -29,37 +29,24 @@ GerenciadorGrafico::~GerenciadorGrafico()
 
 void GerenciadorGrafico :: desenharEnte(Ente *pE)
 {
-    Figura* fig = pE->pFig;
-
-    //muda os frames exibidos
-    fig->contador++;
-    if (fig->contador >= fig->v_animacao)
+    pE->setContador(pE->getContador() + 1);
+    if (pE->getContador() >= pE->getVAnimacao())
     {
-        fig->contador = 0;
-        fig->frame_atual++;
-        if (fig->frame_atual > fig->frame_final)
-            fig->frame_atual = fig->frame_inicial;
+        pE->setContador(0);
+        pE->setFrameAtual(pE->getFrameAtual() + 1);
+        if (pE->getFrameAtual() > pE->getFrameFinal())
+            pE->setFrameAtual(pE->getFrameInicial());
     }
 
-    //tava servindo ent tinha estado diferente dps arrumo
-    /*if (fig->frame_atual < fig->frame_inicial || fig->frame_atual > fig->frame_final)
-        fig->frame_atual = fig->frame_inicial;*/
+    pE->getSprite().setTextureRect(sf::IntRect(pE->getFrameAtual() * pE->getFrameLargura(), 0,
+                                                pE->getFrameLargura(), pE->getFrameAltura()));
 
-    //recorta o frame
-    fig->sprite.setTextureRect(sf::IntRect(fig->frame_atual * fig->frame_largura,
-                                            0,
-                                            fig->frame_largura,
-                                            fig->frame_altura));
-
-    //temporario
-    fig->sprite.setPosition(
-    pE->getColisao().getPosition().x + fig->offset.x,
-    pE->getColisao().getPosition().y + fig->offset.y
+    pE->getSprite().setPosition(
+        pE->getColisao().getPosition().x + pE->getOffset().x,
+        pE->getColisao().getPosition().y + pE->getOffset().y
     );
-    //fig->sprite.setPosition(pE->getColisao().getPosition());
 
-    //window->draw(pE->getColisao());//ate arrumar o sprite
-    window->draw(pE->pFig->sprite);  
+    window->draw(pE->getSprite());
 }
 
 /*void GerenciadorGrafico :: executar()
