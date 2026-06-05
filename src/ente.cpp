@@ -36,5 +36,9 @@ void Ente :: setGG(GerenciadorGrafico *pG)
     pGG = pG;
 }
 
+GerenciadorGrafico* Ente :: getGG()
+{
+    return pGG;
+}
 
 

@@ -24,4 +24,5 @@ class Ente
         void desenhar();
         const sf::RectangleShape& getColisao() const;
         static void setGG(GerenciadorGrafico *pG);
+        static GerenciadorGrafico* getGG();
 };

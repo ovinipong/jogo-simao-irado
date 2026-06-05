@@ -4,9 +4,14 @@
 #include "gerenciador_grafico.hpp"
 #include "primeira_fase.hpp"
 //#include "segunda_fase.hpp"
-//#include "menu.hpp"
+#include "menu.hpp"
 
 using namespace entidades;
+
+enum Estado
+{
+    MENU, PRIMEIRA_FASE
+};
 
 class Jogo
 {
@@ -14,8 +19,12 @@ class Jogo
         PrimeiraFase* fase1;
         Jogador* pJog1;
         GerenciadorGrafico gg;
+        Menu menu;
+        Estado estado;
+
     public:
         Jogo();
         ~Jogo();
         void executar();
+        void setEstado(Estado e);
 };
