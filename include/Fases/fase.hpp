@@ -54,8 +54,8 @@ class Fase : public Ente
 
         void criarProjeteisJogador();
 
-        virtual int getMaxInimBolo()=0;
-        virtual int getMaxAgua()=0;
+        virtual int getMaxInimBolo() = 0;
+        virtual int getMaxAgua() = 0;
 };
 
 }

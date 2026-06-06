@@ -101,7 +101,7 @@ void Menu::executar()
                 }
                 else if (btnFase2.getGlobalBounds().contains(mousePosF))
                 {
-                    pJogo->setEstado(PRIMEIRA_FASE); 
+                    pJogo->setEstado(SEGUNDA_FASE); 
                 }
                 else if (btnVoltar.getGlobalBounds().contains(mousePosF))
                 {
