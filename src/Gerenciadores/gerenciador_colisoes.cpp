@@ -1,5 +1,6 @@
 #include "gerenciador_colisoes.hpp"
 
+using namespace gerenciadores;
 using namespace std;
 using namespace sf;
 

@@ -5,6 +5,7 @@ using namespace std;
 using namespace sf;
 using namespace entidades;
 
+const float Entidade::gravidade = 0.5f;
 // Construtora
 Entidade::Entidade(int _x, int _y)
 {

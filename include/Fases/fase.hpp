@@ -31,6 +31,8 @@ class Fase : public Ente
         GerenciadorColisoes gc;
         std::ifstream arquivo;
         int minimo_ent;
+        int maxInimFaceis;
+        int maxPlataformas;
         float mapa_largura;
         float mapa_altura;
         Jogador* pJogador;
@@ -48,9 +50,7 @@ class Fase : public Ente
         virtual void criarObstaculos()=0;
         virtual void criarCenario(const std::string& caminhoFundo);
 
-        virtual int getMaxInimFaceis()=0;
         virtual int getMaxInimBolo()=0;
-        virtual int getMaxPlataformas()=0;
         virtual int getMaxAgua()=0;
 };
 

@@ -13,6 +13,8 @@
 using namespace std;
 using namespace entidades;
 
+namespace gerenciadores{
+
 class GerenciadorColisoes
 {
     private:
@@ -40,3 +42,5 @@ class GerenciadorColisoes
         void incluirBloco(Bloco *pb);
         void executar();
 };
+
+}

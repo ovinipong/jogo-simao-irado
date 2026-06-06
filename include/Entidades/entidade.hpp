@@ -10,6 +10,7 @@ class Entidade : public Ente
         int x, y;
         float velocidade_y;
         bool no_chao;
+        static const float gravidade;
 
     public:
         Entidade(int _x, int _y);
