@@ -11,6 +11,7 @@ Inimigo(_x, _y)
     estado = PARADO;
     tempo_parado = 2.0f;
     pulo_velocidade = 10.0f;
+    num_vidas = 5;
 
     inicializarSprite("assets/bolo.png", 1, 64, 64, 8, 0, 0, sf::Vector2f(0.f, 0.f));
 
@@ -25,6 +26,7 @@ Bolo::~Bolo()
 
 void Bolo::executar()
 {
+    if (!vivo) return;
     // Padrao para qualquer estado vai ser cair
     float gravidade_velocidade = 0.5;
 

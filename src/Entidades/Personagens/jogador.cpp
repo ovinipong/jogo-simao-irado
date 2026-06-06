@@ -1,13 +1,18 @@
 #include "jogador.hpp"
 
+#include <iostream>
+
 using namespace std;
 using namespace sf;
 using namespace entidades;
+
+#include "projetil.hpp"
 
 // Construtora
 Jogador::Jogador(int _x, int _y):
 Personagem(_x, _y) 
 {
+    pListaProjeteis = nullptr;
     id =2;
     pontos = 0;
     velocidade_padrao = 4;
@@ -74,6 +79,12 @@ void Jogador :: executar()
         velocidade_y = velocidade_y * 0.8f; 
     }
 
+    // ATIRAR PEW PEW
+    if (Keyboard::isKeyPressed(Keyboard::Z) && timer_atirar.getElapsedTime().asSeconds() >= 0.5)
+    {
+        atirar();
+    }
+
     no_chao = false;
 
     y = y + velocidade_y;
@@ -93,4 +104,31 @@ void Jogador :: aplicarLentidao(int nova_velocidade, float duracao)
     move_speed = nova_velocidade;
     tempo_efeito = duracao;
     timer_status.restart();
+}
+
+void Jogador::atirar() 
+{
+    if (!pListaProjeteis) return;
+
+    // Procura por um projétil inativo na lista
+    for (Projetil* proj : *pListaProjeteis) 
+    {
+        if (!proj->getAtivo()) 
+        {
+            
+            bool esquerda = (sprite.getScale().x < 0); 
+            
+            // Pega a posição do jogador para criar o tiro
+            sf::Vector2f pos_tiro = colisao.getPosition();
+            
+            pos_tiro.y += colisao.getSize().y / 2.0f - 8.0f; // Centraliza na altura
+            pos_tiro.x += (esquerda ? -10.f : 50.f);         // Joga um pouco pra frente
+            
+            // Atira!
+            proj->disparar(pos_tiro, esquerda);
+            timer_atirar.restart();
+
+            break;
+        }
+    }
 }

@@ -9,6 +9,7 @@
 #include "entidade.hpp"
 #include "obstaculo.hpp"
 #include "bloco.hpp"
+#include "projetil.hpp"
 
 using namespace std;
 using namespace entidades;
@@ -18,7 +19,7 @@ class GerenciadorColisoes
     private:
         vector <Inimigo*> inimigos;
         list <Obstaculo*> obstaculos;
-        // set <Projetil*> projeteis;
+        set <Projetil*> projeteis;
         vector <Bloco*> blocos;
         Jogador* pJog;
     private:
@@ -26,6 +27,7 @@ class GerenciadorColisoes
         void tratarColisoesJogObst();
         void tratarColisoesJogInim();
         void tratarColisoesJogProj();
+        void tratarColisoesInimProj();
         void tratarColisoesInimObst();
         void tratarColisioesJogBloco();
         void tratarColisoesInimBloco();
@@ -38,5 +40,6 @@ class GerenciadorColisoes
         void setJogador(Jogador *pj);
         void incluirObstaculo(Obstaculo *po);
         void incluirBloco(Bloco *pb);
+        void incluirProjetil(Projetil *pp);
         void executar();
 };

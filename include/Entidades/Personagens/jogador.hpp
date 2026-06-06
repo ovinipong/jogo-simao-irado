@@ -2,6 +2,8 @@
 
 #include "personagem.hpp"
 
+class Projetil;
+
 namespace entidades {
 
 class Jogador : public Personagem
@@ -12,7 +14,10 @@ class Jogador : public Personagem
         int velocidade_padrao;
         int x_anterior;
         sf::Clock timer_status;
+        sf::Clock timer_atirar;
         float tempo_efeito;
+        std::vector<Projetil*>*  pListaProjeteis;
+
 
     public:
         Jogador(int _x, int _y);
@@ -20,6 +25,9 @@ class Jogador : public Personagem
         void executar();
         void reverterPosicao();
         void aplicarLentidao(int nova_velocidade, float duracao);
+
+        void setListaProjeteis(std::vector<Projetil*>* pLista) { pListaProjeteis = pLista; }
+        void atirar();
 };
 
 

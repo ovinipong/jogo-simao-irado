@@ -9,6 +9,7 @@
 #include "jogador.hpp"
 #include "agua.hpp"
 #include "bolo.hpp"
+#include "projetil.hpp"
 
 #include <cstdlib>
 #include <ctime>
@@ -34,6 +35,7 @@ class Fase : public Ente
         float mapa_largura;
         float mapa_altura;
         Jogador* pJogador;
+        std::vector<Projetil*> projeteis_jogador;
 
     public:
         Fase(const std::string& caminhoMapa, Jogador* pJog);
@@ -47,6 +49,8 @@ class Fase : public Ente
         virtual void criarInimigos()=0;
         virtual void criarObstaculos()=0;
         virtual void criarCenario(const std::string& caminhoFundo);
+
+        void criarProjeteisJogador();
 
         virtual int getMaxInimFaceis()=0;
         virtual int getMaxInimBolo()=0;

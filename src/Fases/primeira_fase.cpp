@@ -16,6 +16,7 @@ PrimeiraFase:: PrimeiraFase(Jogador* pJog) : Fase("assets/mapas/mapa1.txt", pJog
     criarObstaculos();
     lista_ents.incluir(pJog);
     gc.setJogador(pJog);
+    criarProjeteisJogador();
 }
 
 PrimeiraFase :: ~PrimeiraFase()

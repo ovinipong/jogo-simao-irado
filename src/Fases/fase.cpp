@@ -191,3 +191,16 @@ void Fase::move_camera()
 
     pGG->centralizarCamera(pos_camera);
 }
+
+void Fase :: criarProjeteisJogador()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        Projetil* proj = new Projetil(-100, -100);
+        lista_ents.incluir(proj); 
+        gc.incluirProjetil(proj);
+        projeteis_jogador.push_back(proj);
+    }
+    
+    pJogador->setListaProjeteis(&projeteis_jogador);
+}

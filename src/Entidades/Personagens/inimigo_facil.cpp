@@ -9,6 +9,7 @@ InimigoFacil :: InimigoFacil(int _x, int _y): Inimigo(_x, _y)
     id =3;
     dano=nivel_maldade*1;
     velocidade_y = 0;
+    num_vidas = 3;
 
     inicializarSprite("assets/inimigo.png", 2, 64, 64, 8, 0, 0, sf::Vector2f(0.f, 3.f));
 
@@ -23,6 +24,8 @@ InimigoFacil :: ~InimigoFacil()
 
 void InimigoFacil :: executar()
 {
+    if (!vivo) return;
+    
     x = x + move_speed;
 
     float gravidade_velocidade = 0.5;

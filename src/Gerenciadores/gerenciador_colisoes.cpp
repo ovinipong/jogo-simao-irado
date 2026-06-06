@@ -41,10 +41,13 @@ void GerenciadorColisoes :: tratarColisoesJogInim()
     vector<Inimigo*>::iterator it;
     for (it=inimigos.begin(); it != inimigos.end(); it++)
     {
-        if(verificarColisao(pJog, *it))
+        if ((*it)->get_vivo())
         {
-            pJog->reverterPosicao();
-            (*it)->inverterDirecao();
+            if(verificarColisao(pJog, *it))
+            {
+                pJog->reverterPosicao();
+                (*it)->inverterDirecao();
+            }
         }
     }
 }
@@ -107,6 +110,47 @@ void GerenciadorColisoes :: tratarColisoesInimBloco()
     }
 }
 
+void GerenciadorColisoes :: tratarColisoesInimProj()
+{
+    // Percorre todos os inimigos
+    for (int i = 0; i < inimigos.size(); i++)
+    {
+        Inimigo* pInimigo = inimigos[i];
+
+        // Se o inimigo já estiver morto, não precisa testar colisão com ele
+        if (!pInimigo->get_vivo()) 
+            continue;
+
+        sf::FloatRect inim_colisao = pInimigo->getColisao().getGlobalBounds();
+
+        // Percorre todos os projéteis guardados no Set
+        std::set<Projetil*>::iterator it;
+        for (it = projeteis.begin(); it != projeteis.end(); ++it)
+        {
+            Projetil* pProj = *it;
+
+            // Só testa a colisão se o projétil estiver voando pela tela (ativo)
+            if (!pProj->getAtivo()) 
+                continue;
+
+            sf::FloatRect proj_colisao = pProj->getColisao().getGlobalBounds();
+
+            // Verifica se a caixa de colisão do projétil encostou no inimigo
+            if (inim_colisao.intersects(proj_colisao))
+            {
+                // 1. Desativa o projétil
+                pProj->setAtivo(false);
+                
+                // (Opcional) Joga ele pra longe da tela para garantir
+                pProj->setXY(sf::Vector2f(-100.f, -100.f)); 
+
+                // 2. Aplica dano ao inimigo (usando o operador que você criou no Personagem)
+                (*pInimigo).operator--(); 
+            }
+        }
+    }
+}
+
 
 /* ================================================== */
 /* =============== INCLUIR NAS LISTAS =============== */
@@ -130,6 +174,11 @@ void GerenciadorColisoes :: incluirObstaculo(Obstaculo *po)
 void GerenciadorColisoes :: incluirBloco(Bloco *pb)
 {
     if (pb != nullptr) blocos.push_back(pb);
+}
+
+void GerenciadorColisoes :: incluirProjetil(Projetil *pp)
+{
+    if (pp != nullptr) projeteis.insert(pp);
 }
 
 /* ===================================================== */
@@ -197,4 +246,5 @@ void GerenciadorColisoes :: executar()
     tratarColisoesJogObst();
     tratarColisioesJogBloco();
     tratarColisoesInimBloco();
+    tratarColisoesInimProj();
 }
