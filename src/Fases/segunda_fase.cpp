@@ -138,11 +138,3 @@ void SegundaFase :: executar()
     Fase::executar();
     move_camera();
 }
-
-int SegundaFase::getMaxInimBolo() {
-    return 0; 
-}
-
-int SegundaFase::getMaxAgua() {
-    return 0;
-}

@@ -33,6 +33,4 @@ void Agua::executar()
 void Agua::obstaculizar(Jogador* pJog)
 {
     pJog->aplicarLentidao(reducao_velocidade, tempo);
-    std::cout << tempo << std::endl;
-    std::cout << reducao_velocidade << std::endl;
 }

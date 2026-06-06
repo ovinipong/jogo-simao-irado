@@ -31,7 +31,5 @@ class SegundaFase : public Fase
         {
             return (maxLustre);
         }
-        int getMaxInimBolo();
-        int getMaxAgua();
 };
 }

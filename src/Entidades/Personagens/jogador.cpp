@@ -116,7 +116,11 @@ void Jogador :: receberDano(int dano)
 
 void Jogador::atirar() 
 {
-    if (!pListaProjeteis) return;
+    if (!pListaProjeteis)
+    {
+        std::cout << "ERRO: O ponteiro da lista esta NULO! O jogador nao tem acesso as balas." << std::endl;
+        return;
+    }
 
     // Procura por um projétil inativo na lista
     for (Projetil* proj : *pListaProjeteis) 

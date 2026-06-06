@@ -53,9 +53,6 @@ class Fase : public Ente
         virtual void criarCenario(const std::string& caminhoFundo);
 
         void criarProjeteisJogador();
-
-        virtual int getMaxInimBolo() = 0;
-        virtual int getMaxAgua() = 0;
 };
 
 }

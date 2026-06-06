@@ -169,6 +169,7 @@ void Fase::criarCenario(const std::string& caminhoFundo)
 
 void Fase::executar()
 {
+    pJogador->setListaProjeteis(&projeteis_jogador);
     pGG->executar();                    // Limpa tela
     lista_ents.percorrer();             // Percorre executando
     gc.executar();                      // Ajusta a colisao

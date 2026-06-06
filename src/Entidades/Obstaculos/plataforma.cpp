@@ -79,22 +79,20 @@ void Plataforma::obstaculizar(entidades::Jogador* pJog)
         return;
     }
     
-    // Pega a posicao anterior do jogador para ver se ele esta em cima da plataforma
-    sf::Vector2f aux = pJog->getXY() + pJog->getColisao().getSize();
-    float posicao_anterior = aux.y - pJog->getVelocidadeY();
+    sf::FloatRect jogador_colisao = pJog->getColisao().getGlobalBounds();
+    sf::FloatRect bloco_colisao = this->getColisao().getGlobalBounds();
+
+    float pe_jogador_atual = jogador_colisao.top + jogador_colisao.height;
+    float pe_jogador_anterior = pe_jogador_atual - pJog->getVelocidadeY();
 
     bool pode_colidir = false;
-    if (posicao_anterior <= y + 1.0f)
+    if (pe_jogador_anterior <= bloco_colisao.top + 10.0f)
     {
         pode_colidir = true;
     }
 
-    // Pega as colisoes
     sf::FloatRect interseccao;
-    sf::FloatRect jogador_colisao = pJog->getColisao().getGlobalBounds();
-    sf::FloatRect bloco_colisao = this->getColisao().getGlobalBounds();
 
-    // Verifica a colisao se o jogador estiver caindo e tiver permissão para colidir
     if (pJog->getVelocidadeY() >= 0.0f && pode_colidir)
     {
         if (jogador_colisao.intersects(bloco_colisao, interseccao))
