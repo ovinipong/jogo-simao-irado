@@ -4,15 +4,27 @@
 
 using namespace entidades;
 
-Projetil :: Projetil(int _x, int _y):
+Projetil :: Projetil(int _x, int _y, TipoProjetil tp):
 Entidade(_x, _y)
 {
     ativo = false;
     dano = 1;
     velocidade_x = 8.f;
-    inicializarSprite("assets/coracao.png", 1, 16, 16, 0, 0, 0, sf::Vector2f(0.f, 0.f));
-    colisao.setSize(sf::Vector2f(16.0f, 16.0f));
-    colisao.setFillColor(sf::Color::Green);
+
+    projetil = tp;
+
+    if (projetil == JOGADOR)
+    {
+        inicializarSprite("assets/coracao.png", 1, 16, 16, 0, 0, 0, sf::Vector2f(0.f, 0.f));
+        colisao.setSize(sf::Vector2f(16.0f, 16.0f));
+        colisao.setFillColor(sf::Color::Green);
+    }
+    else if (projetil == RATO)
+    {
+        inicializarSprite("assets/queijo.png", 1, 32, 32, 0, 0, 0, sf::Vector2f(0.f, 0.f));
+        colisao.setSize(sf::Vector2f(32.0f, 32.0f));
+        colisao.setFillColor(sf::Color::Green);
+    }
 }
 
 Projetil :: ~Projetil()
@@ -69,4 +81,9 @@ void Projetil :: disparar(sf::Vector2f pos_inicial, bool olhando_esquerda)
     {
         velocidade_x = fabs(velocidade_x);
     }
+}
+
+TipoProjetil Projetil :: getTipoProjetil()
+{
+    return(projetil);
 }

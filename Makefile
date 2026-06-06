@@ -35,3 +35,4 @@ run:
 clean:
 	rm $(TARGET).exe
 # Não esquecer que para compilar e mingw32-make
+# g++ src/*.cpp src/Entidades/*.cpp src/Entidades/Obstaculos/*.cpp src/Entidades/Personagens/*.cpp src/Fases/*.cpp src/Gerenciadores/*.cpp src/Listas/*.cpp -Iinclude -Iinclude/Entidades -Iinclude/Entidades/Obstaculos -Iinclude/Entidades/Personagens -Iinclude/Fases -Iinclude/Gerenciadores -Iinclude/Listas -o main -lsfml-graphics -lsfml-window -lsfml-system

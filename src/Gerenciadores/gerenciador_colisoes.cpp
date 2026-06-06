@@ -131,7 +131,7 @@ void GerenciadorColisoes :: tratarColisoesInimProj()
             Projetil* pProj = *it;
 
             // Só testa a colisão se o projétil estiver voando pela tela (ativo)
-            if (!pProj->getAtivo()) 
+            if (!pProj->getAtivo() || pProj->getTipoProjetil() != JOGADOR) 
                 continue;
 
             sf::FloatRect proj_colisao = pProj->getColisao().getGlobalBounds();
@@ -148,6 +148,32 @@ void GerenciadorColisoes :: tratarColisoesInimProj()
                 // 2. Aplica dano ao inimigo (usando o operador que você criou no Personagem)
                 (*pInimigo).operator--(); 
             }
+        }
+    }
+}
+
+
+void GerenciadorColisoes :: tratarColisoesJogProj()
+{
+    std::set<Projetil*>::iterator it;
+    for (it = projeteis.begin(); it != projeteis.end(); ++it)
+    {
+        Projetil* pProj = *it;
+
+       // Só testa a colisão se o projétil estiver voando pela tela (ativo)
+        if (!pProj->getAtivo() || pProj->getTipoProjetil() == JOGADOR) 
+            continue;
+
+        sf::FloatRect proj_colisao = pProj->getColisao().getGlobalBounds();
+        sf::FloatRect jog_colisao = pJog->getColisao().getGlobalBounds();
+
+        if (jog_colisao.intersects(proj_colisao))
+        {
+            pProj->setAtivo(false);
+                
+            pProj->setXY(sf::Vector2f(-100.f, -100.f)); 
+
+            pJog->operator--(); 
         }
     }
 }
@@ -248,4 +274,5 @@ void GerenciadorColisoes :: executar()
     tratarColisioesJogBloco();
     tratarColisoesInimBloco();
     tratarColisoesInimProj();
+    tratarColisoesJogProj();
 }

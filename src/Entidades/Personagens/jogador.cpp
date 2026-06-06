@@ -12,6 +12,7 @@ using namespace entidades;
 Jogador::Jogador(int _x, int _y):
 Personagem(_x, _y) 
 {
+    num_vidas = 5;
     pListaProjeteis = nullptr;
     id =2;
     pontos = 0;
@@ -120,7 +121,7 @@ void Jogador::atirar()
     // Procura por um projétil inativo na lista
     for (Projetil* proj : *pListaProjeteis) 
     {
-        if (!proj->getAtivo()) 
+        if (!proj->getAtivo() && proj->getTipoProjetil() == JOGADOR) 
         {
             
             bool esquerda = (sprite.getScale().x < 0); 
