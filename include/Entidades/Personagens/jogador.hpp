@@ -25,7 +25,8 @@ class Jogador : public Personagem
         void executar();
         void reverterPosicao();
         void aplicarLentidao(int nova_velocidade, float duracao);
-
+        void receberDano(int dano);
+        
         void setListaProjeteis(std::vector<Projetil*>* pLista) { pListaProjeteis = pLista; }
         void atirar();
 };

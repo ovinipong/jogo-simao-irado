@@ -5,10 +5,8 @@
 #include <string>
 
 PrimeiraFase:: PrimeiraFase(Jogador* pJog) : Fase("assets/mapas/mapa1.txt", pJog),
-                                maxInimFaceis(5),
-                                maxInimBolo(5),
-                                maxPlataformas(5),
-                                maxAgua(5)
+                                            maxInimBolo(5),
+                                            maxAgua(5)
 {
     srand(time(nullptr));
     criarCenario("assets/fundo1.png");

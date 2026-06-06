@@ -106,6 +106,13 @@ void Jogador :: aplicarLentidao(int nova_velocidade, float duracao)
     timer_status.restart();
 }
 
+void Jogador :: receberDano(int dano)
+{
+    num_vidas-=dano;
+    if (num_vidas<0)
+        num_vidas=0;
+}
+
 void Jogador::atirar() 
 {
     if (!pListaProjeteis) return;

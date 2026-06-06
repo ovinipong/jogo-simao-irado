@@ -10,9 +10,7 @@ class PrimeiraFase : public Fase
 {
     private:
         //lembrar: na implementação min é 3
-        int maxInimFaceis; 
         int maxInimBolo;
-        int maxPlataformas;
         int maxAgua;
 
     public:
@@ -25,17 +23,9 @@ class PrimeiraFase : public Fase
         virtual void criarInimigos();
         virtual void criarObstaculos();
     public:
-        int getMaxInimFaceis()
-        {
-            return maxInimFaceis;
-        }
         int getMaxInimBolo()
         {
             return (maxInimBolo);
-        }
-        int getMaxPlataformas()
-        {
-            return maxPlataformas;
         }
         int getMaxAgua()
         {

@@ -5,7 +5,8 @@ using namespace std;
 using namespace sf;
 using namespace entidades;
 
-// Construtora
+const float Entidade::gravidade = 0.5f;
+
 Entidade::Entidade(int _x, int _y)
 {
     // Atribui as posicoes iniciais

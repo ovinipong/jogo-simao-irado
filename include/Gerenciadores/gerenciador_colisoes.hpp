@@ -14,6 +14,8 @@
 using namespace std;
 using namespace entidades;
 
+namespace gerenciadores{
+
 class GerenciadorColisoes
 {
     private:
@@ -43,3 +45,5 @@ class GerenciadorColisoes
         void incluirProjetil(Projetil *pp);
         void executar();
 };
+
+}
