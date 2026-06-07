@@ -71,7 +71,7 @@ void SegundaFase :: criarInimRato()
         gc.incluirInimigo(inim);
     }
 
-}
+}*/
 
 void SegundaFase :: criarObstLustre()
 {
@@ -119,7 +119,7 @@ void SegundaFase :: criarObstLustre()
         gc.incluirObstaculo(obstaculo);
     }
 }
-*/
+
 
 void SegundaFase :: criarInimigos()
 {
@@ -130,7 +130,7 @@ void SegundaFase :: criarInimigos()
 void SegundaFase :: criarObstaculos()
 {
     criarPlataformas();
-    // criarObstLustre(); Esta comentado porque eles nao existem
+    criarObstLustre(); //Esta comentado porque eles nao existem
 }
 
 void SegundaFase :: executar()

@@ -10,6 +10,7 @@
 #include "agua.hpp"
 #include "bolo.hpp"
 #include "projetil.hpp"
+#include "lustre.hpp"
 
 #include <cstdlib>
 #include <ctime>
