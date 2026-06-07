@@ -12,7 +12,7 @@ using namespace entidades;
 Jogador::Jogador(int _x, int _y):
 Personagem(_x, _y) 
 {
-    num_vidas = 5;
+    num_vidas = 40;
     pListaProjeteis = nullptr;
     id =2;
     pontos = 0;
@@ -110,8 +110,12 @@ void Jogador :: aplicarLentidao(int nova_velocidade, float duracao)
 void Jogador :: receberDano(int dano)
 {
     num_vidas-=dano;
-    if (num_vidas<0)
+    if (num_vidas<=0)
+    {
         num_vidas=0;
+        vivo=false;
+    }
+
 }
 
 void Jogador::atirar() 

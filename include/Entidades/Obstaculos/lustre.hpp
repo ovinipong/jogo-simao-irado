@@ -8,7 +8,7 @@ class Lustre : public Obstaculo
     private:
         bool caindo;
         int dano;
-        sf::RectangleShape area_colisao;
+        float y_inicial;
     public:
         Lustre(int _x, int _y);
         ~Lustre();
