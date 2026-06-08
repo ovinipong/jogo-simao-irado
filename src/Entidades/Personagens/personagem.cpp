@@ -26,3 +26,8 @@ void Personagem :: operator--()
     }
 }
 
+void Personagem :: receberDano(int dano)
+{
+    for(int i=0; i<dano; i++)
+        operator--();
+}

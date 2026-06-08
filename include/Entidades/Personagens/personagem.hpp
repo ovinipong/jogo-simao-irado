@@ -14,6 +14,7 @@ class Personagem : public Entidade
         virtual ~Personagem();
         virtual void executar() = 0;
         void operator--();
+        void receberDano(int dano);
 };
 
 }

@@ -149,7 +149,7 @@ void GerenciadorColisoes :: tratarColisoesInimProj()
                 pProj->setXY(sf::Vector2f(-100.f, -100.f)); 
 
                 // 2. Aplica dano ao inimigo (usando o operador que você criou no Personagem)
-                (*pInimigo).operator--(); 
+                (*pInimigo).receberDano(1); 
             }
         }
     }
@@ -177,7 +177,7 @@ void GerenciadorColisoes :: tratarColisoesJogProj()
                 
             pProj->setXY(sf::Vector2f(-100.f, -100.f)); 
 
-            pJog->operator--(); 
+            pJog->receberDano(1); 
         }
     }
 }
