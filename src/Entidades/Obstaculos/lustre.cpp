@@ -7,11 +7,13 @@ Lustre::Lustre(int _x, int _y) : Obstaculo(_x, _y)
 {
     danoso=true;
     caindo=false;
+    no_chao=false;
+    setValido();
     y_inicial=(float)_y;
     //id= ;
     inicializarSprite("assets/lustre.png", 0, 64, 64, 0, 0, 0, sf::Vector2f(0.f, 0.f));
 
-    colisao.setSize(sf::Vector2f(frame_largura, 576));
+    colisao.setSize(sf::Vector2f(frame_largura, 448));
     colisao.setFillColor(sf::Color::Red);
     colisao.setPosition(x, y);
 }
@@ -51,6 +53,8 @@ void Lustre::obstaculizar(entidades::Jogador* pJog)
         dano = static_cast<int>(dif_altura * 0.1f);//200 pixels -> 20 de dano
         pJog->receberDano(dano);
         caindo = false;
+        setInvalido();
         velocidade_y = 0.f;
     }
 }
+

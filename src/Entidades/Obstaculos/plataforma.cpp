@@ -6,11 +6,12 @@ using namespace std;
 Plataforma::Plataforma(int _x, int _y, TipoPlataforma tipo):
 Obstaculo(_x, _y), altura(0), pode_colidir (false)
 {
+    setValido();
+    danoso=false;
     switch(tipo)
     {
         case PRATELEIRA:
         {
-            danoso=false;
             id=7;
 
             altura = (rand() % 64) + 32;
@@ -26,7 +27,6 @@ Obstaculo(_x, _y), altura(0), pode_colidir (false)
         }
         case MESA:
         {
-            danoso=false;
             id=8;
 
             inicializarSprite("assets/mesa.png", 1, 64, 64, 0, 0, 0, sf::Vector2f(0.f, 0.f));
@@ -39,7 +39,6 @@ Obstaculo(_x, _y), altura(0), pode_colidir (false)
         }
         case CRISTALEIRA:
         {
-            danoso=false;
             id=9;
             
             inicializarSprite("assets/cristaleira.png", 1, 128, 128, 0, 0, 0, sf::Vector2f(0.f, 0.f));

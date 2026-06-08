@@ -114,7 +114,7 @@ void SegundaFase :: criarObstLustre()
 
     for (int i=0; i<qntd; i++)
     {
-        Lustre* obstaculo = new Lustre(posicoes[i].x, posicoes[i].y +56);
+        Lustre* obstaculo = new Lustre(posicoes[i].x, posicoes[i].y);
         lista_ents.incluir(obstaculo); 
         gc.incluirObstaculo(obstaculo);
     }

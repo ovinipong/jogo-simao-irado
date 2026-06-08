@@ -169,8 +169,6 @@ void Fase::criarCenario(const std::string& caminhoFundo)
 
 void Fase::executar()
 {
-    if (pJogador->get_vivo() == false)//ver como remover todos os tipos de entidades
-        lista_ents.remover(pJogador);
     pJogador->setListaProjeteis(&projeteis_jogador);
     pGG->executar();                    // Limpa tela
     lista_ents.percorrer();             // Percorre executando

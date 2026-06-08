@@ -113,7 +113,7 @@ void Jogador :: receberDano(int dano)
     if (num_vidas<=0)
     {
         num_vidas=0;
-        vivo=false;
+        setInvalido();
     }
 
 }

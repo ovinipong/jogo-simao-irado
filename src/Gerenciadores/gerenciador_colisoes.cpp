@@ -42,7 +42,7 @@ void GerenciadorColisoes :: tratarColisoesJogInim()
     vector<Inimigo*>::iterator it;
     for (it=inimigos.begin(); it != inimigos.end(); it++)
     {
-        if ((*it)->get_vivo())
+        if ((*it)->getValido())
         {
             if(verificarColisao(pJog, *it))
             {
@@ -119,7 +119,7 @@ void GerenciadorColisoes :: tratarColisoesInimProj()
         Inimigo* pInimigo = inimigos[i];
 
         // Se o inimigo já estiver morto, não precisa testar colisão com ele
-        if (!pInimigo->get_vivo()) 
+        if (!pInimigo->getValido()) 
             continue;
 
         sf::FloatRect inim_colisao = pInimigo->getColisao().getGlobalBounds();
@@ -176,6 +176,29 @@ void GerenciadorColisoes :: tratarColisoesJogProj()
             pJog->operator--(); 
         }
     }
+}
+
+void GerenciadorColisoes::tratarColisoesObstBloco()
+{
+    std::list <Obstaculo*>::iterator it1;
+    std::vector <Bloco*>::iterator it2;
+    for (it1 = obstaculos.begin(); it1 != obstaculos.end(); ++it1)
+    {
+        for (it2 = blocos.begin(); it2 != blocos.end(); ++it2)
+        {
+            FloatRect interseccao;
+            FloatRect obstaculo_colisao = (*it2)->getColisao().getGlobalBounds();
+            FloatRect bloco_colisao = (*it1)->getColisao().getGlobalBounds();
+
+            // Se estiver colidindo
+            if (obstaculo_colisao.intersects(bloco_colisao, interseccao))
+            {
+                (*it2)->obstaculizar(*it1);
+                (*it1)->setInvalido();
+            }
+        }
+    }
+
 }
 
 
@@ -275,4 +298,5 @@ void GerenciadorColisoes :: executar()
     tratarColisoesInimBloco();
     tratarColisoesInimProj();
     tratarColisoesJogProj();
+    tratarColisoesObstBloco();
 }

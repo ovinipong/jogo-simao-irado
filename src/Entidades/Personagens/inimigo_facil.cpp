@@ -6,6 +6,7 @@ using namespace entidades;
 
 InimigoFacil :: InimigoFacil(int _x, int _y): Inimigo(_x, _y)
 {
+    setValido();
     id =3;
     dano=nivel_maldade*1;
     velocidade_y = 0;
@@ -24,7 +25,7 @@ InimigoFacil :: ~InimigoFacil()
 
 void InimigoFacil :: executar()
 {
-    if (!vivo) return;
+    if (!valido) return;
     
     x = x + move_speed;
 

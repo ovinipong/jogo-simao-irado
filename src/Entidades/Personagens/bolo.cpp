@@ -7,6 +7,7 @@ using namespace entidades;
 Bolo::Bolo(int _x, int _y):
 Inimigo(_x, _y)
 {
+    setValido();
     velocidade_x = 0;
     estado = PARADO;
     tempo_parado = 2.0f;
@@ -26,7 +27,7 @@ Bolo::~Bolo()
 
 void Bolo::executar()
 {
-    if (!vivo) return;
+    if (!valido) return;
     // Padrao para qualquer estado vai ser cair
     float gravidade_velocidade = 0.5;
 

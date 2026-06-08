@@ -7,7 +7,7 @@ using namespace entidades;
 Personagem::Personagem(int _x, int _y):
 Entidade(_x, _y)
 {
-    vivo = true;
+    valido = true;
 }
 
 Personagem::~Personagem()
@@ -20,12 +20,8 @@ void Personagem :: operator--()
     num_vidas -= 1;
     if (num_vidas <= 0)
     {
-        vivo = false;
+        setInvalido();
         colisao.setPosition(-100, -100);
     }
 }
 
-bool Personagem :: get_vivo()
-{
-    return(vivo);
-}

@@ -10,6 +10,7 @@ class Entidade : public Ente
         int x, y;
         float velocidade_y;
         bool no_chao;
+        bool valido;
         static const float gravidade;
 
     public:
@@ -22,6 +23,9 @@ class Entidade : public Ente
         void setVelocidadeY(float vy);
         bool getNoChao();
         void setNoChao(bool n);
-};
+        bool getValido() {return valido;};
+        void setValido() {valido=true;};
+        void setInvalido() {valido=false;}
+    };
 
 }

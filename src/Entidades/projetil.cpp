@@ -7,6 +7,7 @@ using namespace entidades;
 Projetil :: Projetil(int _x, int _y, TipoProjetil tp):
 Entidade(_x, _y)
 {
+    setInvalido();
     ativo = false;
     dano = 1;
     velocidade_x = 8.f;

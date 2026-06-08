@@ -26,13 +26,19 @@ void ListaEntidades :: percorrer()
         {
             aux->pInfo->executar();
         }
-        aux = aux->getProx();
+        auto aux2 = aux->getProx();//arrumar lista
+        if(aux->pInfo->getValido()==false)
+        {
+            LEs.remover(aux->pInfo);
+        }
+        aux=aux2;
     }
 }
 
 void ListaEntidades :: percorrer_desenhar()
 {
     auto aux = LEs.getPrimeiro();
+    
     while (aux != NULL)
     {
         if (aux->pInfo != NULL)
