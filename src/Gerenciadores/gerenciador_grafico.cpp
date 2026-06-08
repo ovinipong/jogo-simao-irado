@@ -20,6 +20,8 @@ GerenciadorGrafico::GerenciadorGrafico()
     window->setView(camera);
 
     window->setFramerateLimit(60);
+
+    fonte.loadFromFile("assets/m6x11.ttf");
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()
@@ -49,24 +51,6 @@ void GerenciadorGrafico :: desenharEnte(Ente *pE)
     window->draw(pE->getSprite());
 }
 
-/*void GerenciadorGrafico :: executar()
-{
-    while (window->isOpen()) 
-    {
-        sf::Event event;
-        while (window->pollEvent(event)) 
-        {
-            if (event.type == sf::Event::Closed) 
-            {
-                window->close();
-            }
-        }
-
-        window->clear();
-        window->display();
-    }
-}*/
-
 void GerenciadorGrafico::executar()
 {
     sf::Event event;
@@ -93,4 +77,23 @@ void GerenciadorGrafico::centralizarCamera(sf::Vector2f posicao)
 {
     camera.setCenter(posicao);
     window->setView(camera);
+}
+
+void GerenciadorGrafico::mostrarVida(int vidas)
+{
+    //by claude para poder testar as vidas do player melhor
+    sf::View view_jogo = window->getView();
+    window->setView(window->getDefaultView());
+
+    sf::Text t;
+    t.setFont(fonte);
+    t.setString("Vidas: " + std::to_string(vidas));
+    t.setCharacterSize(20);
+    t.setFillColor(sf::Color::White);
+    t.setOutlineColor(sf::Color::Black);
+    t.setOutlineThickness(2.f);
+    t.setPosition(16.f, 16.f);
+    window->draw(t);
+
+    window->setView(view_jogo);
 }

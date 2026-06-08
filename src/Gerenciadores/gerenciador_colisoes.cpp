@@ -21,6 +21,7 @@ GerenciadorColisoes :: ~GerenciadorColisoes()
 
 void GerenciadorColisoes :: tratarColisoesJogObst()
 {
+    if(!pJog->getValido()) return;
     std::list<Obstaculo*>::iterator it;
     for (it = obstaculos.begin(); it != obstaculos.end(); ++it)
     {
@@ -39,6 +40,7 @@ void GerenciadorColisoes :: tratarColisoesJogObst()
 
 void GerenciadorColisoes :: tratarColisoesJogInim()
 {
+    if(!pJog->getValido()) return;
     vector<Inimigo*>::iterator it;
     for (it=inimigos.begin(); it != inimigos.end(); it++)
     {
@@ -76,6 +78,7 @@ void GerenciadorColisoes :: tratarColisoesInimObst()
 
 void GerenciadorColisoes :: tratarColisioesJogBloco()
 {
+    if(!pJog->getValido()) return;
     vector<Bloco*>::iterator it;
     for (it = blocos.begin(); it != blocos.end(); it++)
     {
@@ -155,6 +158,7 @@ void GerenciadorColisoes :: tratarColisoesInimProj()
 
 void GerenciadorColisoes :: tratarColisoesJogProj()
 {
+    if(!pJog->getValido()) return;
     std::set<Projetil*>::iterator it;
     for (it = projeteis.begin(); it != projeteis.end(); ++it)
     {

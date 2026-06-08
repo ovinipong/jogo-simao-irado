@@ -133,4 +133,6 @@ void PrimeiraFase :: executar()
 {
     Fase::executar();
     move_camera();
+    if (pJogador->getXY().x >= 2200)
+        concluida = true;
 }

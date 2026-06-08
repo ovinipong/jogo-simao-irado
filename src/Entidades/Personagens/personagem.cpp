@@ -20,6 +20,7 @@ void Personagem :: operator--()
     num_vidas -= 1;
     if (num_vidas <= 0)
     {
+        num_vidas=0;
         setInvalido();
         colisao.setPosition(-100, -100);
     }

@@ -34,6 +34,7 @@ Jogador::~Jogador()
 
 void Jogador :: executar()
 {
+    x_anterior = x;
     // Verifica se nao esta lento
     if (move_speed < velocidade_padrao)
     {
@@ -96,6 +97,7 @@ void Jogador :: executar()
 
 void Jogador :: reverterPosicao()
 {
+    receberDano(1);
     x=x_anterior;
     colisao.setPosition((float)x, (float)y);
 }
@@ -109,13 +111,8 @@ void Jogador :: aplicarLentidao(int nova_velocidade, float duracao)
 
 void Jogador :: receberDano(int dano)
 {
-    num_vidas-=dano;
-    if (num_vidas<=0)
-    {
-        num_vidas=0;
-        setInvalido();
-    }
-
+    for(int i=0; i<dano; i++)
+        operator--();
 }
 
 void Jogador::atirar() 

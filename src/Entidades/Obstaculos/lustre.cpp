@@ -50,7 +50,7 @@ void Lustre::obstaculizar(entidades::Jogador* pJog)
     if (caindo && jog.intersects(lustre))
     {
         float dif_altura = jog.top - y_inicial;
-        dano = static_cast<int>(dif_altura * 0.1f);//200 pixels -> 20 de dano
+        dano = static_cast<int>(dif_altura * 0.01f);//200 pixels -> 2 de dano
         pJog->receberDano(dano);
         caindo = false;
         setInvalido();

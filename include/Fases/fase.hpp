@@ -39,11 +39,13 @@ class Fase : public Ente
         float mapa_altura;
         Jogador* pJogador;
         std::vector<Projetil*> projeteis_jogador;
+        bool concluida;
 
     public:
         Fase(const std::string& caminhoMapa, Jogador* pJog);
         ~Fase();
         void executar();
+        bool getConcluida() { return concluida; }
     protected:
         void move_camera();
 
@@ -52,7 +54,6 @@ class Fase : public Ente
         virtual void criarInimigos()=0;
         virtual void criarObstaculos()=0;
         virtual void criarCenario(const std::string& caminhoFundo);
-
         void criarProjeteisJogador();
 };
 

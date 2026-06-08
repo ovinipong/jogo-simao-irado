@@ -1,12 +1,12 @@
 #include "jogo.hpp"
 #include <iostream>
 
-Jogo :: Jogo() : pJog1 (NULL), menu(this)
+Jogo :: Jogo() : pJog1 (NULL), menu(this), fase1(NULL), fase2(NULL)
 {
     Ente::setGG(&gg);
     pJog1 = new Jogador(400, 100);
-    fase1 = new PrimeiraFase(pJog1);
-    fase2 = new SegundaFase(pJog1);
+    //fase1 = new PrimeiraFase(pJog1);
+    //fase2 = new SegundaFase(pJog1);
     estado = MENU;
 }
 
@@ -25,17 +25,51 @@ void Jogo :: executar()
         {
             case(PRIMEIRA_FASE):
             {
+                if (!fase1)
+                {
+                    pJog1->setXY(sf::Vector2f(400, 100));
+                    fase1 = new PrimeiraFase(pJog1);
+                }
                 fase1->executar();
-                //std::cout<<"onde o jogador morre p eu por isso lista_ents.remover(pJog);"<<std::endl;
+                if (fase1->getConcluida())
+                {
+                    delete fase1;
+                    fase1 = NULL;
+                    std::cout << "trocando pra fase 2" << std::endl;
+                    estado = SEGUNDA_FASE;
+                }
+                if (!pJog1->getValido())
+                {
+                    std::cout << "jogador morreu, voltando ao menu" << std::endl;
+                    delete fase1;
+                    fase1 = NULL;
+                    delete pJog1;
+                    pJog1 = new Jogador(400, 100);
+                    estado = MENU;
+                }
                 break;
             }
             case(SEGUNDA_FASE):
             {
+                if (!fase2)
+                {
+                    pJog1->setXY(sf::Vector2f(400, 100));
+                    fase2 = new SegundaFase(pJog1);
+                }
                 fase2->executar();
+                if (!pJog1->getValido())
+                {
+                    delete fase2;
+                    fase2 = NULL;
+                    delete pJog1;
+                    pJog1 = new Jogador(400, 100);
+                    estado = MENU;
+                }
                 break;
             }
             case(MENU):
             {
+                gg.centralizarCamera(sf::Vector2f(512.f, 288.f));
                 gg.executar();
                 menu.desenhar();
                 menu.executar();

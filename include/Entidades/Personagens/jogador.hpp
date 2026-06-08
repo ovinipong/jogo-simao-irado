@@ -29,6 +29,8 @@ class Jogador : public Personagem
         
         void setListaProjeteis(std::vector<Projetil*>* pLista) { pListaProjeteis = pLista; }
         void atirar();
+
+        int getVida(){return num_vidas;};
 };
 
 

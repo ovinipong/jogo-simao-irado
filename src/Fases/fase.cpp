@@ -5,7 +5,8 @@ using namespace fases;
 
 Fase :: Fase(const std::string& caminhoMapa, Jogador* pJog) : minimo_ent(3),
                                                             maxInimFaceis(5),
-                                                            maxPlataformas(5)
+                                                            maxPlataformas(5),
+                                                            concluida(false)
 {
     pJogador = pJog;
 
@@ -174,6 +175,7 @@ void Fase::executar()
     lista_ents.percorrer();             // Percorre executando
     gc.executar();                      // Ajusta a colisao
     lista_ents.percorrer_desenhar();    // Desenha na posicao correta
+    pGG->mostrarVida(pJogador->getVida());
     pGG->mostrar();                     // Da display na tela
 }
 
