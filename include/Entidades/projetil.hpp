@@ -20,8 +20,10 @@ class Projetil : public entidades::Entidade
         ~Projetil();
         void executar();
         void salvar();
-        void setAtivo(bool a);
-        bool getAtivo() const;
         void disparar(sf::Vector2f pos_inicial, bool olhando_esquerda);
         TipoProjetil getTipoProjetil();
-};
+
+        void setAtivo() {ativo=true;};
+        void setInativo() {ativo=false;};
+        bool getAtivo() {return ativo;};
+    };

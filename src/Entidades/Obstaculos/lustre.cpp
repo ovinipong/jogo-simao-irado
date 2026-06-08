@@ -54,6 +54,7 @@ void Lustre::obstaculizar(entidades::Jogador* pJog)
         pJog->receberDano(dano);
         caindo = false;
         setInvalido();
+        colisao.setPosition(-100, -100);//gambiarra
         velocidade_y = 0.f;
     }
 }

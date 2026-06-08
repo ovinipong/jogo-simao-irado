@@ -7,8 +7,8 @@ using namespace entidades;
 Projetil :: Projetil(int _x, int _y, TipoProjetil tp):
 Entidade(_x, _y)
 {
-    setInvalido();
-    ativo = false;
+    setInativo();
+    setValido();
     dano = 1;
     velocidade_x = 8.f;
 
@@ -45,7 +45,7 @@ void Projetil :: executar()
     // Se for longe, meio que reseta
     if (x < -100 || x > 3000)
     {
-        ativo = false;
+        setInativo();
         x = -100;
         y = -100;
     }
@@ -57,19 +57,9 @@ void Projetil :: salvar()
 
 }
 
-void Projetil :: setAtivo(bool a)
-{
-    ativo = a;
-}
-
-bool Projetil :: getAtivo() const
-{
-    return(ativo);
-}
-
 void Projetil :: disparar(sf::Vector2f pos_inicial, bool olhando_esquerda)
 {
-    ativo = true;
+    setAtivo();
     x = pos_inicial.x;
     y = pos_inicial.y;
     colisao.setPosition(x, y);

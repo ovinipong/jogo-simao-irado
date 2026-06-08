@@ -140,7 +140,7 @@ void GerenciadorColisoes :: tratarColisoesInimProj()
             if (inim_colisao.intersects(proj_colisao))
             {
                 // 1. Desativa o projétil
-                pProj->setAtivo(false);
+                pProj->setAtivo();
                 
                 // (Opcional) Joga ele pra longe da tela para garantir
                 pProj->setXY(sf::Vector2f(-100.f, -100.f)); 
@@ -169,7 +169,7 @@ void GerenciadorColisoes :: tratarColisoesJogProj()
 
         if (jog_colisao.intersects(proj_colisao))
         {
-            pProj->setAtivo(false);
+            pProj->setInvalido();
                 
             pProj->setXY(sf::Vector2f(-100.f, -100.f)); 
 
@@ -195,6 +195,7 @@ void GerenciadorColisoes::tratarColisoesObstBloco()
             {
                 (*it2)->obstaculizar(*it1);
                 (*it1)->setInvalido();
+                (*it1)->setXY(sf::Vector2f(-100.f, -100.f));
             }
         }
     }
