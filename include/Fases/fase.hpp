@@ -56,6 +56,7 @@ class Fase : public Ente
         virtual void criarObstaculos()=0;
         virtual void criarCenario(const std::string& caminhoFundo);
         void criarProjeteisJogador();
+        void ajustarProjeteisJogador();
 };
 
 }

@@ -18,6 +18,7 @@ class SegundaFase : public Fase
         ~SegundaFase();
         void executar();
         void criarProjeteisRatos();
+        void ajustarProjeteisRatos();
 
     protected:
         void criarInimRato();

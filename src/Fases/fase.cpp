@@ -1,5 +1,6 @@
 #include "fase.hpp"
 #include <iostream>
+#include <stdexcept>
 
 using namespace fases;
 
@@ -10,23 +11,30 @@ Fase :: Fase(const std::string& caminhoMapa, Jogador* pJog) : minimo_ent(3),
 {
     pJogador = pJog;
 
-    arquivo.open(caminhoMapa);
-
-    if (!arquivo.is_open())
+    try
     {
-        std::cerr << "Erro ao abrir o arquivo de mapa!" << std::endl;
-    }
+        arquivo.open(caminhoMapa);        
+        
+        if (!arquivo.is_open())
+        {
+            throw std::runtime_error("Nao foi possivel abrir o arquivo: " + caminhoMapa);
+        }
+        //Usado para padronizar a camera
+        std::string linha;
+        int colunas = 0, linhas = 0;
+        while (std::getline(arquivo, linha)) {
+            if ((int)linha.size() > colunas)
+                colunas = linha.size();
+            linhas++;
+        }
+        mapa_largura = colunas * 64.f;
+        mapa_altura  = linhas  * 64.f;
 
-    //Usado para padronizar a camera
-    std::string linha;
-    int colunas = 0, linhas = 0;
-    while (std::getline(arquivo, linha)) {
-        if ((int)linha.size() > colunas)
-            colunas = linha.size();
-        linhas++;
     }
-    mapa_largura = colunas * 64.f;
-    mapa_altura  = linhas  * 64.f;
+    catch(const std::exception& e)
+    {
+        std::cerr << "ERRO NA FASE!" << e.what() << '\n';
+    }
 }
 
 Fase :: ~Fase()
@@ -171,12 +179,16 @@ void Fase::criarCenario(const std::string& caminhoFundo)
 void Fase::executar()
 {
     pJogador->setListaProjeteis(&projeteis_jogador);
+
     pGG->executar();                    // Limpa tela
     lista_ents.percorrer();             // Percorre executando
     gc.executar();                      // Ajusta a colisao
     lista_ents.percorrer_desenhar();    // Desenha na posicao correta
     pGG->mostrarVida(pJogador->getVida());
     pGG->mostrarPontos(pJogador->getPontos());
+    
+    ajustarProjeteisJogador();          // Coloca para fora os projeteis que nao estao na tela
+
     pGG->mostrar();                     // Da display na tela
 }
 
@@ -209,4 +221,35 @@ void Fase :: criarProjeteisJogador()
     }
     
     pJogador->setListaProjeteis(&projeteis_jogador);
+}
+
+void Fase :: ajustarProjeteisJogador()
+{
+    // Verifica se nao esta vazia o vector
+    if (projeteis_jogador.empty()) return;
+
+    // Pega a camera, tamanho e centro
+    sf::View camera = pGG->getCamera();
+    sf::Vector2f centro = camera.getCenter();
+    sf::Vector2f tamanho = camera.getSize();
+
+    // Pega a area que a camera esta
+    sf::FloatRect area_camera;
+    area_camera.left = centro.x - (tamanho.x / 2.0f);
+    area_camera.top = centro.y - (tamanho.y / 2.0f);
+    area_camera.width = tamanho.x;
+    area_camera.height = tamanho.y;
+
+    // Percorre o vector
+    std::vector<Projetil *>::iterator it;
+    for (it = projeteis_jogador.begin(); it != projeteis_jogador.end(); ++it)
+    {
+        // Verifica se nao esta colidindo com a area de tela e se esta ativo
+        if (!area_camera.intersects((*it)->getColisao().getGlobalBounds()) && (*it)->getAtivo())
+        {
+            // std::cout << "FIQUEI DESATIVADO" << std::endl;
+            (*it)->setInativo();
+            (*it)->setXY(sf::Vector2f(-100.f, -100.f)); 
+        }
+    }
 }

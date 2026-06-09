@@ -31,6 +31,7 @@ class GerenciadorGrafico {
         { 
             return window; 
         }
+        sf::View getCamera();
 };
 
 }

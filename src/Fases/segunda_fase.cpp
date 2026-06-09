@@ -139,6 +139,7 @@ void SegundaFase :: criarObstaculos()
 
 void SegundaFase :: executar()
 {
+    ajustarProjeteisRatos();
     Fase::executar();
     move_camera();
     if (pJogador->getXY().x >= 2200)
@@ -153,5 +154,36 @@ void SegundaFase :: criarProjeteisRatos()
         gc.incluirProjetil(proj);
         lista_ents.incluir(proj);
         projeteis_rato.push_back(proj);
+    }
+}
+
+void SegundaFase :: ajustarProjeteisRatos()
+{
+    // Verifica se nao esta vazia o vector
+    if (projeteis_rato.empty()) return;
+
+    // Pega a camera, tamanho e centro
+    sf::View camera = pGG->getCamera();
+    sf::Vector2f centro = camera.getCenter();
+    sf::Vector2f tamanho = camera.getSize();
+
+    // Pega a area que a camera esta
+    sf::FloatRect area_camera;
+    area_camera.left = centro.x - (tamanho.x / 2.0f);
+    area_camera.top = centro.y - (tamanho.y / 2.0f);
+    area_camera.width = tamanho.x;
+    area_camera.height = tamanho.y;
+
+    // Percorre o vector
+    std::vector<Projetil *>::iterator it;
+    for (it = projeteis_rato.begin(); it != projeteis_rato.end(); ++it)
+    {
+        // Verifica se nao esta colidindo com a area de tela e se esta ativo
+        if (!area_camera.intersects((*it)->getColisao().getGlobalBounds()) && (*it)->getAtivo())
+        {
+            // std::cout << "FIQUEI DESATIVADO" << std::endl;
+            (*it)->setInativo();
+            (*it)->setXY(sf::Vector2f(-100.f, -100.f)); 
+        }
     }
 }

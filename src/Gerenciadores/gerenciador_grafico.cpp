@@ -116,3 +116,8 @@ void GerenciadorGrafico::mostrarPontos(int pontos)
 
     window->setView(view_jogo);
 }
+
+sf::View GerenciadorGrafico :: getCamera()
+{
+    return(camera);
+}
