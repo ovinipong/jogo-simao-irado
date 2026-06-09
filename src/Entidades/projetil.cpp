@@ -28,6 +28,20 @@ Entidade(_x, _y)
     }
 }
 
+Projetil :: Projetil():
+Entidade(-100, -100)
+{
+    projetil = JOGADOR;
+    
+    dano = 1;
+    velocidade_x = 8.f;
+
+    inicializarSprite("assets/coracao.png", 1, 16, 16, 0, 0, 0, sf::Vector2f(0.f, 0.f));
+    colisao.setSize(sf::Vector2f(16.0f, 16.0f));
+    colisao.setFillColor(sf::Color::Green);
+
+}
+
 Projetil :: ~Projetil()
 {
 
