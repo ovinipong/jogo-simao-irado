@@ -23,7 +23,7 @@ SegundaFase :: ~SegundaFase()
 
 }
 
-/*
+
 void SegundaFase :: criarInimRato()
 {
     arquivo.clear();
@@ -71,7 +71,7 @@ void SegundaFase :: criarInimRato()
         gc.incluirInimigo(inim);
     }
 
-}*/
+}
 
 void SegundaFase :: criarObstLustre()
 {
@@ -124,7 +124,7 @@ void SegundaFase :: criarObstLustre()
 void SegundaFase :: criarInimigos()
 {
     criarInimFaceis();
-    // criarInimRato(); Esta comentado porque eles nao existem
+    criarInimRato();
 }
 
 void SegundaFase :: criarObstaculos()

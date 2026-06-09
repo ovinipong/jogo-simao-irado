@@ -11,6 +11,7 @@
 #include "bolo.hpp"
 #include "projetil.hpp"
 #include "lustre.hpp"
+#include "rato.hpp"
 
 #include <cstdlib>
 #include <ctime>

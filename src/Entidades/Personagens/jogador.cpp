@@ -58,7 +58,7 @@ void Jogador :: executar()
     }
 
     float gravidade_velocidade = 0.5;
-    float pulo_velocidade = -12;
+    float pulo_velocidade = -15;
 
     if (no_chao)
     {
