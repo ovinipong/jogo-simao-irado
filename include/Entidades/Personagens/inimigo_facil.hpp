@@ -11,7 +11,7 @@ class InimigoFacil : public Inimigo
         bool atacar;
         
     public:
-        InimigoFacil(int _x, int _y);
+        InimigoFacil(int _x=0, int _y=0);
         ~InimigoFacil();
         void executar();//descomentar virtual
         //void danificar(Jogador* p); sem implementação

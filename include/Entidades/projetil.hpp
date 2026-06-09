@@ -16,7 +16,7 @@ class Projetil : public entidades::Entidade
         TipoProjetil projetil;
 
     public:
-        Projetil(int _x, int _y, TipoProjetil tp);
+        Projetil(int _x=0, int _y=0, TipoProjetil tp=RATO);
         ~Projetil();
         void executar();
         void salvar();

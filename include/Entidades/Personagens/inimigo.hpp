@@ -13,7 +13,7 @@ class Inimigo : public Personagem
         int move_speed;
 
     public:
-        Inimigo(int _x, int _y);
+        Inimigo(int _x=0, int _y=0);
         ~Inimigo();
         //void salvarDataBuffer();
         virtual void executar()=0;

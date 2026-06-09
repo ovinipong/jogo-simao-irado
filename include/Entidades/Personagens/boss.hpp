@@ -13,7 +13,7 @@ class Boss : public Inimigo
         bool atacar;//depende de distancia
 
     public:
-        Boss(int _x, int _y);
+        Boss(int _x=0, int _y=0);
         ~Boss();
         void executar();
         const int get_vida() const;

@@ -13,7 +13,7 @@ class SegundaFase : public Fase
         int maxLustre;
 
     public:
-        SegundaFase(Jogador* pJog);
+        SegundaFase(Jogador* pJog=NULL);
         ~SegundaFase();
         void executar();
 

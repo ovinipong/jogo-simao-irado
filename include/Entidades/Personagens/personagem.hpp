@@ -10,7 +10,7 @@ class Personagem : public Entidade
         int num_vidas;
 
     public:
-        Personagem(int _x, int _y);
+        Personagem(int _x=0, int _y=0);
         virtual ~Personagem();
         virtual void executar() = 0;
         void operator--();

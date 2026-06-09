@@ -43,7 +43,7 @@ class Fase : public Ente
         bool concluida;
 
     public:
-        Fase(const std::string& caminhoMapa, Jogador* pJog);
+        Fase(const std::string& caminhoMapa="", Jogador* pJog=NULL);
         ~Fase();
         void executar();
         bool getConcluida() { return concluida; }

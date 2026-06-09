@@ -10,7 +10,7 @@ class Rato : public Inimigo
     private:
 
     public:
-        Rato(int _x, int _y);
+        Rato(int _x=0, int _y=0);
         ~Rato();
         void executar();
         const int get_vida() const; 

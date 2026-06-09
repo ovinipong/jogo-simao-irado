@@ -57,6 +57,13 @@ void Jogo :: executar()
                     fase2 = new SegundaFase(pJog1);
                 }
                 fase2->executar();
+                if (fase2->getConcluida())
+                {
+                    delete fase2;
+                    fase2 = NULL;
+                    std::cout << "fase 2 concluída, retornando para o menu" << std::endl;
+                    estado = MENU;
+                }
                 if (!pJog1->getValido())
                 {
                     delete fase2;

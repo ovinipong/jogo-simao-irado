@@ -17,7 +17,7 @@ class Menu : public Ente
         sf::Font fonte;
     
     public:
-        Menu(Jogo* pJ = nullptr);
+        Menu(Jogo* pJ = NULL);
         ~Menu();
         void executar();
 };

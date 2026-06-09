@@ -10,7 +10,7 @@ class Agua : public Obstaculo
         float tempo;    
         
     public:
-        Agua(int _x, int _y);
+        Agua(int _x=0, int _y=0);
         ~Agua();
         void executar();
         void obstaculizar(entidades::Jogador* pJog);

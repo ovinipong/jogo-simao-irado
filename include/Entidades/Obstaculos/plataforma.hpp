@@ -16,7 +16,7 @@ class Plataforma : public Obstaculo
         bool pode_colidir;
 
     public:
-        Plataforma(int _x, int _y, TipoPlataforma tipo);
+        Plataforma(int _x=0, int _y=0, TipoPlataforma tipo=PRATELEIRA);
         ~Plataforma();
         void executar();
         void obstaculizar(entidades::Jogador* pJog);

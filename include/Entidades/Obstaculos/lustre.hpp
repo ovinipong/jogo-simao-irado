@@ -10,7 +10,7 @@ class Lustre : public Obstaculo
         int dano;
         float y_inicial;
     public:
-        Lustre(int _x, int _y);
+        Lustre(int _x=0, int _y=0);
         ~Lustre();
         void executar();
         void obstaculizar(entidades::Jogador* pJog); 

@@ -20,7 +20,7 @@ class Bolo : public Inimigo
         float pulo_velocidade;
         
     public:
-        Bolo(int _x, int _y);
+        Bolo(int _x=0, int _y=0);
         ~Bolo();
         void executar();
         const int get_vida() const; 

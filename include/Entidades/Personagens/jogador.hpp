@@ -20,7 +20,7 @@ class Jogador : public Personagem
 
 
     public:
-        Jogador(int _x, int _y);
+        Jogador(int _x=0, int _y=0);
         ~Jogador();
         void executar();
         void reverterPosicao();
@@ -28,6 +28,7 @@ class Jogador : public Personagem
         
         void setListaProjeteis(std::vector<Projetil*>* pLista) { pListaProjeteis = pLista; }
         void atirar();
+
 
         int getVida(){return num_vidas;};
 };

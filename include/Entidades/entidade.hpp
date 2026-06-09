@@ -14,7 +14,7 @@ class Entidade : public Ente
         static const float gravidade;
 
     public:
-        Entidade(int _x, int _y);
+        Entidade(int _x=0, int _y=0);
         virtual ~Entidade();
         virtual void executar() = 0;
         sf::Vector2f getXY();
