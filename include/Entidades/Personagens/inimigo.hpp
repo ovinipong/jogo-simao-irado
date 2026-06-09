@@ -8,7 +8,6 @@ namespace entidades {
 class Inimigo : public Personagem 
 {
     protected:
-        int vida;
         int nivel_maldade;
         int move_speed;
 

@@ -75,7 +75,7 @@ void Bolo::executar()
 
 const int Bolo :: get_vida() const
 {
-    return vida; 
+    return num_vidas; 
 }
 
 void Bolo :: inverterDirecao()

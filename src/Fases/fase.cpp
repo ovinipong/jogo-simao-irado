@@ -176,6 +176,7 @@ void Fase::executar()
     gc.executar();                      // Ajusta a colisao
     lista_ents.percorrer_desenhar();    // Desenha na posicao correta
     pGG->mostrarVida(pJogador->getVida());
+    pGG->mostrarPontos(pJogador->getPontos());
     pGG->mostrar();                     // Da display na tela
 }
 

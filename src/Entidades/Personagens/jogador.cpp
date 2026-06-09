@@ -19,6 +19,7 @@ Personagem(_x, _y)
     velocidade_padrao = 4;
     move_speed = velocidade_padrao;
     tempo_efeito = 0.0f;
+    tempo_invulneravel= 1.0f;
 
     inicializarSprite("assets/jogador.png", 17, 64, 128, 8, 2, 9, sf::Vector2f(0.f, -45.f));
 
@@ -42,6 +43,11 @@ void Jogador :: executar()
         {
             move_speed = velocidade_padrao;
         }
+    }
+
+    if (timer_status.getElapsedTime().asSeconds()>= tempo_invulneravel)
+    {
+        invulneravel=false;
     }
 
     if (Keyboard::isKeyPressed(Keyboard::Left))
@@ -138,4 +144,9 @@ void Jogador::atirar()
             break;
         }
     }
+}
+
+void Jogador::operator++()
+{
+    pontos+=1;
 }

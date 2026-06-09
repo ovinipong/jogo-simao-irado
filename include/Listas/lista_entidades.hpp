@@ -18,6 +18,7 @@ class ListaEntidades
         void percorrer();
         void percorrer_desenhar();
         void remover(Entidade* pE);
+        void limpar();
 };
 
 }

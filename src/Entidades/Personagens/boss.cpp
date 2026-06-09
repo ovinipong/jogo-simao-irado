@@ -29,7 +29,7 @@ void Boss:: executar()
 
 const int Boss:: get_vida() const 
 {
-    return vida;
+    return num_vidas;
 }
 
 const int Boss:: get_fraqueza() const

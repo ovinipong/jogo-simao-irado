@@ -39,7 +39,7 @@ void Rato::executar()
 
 const int Rato::get_vida() const
 {
-    return(vida);
+    return num_vidas;
 }
 
 void Rato :: inverterDirecao()

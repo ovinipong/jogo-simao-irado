@@ -49,9 +49,11 @@ void Lustre::obstaculizar(entidades::Jogador* pJog)
 
     if (caindo && jog.intersects(lustre))
     {
+        if (pJog->getInvulneravel()) return;
         float dif_altura = jog.top - y_inicial;
         dano = static_cast<int>(dif_altura * 0.01f);//200 pixels -> 2 de dano
         pJog->receberDano(dano);
+        pJog->setInvulneravel();
         caindo = false;
         setInvalido();
         colisao.setPosition(-100, -100);//gambiarra

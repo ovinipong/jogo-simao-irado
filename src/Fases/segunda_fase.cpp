@@ -20,7 +20,7 @@ maxLustre(5)
 
 SegundaFase :: ~SegundaFase()
 {
-
+    lista_ents.limpar();
 }
 
 

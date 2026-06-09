@@ -15,6 +15,9 @@ class Jogador : public Personagem
         int x_anterior;
         sf::Clock timer_status;
         sf::Clock timer_atirar;
+        sf::Clock timer_invulneravel;
+        bool invulneravel;
+        float tempo_invulneravel;
         float tempo_efeito;
         std::vector<Projetil*>*  pListaProjeteis;
 
@@ -28,9 +31,13 @@ class Jogador : public Personagem
         
         void setListaProjeteis(std::vector<Projetil*>* pLista) { pListaProjeteis = pLista; }
         void atirar();
+        void operator++();
 
-
+        int getPontos(){return pontos;};
         int getVida(){return num_vidas;};
+
+        void setInvulneravel(){invulneravel=true;};
+        bool getInvulneravel(){return invulneravel;};
 };
 
 

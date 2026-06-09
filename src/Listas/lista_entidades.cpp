@@ -53,3 +53,8 @@ void ListaEntidades :: remover(Entidade* pE)
 {
     LEs.remover(pE);
 }
+
+void ListaEntidades :: limpar()
+{
+    LEs.limpar();
+}

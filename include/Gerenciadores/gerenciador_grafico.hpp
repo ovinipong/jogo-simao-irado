@@ -21,6 +21,7 @@ class GerenciadorGrafico {
         void executar();
         void mostrar();
         void mostrarVida(int vidas);
+        void mostrarPontos(int pontos);
         void centralizarCamera(sf::Vector2f posicao);
         bool janelaAberta () const
         {

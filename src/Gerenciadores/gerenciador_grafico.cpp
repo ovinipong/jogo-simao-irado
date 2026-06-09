@@ -97,3 +97,22 @@ void GerenciadorGrafico::mostrarVida(int vidas)
 
     window->setView(view_jogo);
 }
+
+void GerenciadorGrafico::mostrarPontos(int pontos)
+{
+    //by claude para poder testar as vidas do player melhor
+    sf::View view_jogo = window->getView();
+    window->setView(window->getDefaultView());
+
+    sf::Text t;
+    t.setFont(fonte);
+    t.setString("Pontos: " + std::to_string(pontos));
+    t.setCharacterSize(20);
+    t.setFillColor(sf::Color::White);
+    t.setOutlineColor(sf::Color::Black);
+    t.setOutlineThickness(2.f);
+    t.setPosition(160.f, 16.f);
+    window->draw(t);
+
+    window->setView(view_jogo);
+}

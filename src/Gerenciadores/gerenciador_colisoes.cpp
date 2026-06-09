@@ -41,6 +41,7 @@ void GerenciadorColisoes :: tratarColisoesJogObst()
 void GerenciadorColisoes :: tratarColisoesJogInim()
 {
     if(!pJog->getValido()) return;
+    if(pJog->getInvulneravel()) return;
     vector<Inimigo*>::iterator it;
     for (it=inimigos.begin(); it != inimigos.end(); it++)
     {
@@ -49,6 +50,7 @@ void GerenciadorColisoes :: tratarColisoesJogInim()
             if(verificarColisao(pJog, *it))
             {
                 pJog->reverterPosicao();
+                pJog->setInvulneravel();
                 (*it)->inverterDirecao();
             }
         }
@@ -142,14 +144,13 @@ void GerenciadorColisoes :: tratarColisoesInimProj()
             // Verifica se a caixa de colisão do projétil encostou no inimigo
             if (inim_colisao.intersects(proj_colisao))
             {
-                // 1. Desativa o projétil
                 pProj->setAtivo();
-                
-                // (Opcional) Joga ele pra longe da tela para garantir
                 pProj->setXY(sf::Vector2f(-100.f, -100.f)); 
 
-                // 2. Aplica dano ao inimigo (usando o operador que você criou no Personagem)
+                if((*pInimigo).get_vida()==1)
+                    pJog->operator++();
                 (*pInimigo).receberDano(1); 
+
             }
         }
     }
@@ -159,6 +160,7 @@ void GerenciadorColisoes :: tratarColisoesInimProj()
 void GerenciadorColisoes :: tratarColisoesJogProj()
 {
     if(!pJog->getValido()) return;
+    if(pJog->getInvulneravel()) return;
     std::set<Projetil*>::iterator it;
     for (it = projeteis.begin(); it != projeteis.end(); ++it)
     {
@@ -178,6 +180,7 @@ void GerenciadorColisoes :: tratarColisoesJogProj()
             pProj->setXY(sf::Vector2f(-100.f, -100.f)); 
 
             pJog->receberDano(1); 
+            pJog->setInvulneravel();
         }
     }
 }

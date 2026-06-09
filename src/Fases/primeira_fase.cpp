@@ -19,7 +19,7 @@ PrimeiraFase:: PrimeiraFase(Jogador* pJog) : Fase("assets/mapas/mapa1.txt", pJog
 
 PrimeiraFase :: ~PrimeiraFase()
 {
-       
+       lista_ents.limpar();
 }
 
 void PrimeiraFase :: criarInimBolo()
