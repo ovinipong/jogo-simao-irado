@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 SegundaFase :: SegundaFase(Jogador *pJog):
 Fase("assets/mapas/mapa2.txt", pJog),
 maxInimRato(5),
@@ -16,6 +18,7 @@ maxLustre(5)
     lista_ents.incluir(pJog);
     gc.setJogador(pJog);
     criarProjeteisJogador();
+    criarProjeteisRatos();
 }
 
 SegundaFase :: ~SegundaFase()
@@ -69,6 +72,7 @@ void SegundaFase :: criarInimRato()
         Rato* inim = new Rato(posicoes[i].x, posicoes[i].y);
         lista_ents.incluir(inim); 
         gc.incluirInimigo(inim);
+        inim->setListaProjeteis(&projeteis_rato);
     }
 
 }
@@ -139,4 +143,15 @@ void SegundaFase :: executar()
     move_camera();
     if (pJogador->getXY().x >= 2200)
         concluida = true;
+}
+
+void SegundaFase :: criarProjeteisRatos()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        Projetil* proj = new Projetil(-100, -100, RATO);
+        gc.incluirProjetil(proj);
+        lista_ents.incluir(proj);
+        projeteis_rato.push_back(proj);
+    }
 }

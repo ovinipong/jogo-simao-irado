@@ -119,7 +119,6 @@ void Jogador::atirar()
 {
     if (!pListaProjeteis)
     {
-        std::cout << "ERRO: O ponteiro da lista esta NULO! O jogador nao tem acesso as balas." << std::endl;
         return;
     }
 
@@ -134,10 +133,11 @@ void Jogador::atirar()
             // Pega a posição do jogador para criar o tiro
             sf::Vector2f pos_tiro = colisao.getPosition();
             
-            pos_tiro.y += colisao.getSize().y / 2.0f - 8.0f; // Centraliza na altura
-            pos_tiro.x += (esquerda ? -10.f : 50.f);         // Joga um pouco pra frente
+            pos_tiro.y += colisao.getSize().y / 2.0f - 8.0f;
             
-            // Atira!
+            if (esquerda) pos_tiro.x += -10.f;
+            else pos_tiro.x += 50.f;
+            
             proj->disparar(pos_tiro, esquerda);
             timer_atirar.restart();
 

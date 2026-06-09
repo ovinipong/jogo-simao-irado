@@ -11,11 +11,13 @@ class SegundaFase : public Fase
     private:
         int maxInimRato;
         int maxLustre;
-
+        std::vector<Projetil*> projeteis_rato;
+    
     public:
         SegundaFase(Jogador* pJog=NULL);
         ~SegundaFase();
         void executar();
+        void criarProjeteisRatos();
 
     protected:
         void criarInimRato();

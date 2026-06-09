@@ -21,6 +21,12 @@ Rato::~Rato()
 
 void Rato::executar()
 {
+    // ATIRAR PEW PEW
+    if (timer_atirar.getElapsedTime().asSeconds() >= 2)
+    {
+        atirar();
+    }
+
     float gravidade_velocidade = 0.5;
 
     if (no_chao)
@@ -39,10 +45,26 @@ void Rato::executar()
 
 const int Rato::get_vida() const
 {
-    return num_vidas;
+    return(num_vidas);
 }
 
 void Rato :: inverterDirecao()
 {
 
+}
+
+void Rato :: atirar()
+{
+    if (!pListaProjeteis) return;
+
+    for (Projetil* proj : *pListaProjeteis)
+    {
+        if (!proj->getAtivo())
+        {
+            sf::Vector2f pos = colisao.getPosition();
+            proj->disparar(pos, true);
+            timer_atirar.restart();
+            break;
+        }
+    }
 }
