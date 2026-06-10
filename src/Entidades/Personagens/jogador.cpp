@@ -45,9 +45,10 @@ void Jogador :: executar()
         }
     }
 
-    if (timer_status.getElapsedTime().asSeconds()>= tempo_invulneravel)
+    if (timer_status.getElapsedTime().asSeconds() >= tempo_invulneravel)
     {
         invulneravel=false;
+        timer_status.restart();
     }
 
     if (Keyboard::isKeyPressed(Keyboard::Left))

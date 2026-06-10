@@ -9,7 +9,7 @@ Ente::Ente()
 
 Ente::~Ente()
 {
-
+	
 }
 
 // Essa funcao e para desenhar, mas por enquanto desenha a colisao
