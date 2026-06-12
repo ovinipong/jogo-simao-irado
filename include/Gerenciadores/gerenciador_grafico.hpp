@@ -9,7 +9,7 @@ namespace gerenciadores{
 class GerenciadorGrafico {
     
     private:
-        sf::RenderWindow* window;//uml ta obj mas chamaria d pJanela 
+        sf::RenderWindow* window;
         sf::View camera;
 
         sf::Font fonte;

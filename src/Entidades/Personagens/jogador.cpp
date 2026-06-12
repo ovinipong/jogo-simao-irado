@@ -19,7 +19,7 @@ Personagem(_x, _y)
     velocidade_padrao = 4;
     move_speed = velocidade_padrao;
     tempo_efeito = 0.0f;
-    tempo_invulneravel= 1.0f;
+    tempo_invulneravel= 5.0f;
 
     inicializarSprite("assets/jogador.png", 17, 64, 128, 8, 2, 9, sf::Vector2f(0.f, -45.f));
 
@@ -39,13 +39,13 @@ void Jogador :: executar()
     // Verifica se nao esta lento
     if (move_speed < velocidade_padrao)
     {
-        if (timer_status.getElapsedTime().asSeconds() >= tempo_efeito)
+        if (timer_status.getElapsedTime().asSeconds()>= tempo_efeito)
         {
             move_speed = velocidade_padrao;
         }
     }
 
-    if (timer_status.getElapsedTime().asSeconds() >= tempo_invulneravel)
+    if (timer_status.getElapsedTime().asSeconds()>= tempo_invulneravel)
     {
         invulneravel=false;
         timer_status.restart();
@@ -64,23 +64,22 @@ void Jogador :: executar()
         sprite.setOrigin(0, 0);
     }
 
-    float gravidade_velocidade = 0.5;
     float pulo_velocidade = -15;
 
-    if (no_chao)
+    if (getNoChao()==true)
     {
         velocidade_y = 0.0f;
     }
     else
     {
-        velocidade_y = velocidade_y + gravidade_velocidade;
-    }
+        velocidade_y = aplicarGravidade(velocidade_y, dt);
+    }                           
 
     // Pulo
-    if (Keyboard::isKeyPressed(Keyboard::Up) && no_chao)
+    if (Keyboard::isKeyPressed(Keyboard::Up) && (getNoChao()==true))
     {
         velocidade_y = pulo_velocidade;
-        no_chao = false;
+        setNoChao(false);
     }
     // Se estiver no ar mas nao estiver apertando a tecla de pular, ele vai fazer cair
     if (!Keyboard::isKeyPressed(Keyboard::Up) && velocidade_y < 0.0f)
@@ -94,9 +93,9 @@ void Jogador :: executar()
         atirar();
     }
 
-    no_chao = false;
+    setNoChao(false);
 
-    y = y + velocidade_y;
+    y += velocidade_y * dt;
 
     // Atualiza a posicao da colisao (temporario)
     colisao.setPosition((float)x, (float)y);

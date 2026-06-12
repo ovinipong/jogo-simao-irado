@@ -12,6 +12,7 @@ class Entidade : public Ente
         bool no_chao;
         bool valido;
         static const float gravidade;
+        static float dt;//tempo para aplicar gravidade
 
     public:
         Entidade(int _x=0, int _y=0);
@@ -25,7 +26,8 @@ class Entidade : public Ente
         void setNoChao(bool n);
         bool getValido() {return valido;};
         void setValido() {valido=true;};
-        void setInvalido() {valido=false;}
+        void setInvalido() {valido=false;};
+        static float aplicarGravidade(float velocidade_y, float dt);
     };
 
 }

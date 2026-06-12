@@ -7,6 +7,7 @@ Plataforma::Plataforma(int _x, int _y, TipoPlataforma tipo):
 Obstaculo(_x, _y), altura(0), pode_colidir (false)
 {
     setValido();
+    setNoChao(true);
     danoso=false;
     switch(tipo)
     {
@@ -60,7 +61,13 @@ Plataforma::~Plataforma()
 
 void Plataforma::executar()
 {
+    if (no_chao)
+        velocidade_y = 0.0f;
+    else
+        velocidade_y = aplicarGravidade(velocidade_y, dt);
 
+    y += velocidade_y * dt;
+    colisao.setPosition(x, y);
 }
 
 void Plataforma::obstaculizar(entidades::Jogador* pJog)

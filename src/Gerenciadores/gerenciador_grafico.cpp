@@ -121,3 +121,4 @@ sf::View GerenciadorGrafico :: getCamera()
 {
     return(camera);
 }
+

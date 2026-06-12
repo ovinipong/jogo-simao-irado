@@ -28,22 +28,19 @@ void InimigoFacil :: executar()
     if (!valido) return;
     
     x = x + move_speed;
-
-    float gravidade_velocidade = 0.5;
     
-    if (no_chao)
+    if (getNoChao()==true)
     {
         velocidade_y = 0.0f;
     }
     else
     {
-        velocidade_y = velocidade_y + gravidade_velocidade;
+        velocidade_y = aplicarGravidade(velocidade_y, dt);
     }
 
-    no_chao = false;
+    setNoChao(false);
     
-    y = y + velocidade_y;    
-
+    y += velocidade_y * dt;
     colisao.setPosition((float)x, (float)y);
 }
 

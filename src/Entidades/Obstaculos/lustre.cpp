@@ -27,8 +27,8 @@ void Lustre::executar()
 {
     if(caindo)
     {
-        velocidade_y += gravidade;
-        y += velocidade_y;
+        velocidade_y = aplicarGravidade(velocidade_y, dt);
+        y += velocidade_y * dt;
         colisao.setPosition(x, y);
         sprite.setPosition(x, y);
     }

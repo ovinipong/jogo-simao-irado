@@ -25,7 +25,7 @@ void Inimigo :: colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, s
         {
             y = y - interseccao->height;
             velocidade_y = 0.0f;
-            no_chao = true;
+            setNoChao(true);
         }
         // Colisao por baixo (jogador em baixo do bloco)
         else

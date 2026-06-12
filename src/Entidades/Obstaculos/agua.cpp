@@ -9,6 +9,7 @@ Obstaculo(_x, _y)
     danoso=false;
     id = 10;
     setValido();
+    setNoChao(true);
     reducao_velocidade = (rand() % 2) + 1;
     // Gera um float entre 0.0 e 0.1
     float chance = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
@@ -28,7 +29,13 @@ Agua::~Agua()
 
 void Agua::executar()
 {
-    
+    if (getNoChao()==true)
+        velocidade_y = 0.0f;
+    else
+        velocidade_y = aplicarGravidade(velocidade_y, dt);
+
+    y += velocidade_y * dt;
+    colisao.setPosition(x, y);
 }
 
 void Agua::obstaculizar(Jogador* pJog)

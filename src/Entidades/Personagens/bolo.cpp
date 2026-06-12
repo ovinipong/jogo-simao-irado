@@ -29,15 +29,14 @@ void Bolo::executar()
 {
     if (!valido) return;
     // Padrao para qualquer estado vai ser cair
-    float gravidade_velocidade = 0.5;
 
-    if (no_chao)
+    if (getNoChao()==true)
     {
         velocidade_y = 0.0f;
     }
     else
     {
-        velocidade_y = velocidade_y + gravidade_velocidade;
+        velocidade_y = aplicarGravidade(velocidade_y, dt);
     }
 
     // Estados
@@ -49,7 +48,7 @@ void Bolo::executar()
             if (timer_pular.getElapsedTime().asSeconds() >= tempo_parado)
             {
                 estado = PULANDO;
-                no_chao = false;
+                setNoChao(false);
                 velocidade_y = -pulo_velocidade;
                 velocidade_x = ((rand() % 3) - 1) * 3;
             }
@@ -57,7 +56,7 @@ void Bolo::executar()
         }
         case(PULANDO):
         {
-            if (no_chao)
+            if (getNoChao()==true)
             {
                 timer_pular.restart();
                 estado = PARADO;
@@ -66,9 +65,9 @@ void Bolo::executar()
         }
     }
 
-    no_chao = false;
+    setNoChao(false);
     x = x + velocidade_x;
-    y = y + velocidade_y;
+    y += velocidade_y * dt;
     colisao.setPosition((float)x, (float)y);
 }
 

@@ -41,6 +41,7 @@ class Fase : public Ente
         Jogador* pJogador;
         std::vector<Projetil*> projeteis_jogador;
         bool concluida;
+        sf::Clock clock;//para ajustes de gravidade;
 
     public:
         Fase(const std::string& caminhoMapa="", Jogador* pJog=NULL);

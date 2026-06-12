@@ -5,7 +5,12 @@ using namespace std;
 using namespace sf;
 using namespace entidades;
 
-const float Entidade::gravidade = 0.5f;
+const float Entidade::gravidade = 0.98f;
+float Entidade::dt = 1.0f;
+float Entidade::aplicarGravidade(float velocidade_y, float dt)
+{
+    return velocidade_y +=  gravidade * dt;
+}
 
 Entidade::Entidade(int _x, int _y)
 {
