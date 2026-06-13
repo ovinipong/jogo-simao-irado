@@ -1,5 +1,8 @@
 #include "jogo.hpp"
 #include <iostream>
+#include <fstream>
+
+using namespace std;
 
 Jogo :: Jogo() : pJog1 (NULL), menu(this), fase1(NULL), fase2(NULL)
 {
@@ -59,6 +62,20 @@ void Jogo :: executar()
                 fase2->executar();
                 if (fase2->getConcluida())
                 {
+                    // Coloca a pontuacao no arquivo
+                    ofstream arquivo;
+                    arquivo.open("assets/pontos/pontuacao.txt", ios::app);
+                    if (arquivo.is_open())
+                    {
+                        arquivo << pJog1->getPontos() << endl;
+                        arquivo.close();
+                    }
+                    // Se der erro, printa a mensagem de erro
+                    else
+                    {
+                        cerr << "Deu erro ao abrir o arquivo" << endl;
+                    }
+
                     delete fase2;
                     fase2 = NULL;
                     std::cout << "fase 2 concluída, retornando para o menu" << std::endl;
