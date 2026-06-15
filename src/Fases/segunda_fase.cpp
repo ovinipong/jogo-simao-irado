@@ -6,17 +6,21 @@
 
 using namespace std;
 
-SegundaFase :: SegundaFase(Jogador *pJog):
-Fase("assets/mapas/mapa2.txt", pJog),
-maxInimRato(5),
-maxLustre(5)
+SegundaFase :: SegundaFase(Jogador *pJog1, Jogador* pJog2): Fase("assets/mapas/mapa2.txt", pJog1, pJog2),
+                                                            maxInimRato(5),
+                                                            maxLustre(5)
 {
     srand(time(nullptr));
     criarCenario("assets/fundo1.png");
     criarInimigos();
     criarObstaculos();
-    lista_ents.incluir(pJog);
-    gc.setJogador(pJog);
+    lista_ents.incluir(pJog1);
+    gc.incluirJogadores(pJog1);
+    if (pJog2->getValido()==true)//opção de 2 jogadores selecionada no menu
+    {
+        lista_ents.incluir(pJog2);
+        gc.incluirJogadores(pJog2);
+    }
     criarProjeteisJogador();
     criarProjeteisRatos();
 }
@@ -142,7 +146,7 @@ void SegundaFase :: executar()
     ajustarProjeteisRatos();
     Fase::executar();
     move_camera();
-    if (pJogador->getXY().x >= 2200)
+    if ((pJogador1->getXY().x >= 2200) && (pJogador2->getXY().x >=2200))
         concluida = true;
 }
 

@@ -23,7 +23,7 @@ class GerenciadorColisoes
         list <Obstaculo*> obstaculos;
         set <Projetil*> projeteis;
         vector <Bloco*> blocos;
-        Jogador* pJog;
+        vector <Jogador*> jogadores;
     private:
         const bool verificarColisao(Entidade *pe1, Entidade *pe2);
         void tratarColisoesJogObst();
@@ -40,7 +40,7 @@ class GerenciadorColisoes
         GerenciadorColisoes();
         ~GerenciadorColisoes();
         void incluirInimigo(Inimigo *pi);
-        void setJogador(Jogador *pj);
+        void incluirJogadores(Jogador *pj);
         void incluirObstaculo(Obstaculo *po);
         void incluirBloco(Bloco *pb);
         void incluirProjetil(Projetil *pp);

@@ -19,6 +19,7 @@ class Jogo
         PrimeiraFase* fase1;
         SegundaFase* fase2;
         Jogador* pJog1;
+        Jogador* pJog2;
         GerenciadorGrafico gg;
         Menu menu;
         Estado estado;

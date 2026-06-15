@@ -78,15 +78,31 @@ void Plataforma::obstaculizar(entidades::Jogador* pJog)
     if (pJog == nullptr) return;
 
     // Se apertar para descer
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    if (pJog->getSegundo()==false)//primeiro jogador
     {
-        sf::Vector2f pos = pJog->getXY();
-        pos.y += 2.0f;
-        pJog->setNoChao(false);
-        pJog->setXY(pos);
-        
-        return;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            sf::Vector2f pos = pJog->getXY();
+            pos.y += 2.0f;
+            pJog->setNoChao(false);
+            pJog->setXY(pos);
+            
+            return;
+        }
     }
+    else //segundo jogador
+    {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        {
+            sf::Vector2f pos = pJog->getXY();
+            pos.y += 2.0f;
+            pJog->setNoChao(false);
+            pJog->setXY(pos);
+            
+            return;
+        }
+    }
+    
     
     sf::FloatRect jogador_colisao = pJog->getColisao().getGlobalBounds();
     sf::FloatRect bloco_colisao = this->getColisao().getGlobalBounds();

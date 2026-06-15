@@ -4,12 +4,13 @@
 
 using namespace fases;
 
-Fase :: Fase(const std::string& caminhoMapa, Jogador* pJog) : minimo_ent(3),
-                                                            maxInimFaceis(5),
-                                                            maxPlataformas(5),
-                                                            concluida(false)
+Fase :: Fase(const std::string& caminhoMapa, Jogador* pJog1, Jogador* pJog2) : minimo_ent(3),
+                                                                               maxInimFaceis(5),
+                                                                               maxPlataformas(5),
+                                                                               concluida(false)
 {
-    pJogador = pJog;
+    pJogador1 = pJog1;
+    pJogador2 = pJog2;
 
     try
     {
@@ -178,14 +179,15 @@ void Fase::criarCenario(const std::string& caminhoFundo)
 
 void Fase::executar()
 {
-    pJogador->setListaProjeteis(&projeteis_jogador);
+    pJogador1->setListaProjeteis(&projeteis_jogador);
+    pJogador2->setListaProjeteis(&projeteis_jogador);
 
     pGG->executar();                    // Limpa tela
     lista_ents.percorrer();             // Percorre executando
     gc.executar();                      // Ajusta a colisao
     lista_ents.percorrer_desenhar();    // Desenha na posicao correta
-    pGG->mostrarVida(pJogador->getVida());
-    pGG->mostrarPontos(pJogador->getPontos());
+    //pGG->mostrarVida(pJogador->getVida());
+    //pGG->mostrarPontos(pJogador->getPontos());
     
     ajustarProjeteisJogador();          // Coloca para fora os projeteis que nao estao na tela
 
@@ -194,7 +196,7 @@ void Fase::executar()
 
 void Fase::move_camera()
 {
-    sf::Vector2f pos_camera = pJogador->getColisao().getPosition();
+    sf::Vector2f pos_camera = pJogador1->getColisao().getPosition();
     pos_camera.x += 32;
 
     //usar igual no gerenciador grafico
@@ -220,7 +222,8 @@ void Fase :: criarProjeteisJogador()
         projeteis_jogador.push_back(proj);
     }
     
-    pJogador->setListaProjeteis(&projeteis_jogador);
+    pJogador1->setListaProjeteis(&projeteis_jogador);
+    pJogador2->setListaProjeteis(&projeteis_jogador);
 }
 
 void Fase :: ajustarProjeteisJogador()
@@ -249,6 +252,7 @@ void Fase :: ajustarProjeteisJogador()
         {
             // std::cout << "FIQUEI DESATIVADO" << std::endl;
             (*it)->setInativo();
+            (*it)->setOrigemProj(false);
             (*it)->setXY(sf::Vector2f(-100.f, -100.f)); 
         }
     }

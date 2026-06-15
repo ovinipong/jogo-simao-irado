@@ -14,7 +14,7 @@ class SegundaFase : public Fase
         std::vector<Projetil*> projeteis_rato;
     
     public:
-        SegundaFase(Jogador* pJog=NULL);
+        SegundaFase(Jogador* pJog1=NULL, Jogador* pJog2=NULL);
         ~SegundaFase();
         void executar();
         void criarProjeteisRatos();

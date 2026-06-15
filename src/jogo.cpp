@@ -4,10 +4,11 @@
 
 using namespace std;
 
-Jogo :: Jogo() : pJog1 (NULL), menu(this), fase1(NULL), fase2(NULL)
+Jogo :: Jogo() : pJog1 (NULL), pJog2(NULL), menu(this), fase1(NULL), fase2(NULL)
 {
     Ente::setGG(&gg);
-    pJog1 = new Jogador(400, 100);
+    pJog1 = new Jogador(400, 100, false);
+    pJog2 = new Jogador(400, 100, true);
 
     estado = MENU;
 }
@@ -30,7 +31,8 @@ void Jogo :: executar()
                 if (!fase1)
                 {
                     pJog1->setXY(sf::Vector2f(400, 100));
-                    fase1 = new PrimeiraFase(pJog1);
+                    pJog2->setXY(sf::Vector2f(400, 100));
+                    fase1 = new PrimeiraFase(pJog1, pJog2);
                 }
                 fase1->executar();
                 if (fase1->getConcluida())
@@ -40,15 +42,18 @@ void Jogo :: executar()
                     std::cout << "trocando pra fase 2" << std::endl;
                     estado = SEGUNDA_FASE;
                 }
-                if (!pJog1->getValido())
+                if (!pJog1->getValido() && !pJog2->getValido())
                 {
-                    std::cout << "jogador morreu, voltando ao menu" << std::endl;
+                    std::cout << "jogador 1 morreu, voltando ao menu" << std::endl;
                     delete fase1;
                     fase1 = NULL;
                     delete pJog1;
-                    pJog1 = new Jogador(400, 100);
+                    delete pJog2;
+                    pJog1 = new Jogador(400, 100, false);
+                    pJog2 = new Jogador(400, 100, true);
                     estado = MENU;
                 }
+
                 break;
             }
             case(SEGUNDA_FASE):
@@ -56,7 +61,8 @@ void Jogo :: executar()
                 if (!fase2)
                 {
                     pJog1->setXY(sf::Vector2f(400, 100));
-                    fase2 = new SegundaFase(pJog1);
+                    pJog2->setXY(sf::Vector2f(400, 100));
+                    fase2 = new SegundaFase(pJog1, pJog2);
                 }
                 fase2->executar();
                 if (fase2->getConcluida())
@@ -77,17 +83,20 @@ void Jogo :: executar()
 
                     // Zera a pontuacao
                     pJog1->setPontos(0);
+                    pJog2->setPontos(0);
                     delete fase2;
                     fase2 = NULL;
                     std::cout << "fase 2 concluída, retornando para o menu" << std::endl;
                     estado = MENU;
                 }
-                if (!pJog1->getValido())
+                if (!pJog1->getValido() && !pJog2->getValido())
                 {
                     delete fase2;
                     fase2 = NULL;
                     delete pJog1;
-                    pJog1 = new Jogador(400, 100);
+                    delete pJog2;
+                    pJog1 = new Jogador(400, 100, false);
+                    pJog2 = new Jogador(400, 100, true);
                     estado = MENU;
                 }
                 break;

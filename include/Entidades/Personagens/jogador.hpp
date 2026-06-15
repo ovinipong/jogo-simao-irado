@@ -23,14 +23,14 @@ class Jogador : public Personagem
 
 
     public:
-        Jogador(int _x=0, int _y=0);
+        Jogador(int _x=0, int _y=0, bool segundo_jog=false);
         ~Jogador();
         void executar();
         void reverterPosicao();
         void aplicarLentidao(int nova_velocidade, float duracao);
         
         void setListaProjeteis(std::vector<Projetil*>* pLista) { pListaProjeteis = pLista; }
-        void atirar();
+        void atirar(bool projJog1);
         void operator++();
 
         int getPontos(){return pontos;};
@@ -39,6 +39,8 @@ class Jogador : public Personagem
 
         void setInvulneravel(){invulneravel=true;};
         bool getInvulneravel(){return invulneravel;};
+
+        bool getSegundo(){return segundo;};
 };
 
 

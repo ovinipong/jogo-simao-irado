@@ -14,6 +14,7 @@ class Projetil : public entidades::Entidade
         int dano;
         float velocidade_x;
         TipoProjetil projetil;
+        bool Jogador1;
 
     public:
         Projetil(int _x, int _y, TipoProjetil tp);
@@ -27,4 +28,6 @@ class Projetil : public entidades::Entidade
         void setAtivo() {ativo=true;};
         void setInativo() {ativo=false;};
         bool getAtivo() {return ativo;};
+        bool getProjJog1() {return Jogador1;};
+        void setOrigemProj(bool projJog1) {Jogador1=projJog1;};
     };

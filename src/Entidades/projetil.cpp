@@ -9,6 +9,7 @@ Entidade(_x, _y)
 {
     setInativo();
     setValido();
+    Jogador1 = false;
     dano = 1;
     velocidade_x = 8.f;
 
@@ -59,6 +60,7 @@ void Projetil :: executar()
     // Se for longe, meio que reseta
     if (x < -100 || x > 3000)
     {
+        Jogador1 = false;
         setInativo();
         x = -100;
         y = -100;

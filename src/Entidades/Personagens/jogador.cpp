@@ -9,12 +9,13 @@ using namespace entidades;
 #include "projetil.hpp"
 
 // Construtora
-Jogador::Jogador(int _x, int _y):
+Jogador::Jogador(int _x, int _y, bool segundo_jog):
 Personagem(_x, _y) 
 {
     num_vidas = 40;
     pListaProjeteis = nullptr;
     id =2;
+    segundo = segundo_jog;
     pontos = 0;
     velocidade_padrao = 4;
     move_speed = velocidade_padrao;
@@ -51,21 +52,73 @@ void Jogador :: executar()
         timer_status.restart();
     }
 
-    if (Keyboard::isKeyPressed(Keyboard::Left))
-    {
-        x -= move_speed;
-        sprite.setScale(-1.f, 1.f);//inverte sprite p esquerda
-        sprite.setOrigin(frame_largura, 0);
-    }
-    if (Keyboard::isKeyPressed(Keyboard::Right))
-    {
-        x += move_speed;
-        sprite.setScale(1.f, 1.f);
-        sprite.setOrigin(0, 0);
-    }
-
     float pulo_velocidade = -15;
 
+    if (!segundo)
+    {
+        if (Keyboard::isKeyPressed(Keyboard::Left))
+        {
+            x -= move_speed;
+            sprite.setScale(-1.f, 1.f);//inverte sprite p esquerda
+            sprite.setOrigin(frame_largura, 0);
+        }
+        if (Keyboard::isKeyPressed(Keyboard::Right))
+        {
+            x += move_speed;
+            sprite.setScale(1.f, 1.f);
+            sprite.setOrigin(0, 0);
+        }
+            // Pulo
+        if (Keyboard::isKeyPressed(Keyboard::Up) && (getNoChao()==true))
+        {
+            velocidade_y = pulo_velocidade;
+            setNoChao(false);
+        }
+        // Se estiver no ar mas nao estiver apertando a tecla de pular, ele vai fazer cair
+        if (!Keyboard::isKeyPressed(Keyboard::Up) && velocidade_y < 0.0f)
+        {
+            velocidade_y = velocidade_y * 0.8f; 
+        }
+
+        // ATIRAR PEW PEW
+        if (Keyboard::isKeyPressed(Keyboard::Numpad0) && timer_atirar.getElapsedTime().asSeconds() >= 0.5)
+        {
+            atirar(true);
+        }
+    }
+    else //é o segundo player
+    {
+        if (Keyboard::isKeyPressed(Keyboard::A))
+        {
+            x -= move_speed;
+            sprite.setScale(-1.f, 1.f);//inverte sprite p esquerda
+            sprite.setOrigin(frame_largura, 0);
+        }
+        if (Keyboard::isKeyPressed(Keyboard::D))
+        {
+            x += move_speed;
+            sprite.setScale(1.f, 1.f);
+            sprite.setOrigin(0, 0);
+        }
+            // Pulo
+        if (Keyboard::isKeyPressed(Keyboard::W) && (getNoChao()==true))
+        {
+            velocidade_y = pulo_velocidade;
+            setNoChao(false);
+        }
+        // Se estiver no ar mas nao estiver apertando a tecla de pular, ele vai fazer cair
+        if (!Keyboard::isKeyPressed(Keyboard::W) && velocidade_y < 0.0f)
+        {
+            velocidade_y = velocidade_y * 0.8f; 
+        }
+
+        // ATIRAR PEW PEW
+        if (Keyboard::isKeyPressed(Keyboard::Space) && timer_atirar.getElapsedTime().asSeconds() >= 0.5)
+        {
+            atirar(false);
+        }
+    }
+    
     if (getNoChao()==true)
     {
         velocidade_y = 0.0f;
@@ -74,24 +127,6 @@ void Jogador :: executar()
     {
         velocidade_y = aplicarGravidade(velocidade_y, dt);
     }                           
-
-    // Pulo
-    if (Keyboard::isKeyPressed(Keyboard::Up) && (getNoChao()==true))
-    {
-        velocidade_y = pulo_velocidade;
-        setNoChao(false);
-    }
-    // Se estiver no ar mas nao estiver apertando a tecla de pular, ele vai fazer cair
-    if (!Keyboard::isKeyPressed(Keyboard::Up) && velocidade_y < 0.0f)
-    {
-        velocidade_y = velocidade_y * 0.8f; 
-    }
-
-    // ATIRAR PEW PEW
-    if (Keyboard::isKeyPressed(Keyboard::Z) && timer_atirar.getElapsedTime().asSeconds() >= 0.5)
-    {
-        atirar();
-    }
 
     setNoChao(false);
 
@@ -115,7 +150,7 @@ void Jogador :: aplicarLentidao(int nova_velocidade, float duracao)
     timer_status.restart();
 }
 
-void Jogador::atirar() 
+void Jogador::atirar(bool projJog1) 
 {
     if (!pListaProjeteis)
     {
@@ -127,6 +162,10 @@ void Jogador::atirar()
     {
         if (!proj->getAtivo() && proj->getTipoProjetil() == JOGADOR) 
         {
+            if (projJog1==true)
+            {
+                proj->setOrigemProj(projJog1); //projetil do jogador 1
+            }
             
             bool esquerda = (sprite.getScale().x < 0); 
             

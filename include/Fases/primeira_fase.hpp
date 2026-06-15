@@ -14,7 +14,7 @@ class PrimeiraFase : public Fase
         int maxAgua;
 
     public:
-        PrimeiraFase(Jogador* pJog=NULL);
+        PrimeiraFase(Jogador* pJog1=NULL, Jogador* pJog2=NULL);
         ~PrimeiraFase();
         virtual void executar();
     protected:

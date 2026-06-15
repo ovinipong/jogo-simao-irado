@@ -38,13 +38,14 @@ class Fase : public Ente
         int maxPlataformas;
         float mapa_largura;
         float mapa_altura;
-        Jogador* pJogador;
+        Jogador* pJogador1;
+        Jogador* pJogador2;
         std::vector<Projetil*> projeteis_jogador;
         bool concluida;
         sf::Clock clock;//para ajustes de gravidade;
 
     public:
-        Fase(const std::string& caminhoMapa="", Jogador* pJog=NULL);
+        Fase(const std::string& caminhoMapa="", Jogador* pJog1=NULL, Jogador* pJog2=NULL);
         ~Fase();
         void executar();
         bool getConcluida() { return concluida; }
