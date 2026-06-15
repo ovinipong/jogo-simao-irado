@@ -31,7 +31,7 @@ SegundaFase :: ~SegundaFase()
 }
 
 
-void SegundaFase :: criarInimRato()
+void SegundaFase :: criarInimRatos()
 {
     arquivo.clear();
     arquivo.seekg(0);
@@ -81,7 +81,7 @@ void SegundaFase :: criarInimRato()
 
 }
 
-void SegundaFase :: criarObstLustre()
+void SegundaFase :: criarObstLustres()
 {
     arquivo.clear();
     arquivo.seekg(0);
@@ -131,14 +131,14 @@ void SegundaFase :: criarObstLustre()
 
 void SegundaFase :: criarInimigos()
 {
-    criarInimFaceis();
-    criarInimRato();
+    criarInimBolinhos();
+    criarInimRatos();
 }
 
 void SegundaFase :: criarObstaculos()
 {
     criarPlataformas();
-    criarObstLustre(); //Esta comentado porque eles nao existem
+    criarObstLustres(); //Esta comentado porque eles nao existem
 }
 
 void SegundaFase :: executar()

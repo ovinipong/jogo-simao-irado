@@ -18,8 +18,8 @@ class PrimeiraFase : public Fase
         ~PrimeiraFase();
         virtual void executar();
     protected:
-        void criarInimBolo();
-        void criarObstAgua();
+        void criarInimBolos();
+        void criarObstAguas();
         virtual void criarInimigos();
         virtual void criarObstaculos();
     public:

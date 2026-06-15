@@ -21,8 +21,8 @@ class SegundaFase : public Fase
         void ajustarProjeteisRatos();
 
     protected:
-        void criarInimRato();
-        void criarObstLustre();
+        void criarInimRatos();
+        void criarObstLustres();
         virtual void criarInimigos();
         virtual void criarObstaculos();
     public:

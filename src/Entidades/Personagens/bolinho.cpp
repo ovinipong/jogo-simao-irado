@@ -1,10 +1,10 @@
-#include "inimigo_facil.hpp"
+#include "bolinho.hpp"
 
 using namespace std;
 using namespace sf;
 using namespace entidades;
 
-InimigoFacil :: InimigoFacil(int _x, int _y): Inimigo(_x, _y)
+Bolinho :: Bolinho(int _x, int _y): Inimigo(_x, _y)
 {
     setValido();
     id =3;
@@ -18,12 +18,12 @@ InimigoFacil :: InimigoFacil(int _x, int _y): Inimigo(_x, _y)
     colisao.setFillColor(sf::Color::Red);
 }
 
-InimigoFacil :: ~InimigoFacil()
+Bolinho :: ~Bolinho()
 {
 
 }
 
-void InimigoFacil :: executar()
+void Bolinho :: executar()
 {
     if (!valido) return;
     
@@ -44,12 +44,12 @@ void InimigoFacil :: executar()
     colisao.setPosition((float)x, (float)y);
 }
 
-const int InimigoFacil :: get_vida() const
+const int Bolinho :: get_vida() const
 {
     return num_vidas;
 }
 
-void InimigoFacil :: inverterDirecao()
+void Bolinho :: inverterDirecao()
 {
     move_speed = -move_speed;
 }

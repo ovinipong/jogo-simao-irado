@@ -3,7 +3,7 @@
 #include "lista_entidades.hpp"
 #include "gerenciador_colisoes.hpp"
 #include "ente.hpp"
-#include "inimigo_facil.hpp"
+#include "bolinho.hpp"
 #include "plataforma.hpp"
 #include "bloco.hpp"
 #include "jogador.hpp"
@@ -52,7 +52,7 @@ class Fase : public Ente
     protected:
         void move_camera();
 
-        void criarInimFaceis();
+        void criarInimBolinhos();
         void criarPlataformas();
         virtual void criarInimigos()=0;
         virtual void criarObstaculos()=0;

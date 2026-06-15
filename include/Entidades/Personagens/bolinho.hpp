@@ -4,15 +4,15 @@
 
 namespace entidades {
 
-class InimigoFacil : public Inimigo
+class Bolinho : public Inimigo
 {
     private:
         int dano;
         bool atacar;
         
     public:
-        InimigoFacil(int _x=0, int _y=0);
-        ~InimigoFacil();
+        Bolinho(int _x=0, int _y=0);
+        ~Bolinho();
         void executar();//descomentar virtual
         //void danificar(Jogador* p); sem implementação
         //void salva()=0;

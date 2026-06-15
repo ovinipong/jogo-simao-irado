@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "ente.hpp"
 #include "jogador.hpp"
-#include "inimigo_facil.hpp"
+#include "bolinho.hpp"
 #include "bloco.hpp"
 #include "gerenciador_colisoes.hpp"
 #include "gerenciador_grafico.hpp"

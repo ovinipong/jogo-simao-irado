@@ -27,7 +27,7 @@ PrimeiraFase :: ~PrimeiraFase()
        lista_ents.limpar();
 }
 
-void PrimeiraFase :: criarInimBolo()
+void PrimeiraFase :: criarInimBolos()
 {
     arquivo.clear();
     arquivo.seekg(0);
@@ -75,7 +75,7 @@ void PrimeiraFase :: criarInimBolo()
     }
 }
 
-void PrimeiraFase :: criarObstAgua()
+void PrimeiraFase :: criarObstAguas()
 {
     arquivo.clear();
     arquivo.seekg(0);
@@ -124,14 +124,14 @@ void PrimeiraFase :: criarObstAgua()
 
 void PrimeiraFase :: criarInimigos()
 {
-    criarInimFaceis();
-    criarInimBolo();
+    criarInimBolinhos();
+    criarInimBolos();
 }
 
 void PrimeiraFase :: criarObstaculos()
 {
     criarPlataformas();
-    criarObstAgua();
+    criarObstAguas();
 }
 
 void PrimeiraFase :: executar()

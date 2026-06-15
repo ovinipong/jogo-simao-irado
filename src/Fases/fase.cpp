@@ -43,7 +43,7 @@ Fase :: ~Fase()
     arquivo.close();
 }
 
-void Fase :: criarInimFaceis()//F no txt
+void Fase :: criarInimBolinhos()//F no txt
 {
     arquivo.clear();
     arquivo.seekg(0);
@@ -84,7 +84,7 @@ void Fase :: criarInimFaceis()//F no txt
 
     for (int i=0; i<qntd; i++)
     {
-        InimigoFacil* inim = new InimigoFacil(posicoes[i].x, posicoes[i].y);
+        Bolinho* inim = new Bolinho(posicoes[i].x, posicoes[i].y);
         lista_ents.incluir(inim); 
         gc.incluirInimigo(inim);
     }
