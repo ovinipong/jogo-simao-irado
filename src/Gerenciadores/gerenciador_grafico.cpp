@@ -54,6 +54,8 @@ void GerenciadorGrafico :: desenharEnte(Ente *pE)
 void GerenciadorGrafico::executar()
 {
     sf::Event event;
+    texto_digitado = "";
+    backspace_pressionado = false;
     
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         window->close();
@@ -62,6 +64,20 @@ void GerenciadorGrafico::executar()
     {
         if (event.type == sf::Event::Closed) 
             window->close();
+
+        // Verifica se apertou para inserir um texto
+        if (event.type == sf::Event::TextEntered)
+        {
+            // Verifica se nao apertou backspace
+            if (event.text.unicode == '\b')
+            {
+                backspace_pressionado = true;
+            }
+            else if (event.text.unicode < 128 && event.text.unicode > 31)
+            {
+                texto_digitado += static_cast<char>(event.text.unicode);
+            }
+        }
     }
 
     window->clear();

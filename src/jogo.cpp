@@ -67,7 +67,7 @@ void Jogo :: executar()
                     arquivo.open("assets/pontos/pontuacao.txt", ios::app);
                     if (arquivo.is_open())
                     {
-                        arquivo << pJog1->getPontos() << endl;
+                        arquivo << menu.getNomeJogador() << ": " << pJog1->getPontos() <<" pontos" << endl;
                         arquivo.close();
                     }
                     // Se der erro, printa a mensagem de erro
@@ -76,6 +76,8 @@ void Jogo :: executar()
                         cerr << "Deu erro ao abrir o arquivo" << endl;
                     }
 
+                    // Zera a pontuacao
+                    pJog1->setPontos(0);
                     delete fase2;
                     fase2 = NULL;
                     std::cout << "fase 2 concluída, retornando para o menu" << std::endl;

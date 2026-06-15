@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ente.hpp"
+#include <string>
+#include <map>
 
 class Jogo; 
 
@@ -15,9 +17,13 @@ class Menu : public Ente
         Jogo* pJogo;
         TelaMenu tela;
         sf::Font fonte;
-    
+        std::string nome_jogador;
+        std::multimap<int, std::string, std::greater<int>> ordem_ranking;
+
     public:
         Menu(Jogo* pJ = NULL);
         ~Menu();
         void executar();
+        const std::string &getNomeJogador() const {return(nome_jogador);}
+        void carregar_ranking();
 };

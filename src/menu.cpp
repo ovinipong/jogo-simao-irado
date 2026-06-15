@@ -1,6 +1,8 @@
 #include "menu.hpp"
 #include "jogo.hpp"
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 using namespace sf;
 
@@ -19,6 +21,59 @@ Menu::Menu(Jogo* pJ) : pJogo(pJ)
 Menu::~Menu()
 {
 
+}
+
+void Menu :: carregar_ranking()
+{
+    // Limpa o ranking
+    ordem_ranking.clear();
+
+    // Abre a pontuacao
+    std::ifstream pontuacao("assets/pontos/pontuacao.txt");
+    
+    if (!pontuacao.is_open()) 
+    {
+        std::cerr << "Erro ao abrir o arquivo de pontuacao" << std::endl;
+        return; 
+    }
+    
+    std::string linha;
+    
+    // Percorre o txt linha por linha
+    while(std::getline(pontuacao, linha)) 
+    {
+        // Acha a distancia ate os dois pontos
+        size_t posicao_dois_pontos = linha.find(": ");
+        if (posicao_dois_pontos != std::string::npos)
+        {
+            std::string nome = linha.substr(0, posicao_dois_pontos);
+
+            size_t posicao_pontuacao = linha.find(" pontos", posicao_dois_pontos + 2);
+            std::string string_pontos;
+            
+            if (posicao_pontuacao != std::string::npos) 
+            {
+                string_pontos = linha.substr(posicao_dois_pontos + 2, posicao_pontuacao - (posicao_dois_pontos + 2));
+            }
+            else
+            {
+                string_pontos = linha.substr(posicao_dois_pontos + 2);
+            }
+
+            int pontos = 0;
+            try
+            {
+                pontos = std::stoi(string_pontos);
+            }
+            catch(...)
+            {
+                pontos = 0;
+            }
+
+            ordem_ranking.insert({pontos, nome});
+        }
+    }
+    pontuacao.close();
 }
 
 void Menu::executar()
@@ -86,10 +141,12 @@ void Menu::executar()
             {
                 if (btnJogar.getGlobalBounds().contains(mousePosF))
                 {
+                    nome_jogador = "";
                     tela = SELECAO_FASE; 
                 }
                 else if (btnRanking.getGlobalBounds().contains(mousePosF))
                 {
+                    carregar_ranking();
                     tela = PONTUACAO;
                 }
             }
@@ -97,7 +154,7 @@ void Menu::executar()
             {
                 if (btnFase1.getGlobalBounds().contains(mousePosF))
                 {
-                    pJogo->setEstado(PRIMEIRA_FASE); 
+                    pJogo->setEstado(PRIMEIRA_FASE);
                 }
                 else if (btnFase2.getGlobalBounds().contains(mousePosF))
                 {
@@ -123,6 +180,23 @@ void Menu::executar()
     }
 
     // ---------------------------------------------------------
+    // CAPTURA DO NOME DO JOGADOR
+    // ---------------------------------------------------------
+    if (tela == SELECAO_FASE)
+    {
+        GerenciadorGrafico* gg = Ente::getGG();
+
+        // Verifica se o jogador apertou para apagar o nome dele
+        if (gg->getBackspacePressionado() && !nome_jogador.empty()) 
+        {
+            // Apaga a ultima letra
+            nome_jogador.pop_back();
+        }
+        // Adiciona as novas letras
+        nome_jogador += gg->getTextoDigitado(); 
+    }
+
+    // ---------------------------------------------------------
     // DESENHAR AS COISAS NA TELA
     // ---------------------------------------------------------
     if (tela == PRINCIPAL)
@@ -140,11 +214,50 @@ void Menu::executar()
         window->draw(txtFase2);
         window->draw(btnVoltar);
         window->draw(txtVoltar);
+    
+        // Desenhar as coisas do nome
+        sf::Text texto_nome("Seu nome: " + nome_jogador + "_", fonte, 30);
+        texto_nome.setPosition(220.f, 100.f);
+        texto_nome.setFillColor(sf::Color::Yellow);
+        window->draw(texto_nome);
+    
     }
     else if (tela == PONTUACAO)
     {
         window->draw(txtTituloRanking);
         window->draw(btnVoltar);
         window->draw(txtVoltar);
+
+        float posY = 180.f;
+        int posicaoAtual = 1;
+
+        // Se tiver ranking
+        // Código corrigido
+        for (auto it = ordem_ranking.begin(); it != ordem_ranking.end() && posicaoAtual <= 5; ++it, posicaoAtual++)
+        {
+            std::string strExibicaoNome = std::to_string(posicaoAtual) + ". " + it->second;
+            sf::Text txtColocado(strExibicaoNome, fonte, 26);
+            txtColocado.setPosition(220.f, posY);
+            txtColocado.setFillColor(sf::Color::White);
+            window->draw(txtColocado);
+
+            std::string strExibicaoPontos = std::to_string(it->first) + " pts";
+            sf::Text txtPontos(strExibicaoPontos, fonte, 26);
+            txtPontos.setPosition(460.f, posY);
+            txtPontos.setFillColor(sf::Color::Cyan);
+            window->draw(txtPontos);
+
+            posY += 35.f;
+            
+        }
+
+        // Se nao tiver ranking
+        if (ordem_ranking.empty())
+        {
+            sf::Text txtVazio("Nenhum recorde registrado ainda!", fonte, 24);
+            txtVazio.setPosition(220.f, 220.f);
+            txtVazio.setFillColor(sf::Color(180, 180, 180));
+            window->draw(txtVazio);
+        }
     }
 }

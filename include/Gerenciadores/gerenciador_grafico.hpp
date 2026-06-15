@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <string>
 
 class Ente;
 
@@ -11,8 +12,9 @@ class GerenciadorGrafico {
     private:
         sf::RenderWindow* window;
         sf::View camera;
-
         sf::Font fonte;
+        std::string texto_digitado;
+        bool backspace_pressionado;
 
     public:
         GerenciadorGrafico();
@@ -31,6 +33,9 @@ class GerenciadorGrafico {
         { 
             return window; 
         }
+        std::string const getTextoDigitado() {return(texto_digitado);}
+        bool const getBackspacePressionado() {return(backspace_pressionado);}
+        
         sf::View getCamera();
 };
 

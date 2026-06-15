@@ -34,6 +34,7 @@ class Jogador : public Personagem
         void operator++();
 
         int getPontos(){return pontos;};
+        void setPontos(int p) {pontos = p;};
         int getVida(){return num_vidas;};
 
         void setInvulneravel(){invulneravel=true;};

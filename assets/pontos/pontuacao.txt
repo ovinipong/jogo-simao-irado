@@ -1,4 +1,7 @@
-1
-1
-6
-6
+exemplo1: 6 pontos
+exemplo2: 5 pontos
+exemplo3: 4 pontos
+exemplo4: 3 pontos
+exemplo5: 2 pontos
+exemplo6: 1 pontos
+exemplo7: 0 pontos
