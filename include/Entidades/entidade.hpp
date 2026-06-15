@@ -20,6 +20,7 @@ class Entidade : public Ente
         virtual void executar() = 0;
         sf::Vector2f getXY();
         void setXY(sf::Vector2f position);
+        void setXY(int _x, int _y);
         float getVelocidadeY();
         void setVelocidadeY(float vy);
         bool getNoChao();

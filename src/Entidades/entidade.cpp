@@ -15,8 +15,7 @@ float Entidade::aplicarGravidade(float velocidade_y, float dt)
 Entidade::Entidade(int _x, int _y)
 {
     // Atribui as posicoes iniciais
-    x = _x;
-    y = _y;
+    setXY(_x, _y);
 
     colisao.setPosition(x, y);
 
@@ -33,6 +32,13 @@ Vector2f Entidade::getXY()
 {
     Vector2f position(x, y);
     return(position);
+}
+
+void Entidade::setXY(int _x, int _y)
+{
+    x = _x;
+    y = _y;
+    colisao.setPosition(x, y);
 }
 
 void Entidade::setXY(Vector2f position)
