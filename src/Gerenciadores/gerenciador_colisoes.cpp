@@ -200,21 +200,7 @@ void GerenciadorColisoes::tratarColisoesObstBloco()
             // Se estiver colidindo
             if (obstaculo_colisao.intersects(bloco_colisao, interseccao))
             {
-                if ((*it1)->getID() == 11)//é um lustre
-                {
-                    (*it2)->obstaculizar(*it1);
-                    (*it1)->setInvalido();
-                    (*it1)->setXY(sf::Vector2f(-100.f, -100.f));
-                }
-                else 
-                {
-                    sf::Vector2f pos = (*it1)->getXY();
-                    pos.y -= interseccao.height;  // empurra pra cima
-                    (*it1)->setXY(pos);
-                    (*it1)->setVelocidadeY(0.0f);
-                    (*it1)->setNoChao(true);
-                }
-
+                (*it2)->obstaculizar(*it1);
             }
         }
     }

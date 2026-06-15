@@ -56,13 +56,13 @@ void GerenciadorGrafico::executar()
     sf::Event event;
     texto_digitado = "";
     backspace_pressionado = false;
-    
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        window->close();
 
     while (window->pollEvent(event)) 
     {
         if (event.type == sf::Event::Closed) 
+            window->close();
+
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
             window->close();
 
         // Verifica se apertou para inserir um texto

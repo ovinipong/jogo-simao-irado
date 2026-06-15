@@ -26,42 +26,42 @@ void Bloco::executar()
 
 }
 
-void Bloco::obstaculizar(entidades::Entidade* pE)
+void Bloco::obstaculizar(Personagem* pP)
 {
-    if (pE == nullptr) return;
+    if (pP == nullptr) return;
 
     // Pega as colisoes
     sf::FloatRect interseccao;
-    sf::FloatRect jogador_colisao = pE->getColisao().getGlobalBounds();
+    sf::FloatRect personagem_colisao = pP->getColisao().getGlobalBounds();
     sf::FloatRect bloco_colisao = this->getColisao().getGlobalBounds();
 
     // Atribui a interseccao se houver colisão
-    if (jogador_colisao.intersects(bloco_colisao, interseccao))
+    if (personagem_colisao.intersects(bloco_colisao, interseccao))
     {
-        sf::Vector2f pos = pE->getXY();
+        sf::Vector2f pos = pP->getXY();
 
         // Colisao vertical (eixo Y)
         if (interseccao.height < interseccao.width)
         {
             // Colisao por cima (jogador em cima do bloco)
-            if (jogador_colisao.top < bloco_colisao.top)
+            if (personagem_colisao.top < bloco_colisao.top)
             {
                 pos.y -= interseccao.height;
-                pE->setVelocidadeY(0.0f);
-                pE->setNoChao(true);
+                pP->setVelocidadeY(0.0f);
+                pP->setNoChao(true);
             }
             // Colisao por baixo (jogador embaixo do bloco)
             else
             {
                 pos.y += interseccao.height;
-                pE->setVelocidadeY(0.0f);
+                pP->setVelocidadeY(0.0f);
             }
         }
         // Colisao horizontal (eixo X)
         else
         {
             // Colisao pela esquerda (jogador à esquerda do bloco)
-            if (jogador_colisao.left < bloco_colisao.left)
+            if (personagem_colisao.left < bloco_colisao.left)
             {
                 pos.x -= interseccao.width;
             }
@@ -73,6 +73,32 @@ void Bloco::obstaculizar(entidades::Entidade* pE)
         }
 
         // Aplica a nova posição e atualiza a caixa de colisão do jogador
-        pE->setXY(pos);
+        pP->setXY(pos);
+    }
+}
+
+void Bloco::obstaculizar(Obstaculo* pO)
+{
+    if (pO==NULL) return;
+
+    sf::FloatRect interseccao;
+    sf::FloatRect obstaculo_colisao = pO->getColisao().getGlobalBounds();
+    sf::FloatRect bloco_colisao = this->getColisao().getGlobalBounds();
+
+    if (obstaculo_colisao.intersects(bloco_colisao, interseccao))
+    {
+        if (pO->getID() == 11)//é um lustre
+        {
+            pO->setInvalido();
+            pO->setXY(sf::Vector2f(-100.f, -100.f));
+        }
+        else 
+        {
+            sf::Vector2f pos = pO->getXY();
+            pos.y -= interseccao.height;  // empurra pra cima
+            pO->setXY(pos);
+            pO->setVelocidadeY(0.0f);
+            pO->setNoChao(true);
+        }
     }
 }

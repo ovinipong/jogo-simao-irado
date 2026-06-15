@@ -8,16 +8,15 @@ Jogo :: Jogo() : pJog1 (NULL), menu(this), fase1(NULL), fase2(NULL)
 {
     Ente::setGG(&gg);
     pJog1 = new Jogador(400, 100);
-    //fase1 = new PrimeiraFase(pJog1);
-    //fase2 = new SegundaFase(pJog1);
+
     estado = MENU;
 }
 
 Jogo :: ~Jogo()
 {
-    delete pJog1;
-    delete fase1;
-    delete fase2;
+    pJog1=NULL;
+    fase1=NULL;
+    fase2=NULL;
 }
 
 void Jogo :: executar()
