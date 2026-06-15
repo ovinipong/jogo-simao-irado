@@ -12,9 +12,9 @@ InimigoFacil :: InimigoFacil(int _x, int _y): Inimigo(_x, _y)
     velocidade_y = 0;
     num_vidas = 3;
 
-    inicializarSprite("assets/inimigo.png", 2, 64, 64, 8, 0, 0, sf::Vector2f(0.f, 3.f));
+    inicializarSprite("assets/bolinho.png", 4, 64, 64, 8, 0, 0, sf::Vector2f(0.f, 3.f));
 
-    colisao.setSize(sf::Vector2f(50.0f, 50.0f));
+    colisao.setSize(sf::Vector2f(26.0f, 35.0f));
     colisao.setFillColor(sf::Color::Red);
 }
 

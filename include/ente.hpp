@@ -23,4 +23,5 @@ class Ente : public Figura
         const sf::RectangleShape& getColisao() const;
         static void setGG(GerenciadorGrafico *pG);
         static GerenciadorGrafico* getGG();
+        int getID() {return id;};
 };

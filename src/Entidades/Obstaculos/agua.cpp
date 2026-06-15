@@ -9,7 +9,7 @@ Obstaculo(_x, _y)
     danoso=false;
     id = 10;
     setValido();
-    setNoChao(true);
+    setNoChao(false);
     reducao_velocidade = (rand() % 2) + 1;
     // Gera um float entre 0.0 e 0.1
     float chance = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);

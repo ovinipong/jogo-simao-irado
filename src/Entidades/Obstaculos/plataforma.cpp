@@ -7,12 +7,12 @@ Plataforma::Plataforma(int _x, int _y, TipoPlataforma tipo):
 Obstaculo(_x, _y), altura(0), pode_colidir (false)
 {
     setValido();
-    setNoChao(true);
     danoso=false;
     switch(tipo)
     {
         case PRATELEIRA:
         {
+            setNoChao(true);
             id=7;
 
             altura = (rand() % 64) + 32;
@@ -28,9 +28,10 @@ Obstaculo(_x, _y), altura(0), pode_colidir (false)
         }
         case MESA:
         {
+            setNoChao(false);
             id=8;
 
-            inicializarSprite("assets/mesa.png", 1, 64, 64, 0, 0, 0, sf::Vector2f(0.f, 0.f));
+            inicializarSprite("assets/mesa.png", 1, 64, 64, 0, 0, 0, sf::Vector2f(0.f, -22.f));
 
             colisao.setSize(sf::Vector2f(frame_largura, 42));
             colisao.setFillColor(sf::Color::Red);
@@ -40,11 +41,12 @@ Obstaculo(_x, _y), altura(0), pode_colidir (false)
         }
         case CRISTALEIRA:
         {
+            setNoChao(false);
             id=9;
             
             inicializarSprite("assets/cristaleira.png", 1, 128, 128, 0, 0, 0, sf::Vector2f(0.f, 0.f));
 
-            colisao.setSize(sf::Vector2f(frame_largura, 4));
+            colisao.setSize(sf::Vector2f(frame_largura, 128));
             colisao.setFillColor(sf::Color::Red);
             colisao.setPosition(x, y);
 
@@ -68,6 +70,7 @@ void Plataforma::executar()
 
     y += velocidade_y * dt;
     colisao.setPosition(x, y);
+    //sprite.setPosition(x, y);
 }
 
 void Plataforma::obstaculizar(entidades::Jogador* pJog)
