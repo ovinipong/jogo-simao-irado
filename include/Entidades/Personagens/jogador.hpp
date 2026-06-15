@@ -8,7 +8,7 @@ namespace entidades {
 
 class Jogador : public Personagem
 {
-    protected:
+    private:
         int pontos;
         int move_speed;
         int velocidade_padrao;

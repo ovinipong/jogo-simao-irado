@@ -146,8 +146,23 @@ void SegundaFase :: executar()
     ajustarProjeteisRatos();
     Fase::executar();
     move_camera();
-    if ((pJogador1->getXY().x >= 2200) && (pJogador2->getXY().x >=2200))
-        concluida = true;
+    
+    // Se for apenas um jogador
+    if (!pJogador2->getValido())
+    {
+        if (pJogador1->getXY().x >= 2200)
+        {
+            concluida = true;
+        }
+    }
+    // Se for os dois jogadores
+    else
+    {
+        if ((pJogador1->getXY().x >= 2200) && (pJogador2->getXY().x >=2200))
+        {
+            concluida = true;
+        }
+    }
 }
 
 void SegundaFase :: criarProjeteisRatos()

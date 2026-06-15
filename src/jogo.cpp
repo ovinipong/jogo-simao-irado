@@ -11,6 +11,7 @@ Jogo :: Jogo() : pJog1 (NULL), pJog2(NULL), menu(this), fase1(NULL), fase2(NULL)
     pJog2 = new Jogador(400, 100, true);
 
     estado = MENU;
+    dois_jogadores = false;
 }
 
 Jogo :: ~Jogo()
@@ -30,8 +31,19 @@ void Jogo :: executar()
             {
                 if (!fase1)
                 {
-                    pJog1->setXY(sf::Vector2f(400, 100));
-                    pJog2->setXY(sf::Vector2f(400, 100));
+                    // Apenas um jogador
+                    if (!dois_jogadores)
+                    {
+                        pJog1->setXY(sf::Vector2f(400, 100));
+                        pJog2->setInvalido();
+                    }
+                    // Os dois jogadores
+                    else
+                    {
+                        pJog1->setXY(sf::Vector2f(400, 100));
+                        pJog2->setXY(sf::Vector2f(400, 100));
+                        pJog2->setValido();
+                    }
                     fase1 = new PrimeiraFase(pJog1, pJog2);
                 }
                 fase1->executar();
@@ -52,6 +64,7 @@ void Jogo :: executar()
                     pJog1 = new Jogador(400, 100, false);
                     pJog2 = new Jogador(400, 100, true);
                     estado = MENU;
+                    menu.set_estado(SELECAO_FASE);
                 }
 
                 break;
@@ -60,8 +73,19 @@ void Jogo :: executar()
             {
                 if (!fase2)
                 {
-                    pJog1->setXY(sf::Vector2f(400, 100));
-                    pJog2->setXY(sf::Vector2f(400, 100));
+                    // Apenas um jogador
+                    if (!dois_jogadores)
+                    {
+                        pJog1->setXY(sf::Vector2f(400, 100));
+                        pJog2->setInvalido();
+                    }
+                    // Os dois jogadores
+                    else
+                    {
+                        pJog1->setXY(sf::Vector2f(400, 100));
+                        pJog2->setXY(sf::Vector2f(400, 100));
+                        pJog2->setValido();
+                    }
                     fase2 = new SegundaFase(pJog1, pJog2);
                 }
                 fase2->executar();
@@ -88,6 +112,7 @@ void Jogo :: executar()
                     fase2 = NULL;
                     std::cout << "fase 2 concluída, retornando para o menu" << std::endl;
                     estado = MENU;
+                    menu.set_estado(SELECAO_FASE);
                 }
                 if (!pJog1->getValido() && !pJog2->getValido())
                 {

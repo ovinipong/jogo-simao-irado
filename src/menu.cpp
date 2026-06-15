@@ -16,6 +16,7 @@ Menu::Menu(Jogo* pJ) : pJogo(pJ)
     {
         std::cerr << "Erro ao carregar a fonte assets/m6x11.ttf!" << std::endl;
     }
+    fase_escolhida = -1;
 }
 
 Menu::~Menu()
@@ -99,6 +100,20 @@ void Menu::executar()
     btnFase2.setFillColor(sf::Color(50, 150, 50));
     btnVoltar.setFillColor(sf::Color(150, 50, 50));
 
+    sf::RectangleShape btn1Jog(sf::Vector2f(200.f, 50.f));
+    sf::RectangleShape btn2Jog(sf::Vector2f(200.f, 50.f));
+    btn1Jog.setPosition(220.f, 180.f);
+    btn2Jog.setPosition(220.f, 250.f);
+    btn1Jog.setFillColor(sf::Color(50, 150, 50));
+    btn2Jog.setFillColor(sf::Color(50, 150, 50));
+
+    sf::Text txt1Jog("1 Jogador", fonte, 30);
+    sf::Text txt2Jog("2 Jogadores", fonte, 30);
+    txt1Jog.setPosition(btn1Jog.getPosition().x + 40.f, btn1Jog.getPosition().y + 8.f);
+    txt2Jog.setPosition(btn2Jog.getPosition().x + 20.f, btn2Jog.getPosition().y + 8.f);
+    txt1Jog.setFillColor(sf::Color::White);
+    txt2Jog.setFillColor(sf::Color::White);
+
     // ---------------------------------------------------------
     // TEXTO NOS BOTOES
     // ---------------------------------------------------------
@@ -154,15 +169,49 @@ void Menu::executar()
             {
                 if (btnFase1.getGlobalBounds().contains(mousePosF))
                 {
-                    pJogo->setEstado(PRIMEIRA_FASE);
+                    fase_escolhida = 1;
+                    tela = SELECAO_JOGADORES;
                 }
                 else if (btnFase2.getGlobalBounds().contains(mousePosF))
                 {
-                    pJogo->setEstado(SEGUNDA_FASE); 
+                    fase_escolhida = 2;
+                    tela = SELECAO_JOGADORES; 
                 }
                 else if (btnVoltar.getGlobalBounds().contains(mousePosF))
                 {
                     tela = PRINCIPAL;
+                }
+            }
+            else if (tela == SELECAO_JOGADORES)
+            {
+                if (btn1Jog.getGlobalBounds().contains(mousePosF))
+                {
+                    pJogo->setDoisJogadores(false);
+                    
+                    if (fase_escolhida == 1)
+                    {
+                        pJogo->setEstado(PRIMEIRA_FASE);
+                    }
+                    else if (fase_escolhida == 2)
+                    {
+                        pJogo->setEstado(SEGUNDA_FASE);
+                    }
+                }
+                else if (btn2Jog.getGlobalBounds().contains(mousePosF))
+                {
+                    pJogo->setDoisJogadores(true);
+                    if (fase_escolhida == 1)
+                    {
+                        pJogo->setEstado(PRIMEIRA_FASE);
+                    }
+                    else if (fase_escolhida == 2)
+                    {
+                        pJogo->setEstado(SEGUNDA_FASE);
+                    }
+                }
+                else if (btnVoltar.getGlobalBounds().contains(mousePosF))
+                {
+                    tela = SELECAO_FASE;
                 }
             }
             else if (tela == PONTUACAO)
@@ -232,7 +281,6 @@ void Menu::executar()
         int posicaoAtual = 1;
 
         // Se tiver ranking
-        // Código corrigido
         for (auto it = ordem_ranking.begin(); it != ordem_ranking.end() && posicaoAtual <= 5; ++it, posicaoAtual++)
         {
             std::string strExibicaoNome = std::to_string(posicaoAtual) + ". " + it->second;
@@ -259,5 +307,14 @@ void Menu::executar()
             txtVazio.setFillColor(sf::Color(180, 180, 180));
             window->draw(txtVazio);
         }
+    }
+    else if (tela == SELECAO_JOGADORES)
+    {
+        window->draw(btn1Jog);
+        window->draw(txt1Jog);
+        window->draw(btn2Jog);
+        window->draw(txt2Jog);
+        window->draw(btnVoltar);
+        window->draw(txtVoltar);
     }
 }

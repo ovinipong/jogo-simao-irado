@@ -23,10 +23,13 @@ class Jogo
         GerenciadorGrafico gg;
         Menu menu;
         Estado estado;
+        bool dois_jogadores;
 
     public:
         Jogo();
         ~Jogo();
         void executar();
         void setEstado(Estado e);
+        void setDoisJogadores(bool dois_jog) {dois_jogadores = dois_jog;}
+        bool getDoisJogadores() const {return(dois_jogadores);}
 };

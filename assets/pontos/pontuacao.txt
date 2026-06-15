@@ -1,13 +1,7 @@
-exemplo1: 6 pontos
-exemplo2: 5 pontos
-exemplo3: 4 pontos
-exemplo4: 3 pontos
-exemplo5: 2 pontos
-exemplo6: 1 pontos
-exemplo7: 0 pontos
-VINICIUS IRADO: 6 
-lololol: 0 pontos
-AD: 1 pontos
-RATO ARROMBADO: 4 pontos
-MATHEUS PASQUELOTO: 6 pontos
+CLAUDIO: 1 pontos
 : 0 pontos
+: 0 pontos
+: 0 pontos
+: 0 pontos
+: 0 pontos
+ROBSON: 2 pontos

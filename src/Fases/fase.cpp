@@ -196,9 +196,19 @@ void Fase::executar()
 
 void Fase::move_camera()
 {
-    sf::Vector2f pos_camera = pJogador1->getColisao().getPosition();
-    pos_camera.x += 32;
-
+    sf::Vector2f pos_camera;
+    sf::Vector2f pos_jog1 = pJogador1->getColisao().getPosition();
+    
+    if (pJogador2->getValido())
+    {
+        sf::Vector2f pos_jog2 = pJogador2->getColisao().getPosition();
+        pos_camera.x = ((pos_jog1.x + pos_jog2.x) / 2) + 32;
+    }
+    else
+    {
+        pos_camera.x = pos_jog1.x + 32;
+    }
+    
     //usar igual no gerenciador grafico
     float view_largura = 1024.f;
     float view_altura  = 576.f;
