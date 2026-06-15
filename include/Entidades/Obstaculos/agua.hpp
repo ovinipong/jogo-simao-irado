@@ -5,7 +5,7 @@
 
 class Agua : public Obstaculo
 {
-    protected:
+    private:
         int reducao_velocidade; 
         float tempo;    
         

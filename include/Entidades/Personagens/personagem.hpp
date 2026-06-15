@@ -8,7 +8,6 @@ class Personagem : public Entidade
 {
     protected:
         int num_vidas;
-        bool segundo;
 
     public:
         Personagem(int _x=0, int _y=0);

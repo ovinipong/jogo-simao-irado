@@ -20,6 +20,7 @@ class Jogador : public Personagem
         float tempo_invulneravel;
         float tempo_efeito;
         std::vector<Projetil*>*  pListaProjeteis;
+        bool segundo;
 
 
     public:
