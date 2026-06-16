@@ -20,7 +20,8 @@ Personagem(_x, _y)
     velocidade_padrao = 4;
     move_speed = velocidade_padrao;
     tempo_efeito = 0.0f;
-    tempo_invulneravel= 5.0f;
+    tempo_invulneravel= 1.0f;
+    pulo_velocidade = -20.0f;
 
     inicializarSprite("assets/jogador.png", 17, 64, 128, 8, 2, 9, sf::Vector2f(0.f, -45.f));
 
@@ -51,8 +52,6 @@ void Jogador :: executar()
         invulneravel=false;
         timer_status.restart();
     }
-
-    float pulo_velocidade = -20;
 
     if (!segundo)
     {
@@ -113,7 +112,7 @@ void Jogador :: executar()
         }
 
         // ATIRAR PEW PEW
-        if (Keyboard::isKeyPressed(Keyboard::Space) && timer_atirar.getElapsedTime().asSeconds() >= 0.5)
+        if (Keyboard::isKeyPressed(Keyboard::LShift) && timer_atirar.getElapsedTime().asSeconds() >= 0.5)
         {
             atirar(false);
         }
@@ -138,7 +137,6 @@ void Jogador :: executar()
 
 void Jogador :: reverterPosicao()
 {
-    receberDano(1);
     x=x_anterior;
     colisao.setPosition((float)x, (float)y);
 }

@@ -75,7 +75,7 @@ void GerenciadorColisoes :: tratarColisoesJogInim()
                 {
                     (*it1)->reverterPosicao();
                     (*it1)->setInvulneravel();
-                    (*it2)->inverterDirecao();
+                    (*it2)->danificar(*it1);
                 }
             }
         }        
@@ -131,7 +131,7 @@ void GerenciadorColisoes :: tratarColisioesJogBloco()
         {
             if (verificarColisao((*it2), (*it1)))
             {
-                (*it2)->obstaculizar(*it1);
+                (*it2)->colisaoBloco(*it1);
             }
         }
     }
@@ -161,7 +161,7 @@ void GerenciadorColisoes :: tratarColisoesInimBloco()
             // Se estiver colidindo
             if (inimigo_colisao.intersects(bloco_colisao, interseccao))
             {
-                (*it2)->obstaculizar(*it1);
+                (*it2)->colisaoBloco(*it1);
             }
             if (interseccao.height > interseccao.width)
             {
@@ -289,7 +289,7 @@ void GerenciadorColisoes::tratarColisoesObstBloco()
             // Se estiver colidindo
             if (obstaculo_colisao.intersects(bloco_colisao, interseccao))
             {
-                (*it2)->obstaculizar(*it1);
+                (*it2)->colisaoBloco(*it1);
             }
         }
     }

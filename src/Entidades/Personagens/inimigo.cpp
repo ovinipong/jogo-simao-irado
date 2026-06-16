@@ -15,7 +15,7 @@ Inimigo :: ~Inimigo()
 
 }
 
-void Inimigo :: colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, sf::FloatRect *interseccao)
+/*void Inimigo :: colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, sf::FloatRect *interseccao)
 {
     // Colisao vertical (eixo Y)
     if (interseccao->height < interseccao->width)
@@ -50,4 +50,9 @@ void Inimigo :: colidir_bloco(sf::FloatRect *bloco, sf::FloatRect *personagem, s
     }
 
     colisao.setPosition(x, y);
+}*/
+
+void Inimigo :: inverterDirecao()
+{
+    move_speed = -move_speed;
 }

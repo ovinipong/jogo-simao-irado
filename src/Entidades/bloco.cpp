@@ -26,7 +26,7 @@ void Bloco::executar()
 
 }
 
-void Bloco::obstaculizar(Personagem* pP)
+void Bloco::colisaoBloco(Personagem* pP)
 {
     if (pP == nullptr) return;
 
@@ -77,7 +77,7 @@ void Bloco::obstaculizar(Personagem* pP)
     }
 }
 
-void Bloco::obstaculizar(Obstaculo* pO)
+void Bloco::colisaoBloco(Obstaculo* pO)
 {
     if (pO==NULL) return;
 

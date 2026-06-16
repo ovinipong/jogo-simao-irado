@@ -15,6 +15,7 @@ class Personagem : public Entidade
         virtual void executar() = 0;
         void operator--();
         void receberDano(int dano);
+        const int get_vida() const {return num_vidas;};
 };
 
 }

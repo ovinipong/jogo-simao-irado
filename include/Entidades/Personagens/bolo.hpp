@@ -23,8 +23,7 @@ class Bolo : public Inimigo
         Bolo(int _x=0, int _y=0);
         ~Bolo();
         void executar();
-        const int get_vida() const; 
-        void inverterDirecao();
+        void danificar(Jogador* p);
 };
 
 }

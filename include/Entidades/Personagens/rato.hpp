@@ -16,7 +16,7 @@ class Rato : public Inimigo
         Rato(int _x=0, int _y=0);
         ~Rato();
         void executar();
-        const int get_vida() const; 
+        void danificar(Jogador* p);
         void inverterDirecao();
         void setListaProjeteis(std::vector<Projetil*>* pLista) { pListaProjeteis = pLista; }
         void atirar();

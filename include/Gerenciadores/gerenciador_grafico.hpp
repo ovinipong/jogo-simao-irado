@@ -22,8 +22,8 @@ class GerenciadorGrafico {
         void desenharEnte(Ente* pE);
         void executar();
         void mostrar();
-        void mostrarVida(int vidas);
-        void mostrarPontos(int pontos);
+        void mostrarVida(int vidas1, int vidas2, bool jog2);
+        void mostrarPontos(int pontos1, int pontos2, bool jog2);
         void centralizarCamera(sf::Vector2f posicao);
         bool janelaAberta () const
         {

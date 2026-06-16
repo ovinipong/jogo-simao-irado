@@ -8,10 +8,13 @@ Bolo::Bolo(int _x, int _y):
 Inimigo(_x, _y)
 {
     setValido();
+
+    nivel_maldade=2;
+    setDano(nivel_maldade);
     velocidade_x = 0;
     estado = PARADO;
     tempo_parado = 2.0f;
-    pulo_velocidade = 10.0f;
+    pulo_velocidade = 20.0f;
     num_vidas = 5;
 
     inicializarSprite("assets/bolo.png", 1, 64, 64, 8, 0, 0, sf::Vector2f(0.f, 0.f));
@@ -71,13 +74,13 @@ void Bolo::executar()
     colisao.setPosition((float)x, (float)y);
 }
 
-
-const int Bolo :: get_vida() const
+//dano ao contato e pula de novo
+void Bolo::danificar(Jogador* p)
 {
-    return num_vidas; 
-}
+    estado = PULANDO;
+    setNoChao(false);
+    velocidade_y = -pulo_velocidade;
+    velocidade_x = ((rand() % 3) - 1) * 3;
 
-void Bolo :: inverterDirecao()
-{
-
+    p->receberDano(dano);
 }

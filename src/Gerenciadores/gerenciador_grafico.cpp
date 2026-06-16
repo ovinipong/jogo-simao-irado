@@ -95,40 +95,66 @@ void GerenciadorGrafico::centralizarCamera(sf::Vector2f posicao)
     window->setView(camera);
 }
 
-void GerenciadorGrafico::mostrarVida(int vidas)
+void GerenciadorGrafico::mostrarVida(int vidas1, int vidas2, bool jog2)
 {
     //by claude para poder testar as vidas do player melhor
     sf::View view_jogo = window->getView();
     window->setView(window->getDefaultView());
 
-    sf::Text t;
-    t.setFont(fonte);
-    t.setString("Vidas: " + std::to_string(vidas));
-    t.setCharacterSize(20);
-    t.setFillColor(sf::Color::White);
-    t.setOutlineColor(sf::Color::Black);
-    t.setOutlineThickness(2.f);
-    t.setPosition(16.f, 16.f);
-    window->draw(t);
+    sf::Text t1;
+    t1.setFont(fonte);
+    t1.setString("Vidas: " + std::to_string(vidas1));
+    t1.setCharacterSize(20);
+    t1.setFillColor(sf::Color::White);
+    t1.setOutlineColor(sf::Color::Black);
+    t1.setOutlineThickness(2.f);
+    t1.setPosition(16.f, 16.f);
+    window->draw(t1);
+
+    if (jog2)
+    {
+        sf::Text t2;
+        t2.setFont(fonte);
+        t2.setString("Vidas: " + std::to_string(vidas2));
+        t2.setCharacterSize(20);
+        t2.setFillColor(sf::Color::White);
+        t2.setOutlineColor(sf::Color::Black);
+        t2.setOutlineThickness(2.f);
+        t2.setPosition(1306.f, 16.f);
+        window->draw(t2);
+    }
 
     window->setView(view_jogo);
 }
 
-void GerenciadorGrafico::mostrarPontos(int pontos)
+void GerenciadorGrafico::mostrarPontos(int pontos1, int pontos2, bool jog2)
 {
     //by claude para poder testar as vidas do player melhor
     sf::View view_jogo = window->getView();
     window->setView(window->getDefaultView());
 
-    sf::Text t;
-    t.setFont(fonte);
-    t.setString("Pontos: " + std::to_string(pontos));
-    t.setCharacterSize(20);
-    t.setFillColor(sf::Color::White);
-    t.setOutlineColor(sf::Color::Black);
-    t.setOutlineThickness(2.f);
-    t.setPosition(160.f, 16.f);
-    window->draw(t);
+    sf::Text t1;
+    t1.setFont(fonte);
+    t1.setString("Pontos: " + std::to_string(pontos1));
+    t1.setCharacterSize(20);
+    t1.setFillColor(sf::Color::White);
+    t1.setOutlineColor(sf::Color::Black);
+    t1.setOutlineThickness(2.f);
+    t1.setPosition(160.f, 16.f);
+    window->draw(t1);
+
+    if (jog2)
+    {
+        sf::Text t2;
+        t2.setFont(fonte);
+        t2.setString("Pontos: " + std::to_string(pontos2));
+        t2.setCharacterSize(20);
+        t2.setFillColor(sf::Color::White);
+        t2.setOutlineColor(sf::Color::Black);
+        t2.setOutlineThickness(2.f);
+        t2.setPosition(1450.f, 16.f);
+        window->draw(t2);    
+    }
 
     window->setView(view_jogo);
 }

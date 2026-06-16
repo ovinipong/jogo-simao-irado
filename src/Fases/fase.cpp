@@ -179,7 +179,7 @@ void Fase::criarCenario(const std::string& caminhoFundo)
         {
             if (linha[x]=='1')//compara com o txt
             {
-                Bloco* bloco = new Bloco(x * 64, y * 64, 64, 32);
+                Bloco* bloco = new Bloco(x * 64, y * 64, 64, 40);
                 lista_ents.incluir(bloco);
                 gc.incluirBloco(bloco);
             }
@@ -197,8 +197,8 @@ void Fase::executar()
     lista_ents.percorrer();             // Percorre executando
     gc.executar();                      // Ajusta a colisao
     lista_ents.percorrer_desenhar();    // Desenha na posicao correta
-    pGG->mostrarVida(pJogador1->getVida());
-    pGG->mostrarPontos(pJogador1->getPontos());
+    pGG->mostrarVida(pJogador1->getVida(), pJogador2->getVida(), pJogador2->getValido());
+    pGG->mostrarPontos(pJogador1->getPontos(), pJogador2->getPontos(), pJogador2->getValido());
     
     ajustarProjeteisJogador();          // Coloca para fora os projeteis que nao estao na tela
 

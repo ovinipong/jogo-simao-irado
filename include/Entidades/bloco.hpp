@@ -14,6 +14,6 @@ class Bloco : public entidades::Entidade
         Bloco(int _x=0, int _y=0, float largura=0.f, float altura=0.f);
         ~Bloco();
         void executar();
-        void obstaculizar(Personagem* pP);
-        void obstaculizar(Obstaculo* pO);
+        void colisaoBloco(Personagem* pP);
+        void colisaoBloco(Obstaculo* pO);
 };

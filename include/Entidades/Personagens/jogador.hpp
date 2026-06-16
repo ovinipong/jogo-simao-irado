@@ -13,6 +13,7 @@ class Jogador : public Personagem
         int move_speed;
         int velocidade_padrao;
         int x_anterior;
+        float pulo_velocidade;
         sf::Clock timer_status;
         sf::Clock timer_atirar;
         sf::Clock timer_invulneravel;

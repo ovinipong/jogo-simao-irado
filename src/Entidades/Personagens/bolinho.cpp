@@ -8,9 +8,12 @@ Bolinho :: Bolinho(int _x, int _y): Inimigo(_x, _y)
 {
     setValido();
     id =3;
-    dano=nivel_maldade*1;
+    nivel_maldade=1;
+    setDano(nivel_maldade);
     velocidade_y = 0;
     num_vidas = 3;
+    tempo=1.0f;
+    reducao_velocidade=(rand() % 2) + 1;
 
     inicializarSprite("assets/bolinho.png", 4, 64, 64, 8, 0, 0, sf::Vector2f(0.f, 3.f));
 
@@ -44,12 +47,10 @@ void Bolinho :: executar()
     colisao.setPosition((float)x, (float)y);
 }
 
-const int Bolinho :: get_vida() const
+//dano ao contato e inverte direcao
+void Bolinho:: danificar(Jogador* p)
 {
-    return num_vidas;
-}
-
-void Bolinho :: inverterDirecao()
-{
-    move_speed = -move_speed;
+    inverterDirecao();
+    p->receberDano(dano);
+    p->aplicarLentidao(reducao_velocidade, tempo);
 }

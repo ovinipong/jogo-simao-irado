@@ -7,6 +7,8 @@ Rato::Rato(int _x, int _y):
 Inimigo(_x, _y)
 {
     num_vidas = 5;
+    nivel_maldade=3;
+    setDano(nivel_maldade);
     setNoChao(false);
 
     inicializarSprite("assets/rato.png", 1, 78, 96, 1, 0, 0, sf::Vector2f(8.f, 0.f));
@@ -41,17 +43,6 @@ void Rato::executar()
     colisao.setPosition((float)x, (float)y);
 }
 
-
-const int Rato::get_vida() const
-{
-    return(num_vidas);
-}
-
-void Rato :: inverterDirecao()
-{
-
-}
-
 void Rato :: atirar()
 {
     if (!pListaProjeteis) return;
@@ -66,4 +57,11 @@ void Rato :: atirar()
             break;
         }
     }
+}
+
+//dano ao contato e atira de novo
+void Rato:: danificar(Jogador* p)
+{
+    p->receberDano(dano);
+    atirar();
 }
