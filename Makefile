@@ -31,7 +31,7 @@ all:
 
 run:
 	./$(TARGET)
-./
+
 clean:
 	rm $(TARGET).exe
 # Não esquecer que para compilar e mingw32-make

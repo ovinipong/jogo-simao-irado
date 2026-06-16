@@ -95,7 +95,7 @@ void Fase :: criarPlataformas()//P M C no txt
     arquivo.clear();
     arquivo.seekg(0);
 
-    std::vector<sf::Vector2i> posicoes;
+    std::vector<sf::Vector3i> posicoes;
     std::string linha;
     int y = 0;
 
@@ -103,21 +103,18 @@ void Fase :: criarPlataformas()//P M C no txt
     {
         for (int x = 0; x < linha.size(); x++)
         {   
-            if (linha[x]=='P')//compara com o txt 
+            //2 prateleira, 3 mesa, 4 cristaleira
+            if (linha[x]=='2')//compara com o txt 
             {
-                posicoes.push_back({x * 64, y * 64});
+                posicoes.push_back({x * 64, y * 64, 2});
             }
-            if (linha[x]=='M')//compara com o txt 
+            else if (linha[x]=='3')
             {
-                Plataforma* plat = new Plataforma(x*64, y*64, MESA);
-                lista_ents.incluir(plat); 
-                gc.incluirObstaculo(plat);
+                posicoes.push_back({x * 64, y * 64, 3});
             }
-            if (linha[x]=='C')//compara com o txt 
+            else if (linha[x]=='4')
             {
-                Plataforma* plat = new Plataforma(x*64, y*64, CRISTALEIRA);
-                lista_ents.incluir(plat); 
-                gc.incluirObstaculo(plat);
+                posicoes.push_back({x * 64, y * 64, 4});
             }
         }
         y++;
@@ -140,12 +137,26 @@ void Fase :: criarPlataformas()//P M C no txt
         qntd = (int)posicoes.size();
     }
 
-
     for (int i=0; i<qntd; i++)
     {
-        Plataforma* plat = new Plataforma(posicoes[i].x, posicoes[i].y, PRATELEIRA);
-        lista_ents.incluir(plat); 
-        gc.incluirObstaculo(plat);
+        if (posicoes[i].z==2)
+        {
+           Plataforma* plat = new Plataforma(posicoes[i].x, posicoes[i].y, PRATELEIRA);
+            lista_ents.incluir(plat); 
+            gc.incluirObstaculo(plat); 
+        }
+        if (posicoes[i].z==3)
+        {
+            Plataforma* plat = new Plataforma(posicoes[i].x, posicoes[i].y, MESA);
+            lista_ents.incluir(plat); 
+            gc.incluirObstaculo(plat);
+        }
+        if (posicoes[i].z==4)
+        {
+            Plataforma* plat = new Plataforma(posicoes[i].x, posicoes[i].y, CRISTALEIRA);
+            lista_ents.incluir(plat); 
+            gc.incluirObstaculo(plat);
+        }
     }
 }
 

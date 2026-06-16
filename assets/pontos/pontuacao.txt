@@ -1,2 +1,3 @@
 Teste1: 9 pontos
 Teste 2: 6 pontos
+: 0 pontos
