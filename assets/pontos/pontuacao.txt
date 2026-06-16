@@ -1,7 +1,2 @@
-CLAUDIO: 1 pontos
-: 0 pontos
-: 0 pontos
-: 0 pontos
-: 0 pontos
-: 0 pontos
-ROBSON: 2 pontos
+Teste1: 9 pontos
+Teste 2: 6 pontos

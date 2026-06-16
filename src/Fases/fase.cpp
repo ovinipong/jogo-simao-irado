@@ -186,8 +186,8 @@ void Fase::executar()
     lista_ents.percorrer();             // Percorre executando
     gc.executar();                      // Ajusta a colisao
     lista_ents.percorrer_desenhar();    // Desenha na posicao correta
-    //pGG->mostrarVida(pJogador->getVida());
-    //pGG->mostrarPontos(pJogador->getPontos());
+    pGG->mostrarVida(pJogador1->getVida());
+    pGG->mostrarPontos(pJogador1->getPontos());
     
     ajustarProjeteisJogador();          // Coloca para fora os projeteis que nao estao na tela
 

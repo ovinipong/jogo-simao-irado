@@ -52,7 +52,7 @@ void Jogador :: executar()
         timer_status.restart();
     }
 
-    float pulo_velocidade = -15;
+    float pulo_velocidade = -20;
 
     if (!segundo)
     {
@@ -81,7 +81,7 @@ void Jogador :: executar()
         }
 
         // ATIRAR PEW PEW
-        if (Keyboard::isKeyPressed(Keyboard::Numpad0) && timer_atirar.getElapsedTime().asSeconds() >= 0.5)
+        if (Keyboard::isKeyPressed(Keyboard::M) && timer_atirar.getElapsedTime().asSeconds() >= 0.5)
         {
             atirar(true);
         }
