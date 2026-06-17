@@ -6,3 +6,4 @@ FWAH: 6 pontos
 FWAHH: 7 pontos
 FWAHHHH: 10 pontos
 sdknmlfaslj: 7 pontos
+vinicius teste: 0 pontos

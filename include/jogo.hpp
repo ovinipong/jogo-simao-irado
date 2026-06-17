@@ -10,7 +10,7 @@ using namespace entidades;
 
 enum Estado
 {
-    MENU, PRIMEIRA_FASE, SEGUNDA_FASE
+    MENU, PRIMEIRA_FASE, SEGUNDA_FASE, PAUSADO
 };
 
 class Jogo
@@ -23,6 +23,7 @@ class Jogo
         GerenciadorGrafico gg;
         Menu menu;
         Estado estado;
+        Estado estado_anterior;
         bool dois_jogadores;
 
     public:
