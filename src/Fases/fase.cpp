@@ -278,6 +278,7 @@ void Fase :: ajustarProjeteisJogador()
             (*it)->setInativo();
             (*it)->setOrigemProj(false);
             (*it)->setXY(sf::Vector2f(-100.f, -100.f)); 
+            (*it)->setDonoRato(NULL);
         }
     }
 }

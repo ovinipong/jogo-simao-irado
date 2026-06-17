@@ -1,8 +1,10 @@
 #include "gerenciador_colisoes.hpp"
+#include "rato.hpp"
 
 using namespace gerenciadores;
 using namespace std;
 using namespace sf;
+using namespace entidades;
 
 GerenciadorColisoes :: GerenciadorColisoes() 
 { 
@@ -246,9 +248,10 @@ void GerenciadorColisoes :: tratarColisoesJogProj()
 
             if (jog_colisao.intersects(proj_colisao))
             {
-                pProj->setInvalido();
-                    
-                pProj->setXY(sf::Vector2f(-100.f, -100.f)); 
+                pProj->getDonoRato()->zerarTimerAtirar();
+                pProj->setInativo();
+                                  
+                // pProj->setXY(sf::Vector2f(-100.f, -100.f)); 
 
                 (*it1)->receberDano(1); 
                 (*it1)->setInvulneravel();

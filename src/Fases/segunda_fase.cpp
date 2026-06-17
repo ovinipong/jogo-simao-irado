@@ -73,7 +73,7 @@ void SegundaFase :: criarInimRatos()
 
     for (int i=0; i<qntd; i++)
     {
-        Rato* inim = new Rato(posicoes[i].x, posicoes[i].y);
+        Rato* inim = new Rato(posicoes[i].x, posicoes[i].y, pJogador1);
         lista_ents.incluir(inim); 
         gc.incluirInimigo(inim);
         inim->setListaProjeteis(&projeteis_rato);
@@ -205,6 +205,7 @@ void SegundaFase :: ajustarProjeteisRatos()
             // std::cout << "FIQUEI DESATIVADO" << std::endl;
             (*it)->setInativo();
             (*it)->setXY(sf::Vector2f(-100.f, -100.f)); 
+            (*it)->setDonoRato(NULL);
         }
     }
 }
