@@ -149,7 +149,9 @@ void PrimeiraFase :: executar()
     // Se for os dois jogadores
     else
     {
-        if ((pJogador1->getXY().x >= 2200) && (pJogador2->getXY().x >=2200))
+        if (((pJogador1->getXY().x >= 2200) && (pJogador2->getXY().x >=2200))
+            || ((!(pJogador1->getValido())) && (pJogador2->getXY().x >=2200))
+            || ((pJogador1->getXY().x >= 2200) && (!(pJogador2->getValido()))))
         {
             concluida = true;
         }

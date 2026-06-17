@@ -209,15 +209,18 @@ void Fase::move_camera()
 {
     sf::Vector2f pos_camera;
     sf::Vector2f pos_jog1 = pJogador1->getColisao().getPosition();
-    
-    if (pJogador2->getValido())
+    sf::Vector2f pos_jog2 = pJogador2->getColisao().getPosition();
+    if (pJogador1->getValido() && !(pJogador2->getValido()))
     {
-        sf::Vector2f pos_jog2 = pJogador2->getColisao().getPosition();
-        pos_camera.x = ((pos_jog1.x + pos_jog2.x) / 2) + 32;
+        pos_camera.x = pos_jog1.x + 32;
+    }
+    else if (!(pJogador1->getValido()) && pJogador2->getValido())
+    {
+        pos_camera.x = pos_jog2.x + 32;
     }
     else
     {
-        pos_camera.x = pos_jog1.x + 32;
+        pos_camera.x = ((pos_jog1.x + pos_jog2.x) / 2) + 32;
     }
     
     //usar igual no gerenciador grafico

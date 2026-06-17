@@ -2,3 +2,11 @@ Teste1: 9 pontos
 Teste 2: 6 pontos
 : 0 pontos
 : 0 pontos
+Teste pontuacao somada: 1 pontos
+Teste pontuacao somada: 5 pontos
+: 0 pontos
+ddddd: 6 pontos
+aaaaa: 0 pontos
+: 6 pontos
+: 6 pontos
+: 0 pontos

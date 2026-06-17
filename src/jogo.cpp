@@ -52,6 +52,10 @@ void Jogo :: executar()
                     delete fase1;
                     fase1 = NULL;
                     std::cout << "trocando pra fase 2" << std::endl;
+                    pJog1->setVida(40);
+                    pJog2->setVida(40);
+                    pJog1->setValido();
+                    pJog2->setValido();
                     estado = SEGUNDA_FASE;
                 }
                 if (!pJog1->getValido() && !pJog2->getValido())
@@ -96,7 +100,8 @@ void Jogo :: executar()
                     arquivo.open("assets/pontos/pontuacao.txt", ios::app);
                     if (arquivo.is_open())
                     {
-                        arquivo << menu.getNomeJogador() << ": " << pJog1->getPontos() <<" pontos" << endl;
+                        int pontos_total = (pJog1->getPontos()) + (pJog2->getPontos());
+                        arquivo << menu.getNomeJogador() << ": " << pontos_total <<" pontos" << endl;
                         arquivo.close();
                     }
                     // Se der erro, printa a mensagem de erro
@@ -108,6 +113,8 @@ void Jogo :: executar()
                     // Zera a pontuacao
                     pJog1->setPontos(0);
                     pJog2->setPontos(0);
+                    pJog1->setVida(40);
+                    pJog2->setVida(40);
                     delete fase2;
                     fase2 = NULL;
                     std::cout << "fase 2 concluída, retornando para o menu" << std::endl;

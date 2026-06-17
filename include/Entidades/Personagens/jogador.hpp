@@ -14,7 +14,7 @@ class Jogador : public Personagem
         int velocidade_padrao;
         int x_anterior;
         float pulo_velocidade;
-        sf::Clock timer_status;
+        sf::Clock timer_lentidao;
         sf::Clock timer_atirar;
         sf::Clock timer_invulneravel;
         bool invulneravel;
@@ -38,6 +38,7 @@ class Jogador : public Personagem
         int getPontos(){return pontos;};
         void setPontos(int p) {pontos = p;};
         int getVida(){return num_vidas;};
+        void setVida(int v){num_vidas=v;};
 
         void setInvulneravel(){invulneravel=true;};
         bool getInvulneravel(){return invulneravel;};

@@ -41,19 +41,52 @@ void Jogador :: executar()
     // Verifica se nao esta lento
     if (move_speed < velocidade_padrao)
     {
-        if (timer_status.getElapsedTime().asSeconds()>= tempo_efeito)
+        if (timer_lentidao.getElapsedTime().asSeconds()>= tempo_efeito)
         {
             move_speed = velocidade_padrao;
         }
     }
 
-    if (timer_status.getElapsedTime().asSeconds()>= tempo_invulneravel)
+    if (timer_invulneravel.getElapsedTime().asSeconds()>= tempo_invulneravel)
     {
         invulneravel=false;
-        timer_status.restart();
+        timer_invulneravel.restart();
     }
 
     if (!segundo)
+    {
+        if (Keyboard::isKeyPressed(Keyboard::A))
+        {
+            x -= move_speed;
+            sprite.setScale(-1.f, 1.f);//inverte sprite p esquerda
+            sprite.setOrigin(frame_largura, 0);
+        }
+        if (Keyboard::isKeyPressed(Keyboard::D))
+        {
+            x += move_speed;
+            sprite.setScale(1.f, 1.f);
+            sprite.setOrigin(0, 0);
+        }
+            // Pulo
+        if (Keyboard::isKeyPressed(Keyboard::W) && (getNoChao()==true))
+        {
+            velocidade_y = pulo_velocidade;
+            setNoChao(false);
+        }
+        // Se estiver no ar mas nao estiver apertando a tecla de pular, ele vai fazer cair
+        if (!Keyboard::isKeyPressed(Keyboard::W) && velocidade_y < 0.0f)
+        {
+            velocidade_y = velocidade_y * 0.8f; 
+        }
+
+        // ATIRAR PEW PEW
+        if (Keyboard::isKeyPressed(Keyboard::LShift) && timer_atirar.getElapsedTime().asSeconds() >= 0.5)
+        {
+            atirar(false);
+        }
+
+    }
+    else //é o segundo player
     {
         if (Keyboard::isKeyPressed(Keyboard::Left))
         {
@@ -85,38 +118,6 @@ void Jogador :: executar()
             atirar(true);
         }
     }
-    else //é o segundo player
-    {
-        if (Keyboard::isKeyPressed(Keyboard::A))
-        {
-            x -= move_speed;
-            sprite.setScale(-1.f, 1.f);//inverte sprite p esquerda
-            sprite.setOrigin(frame_largura, 0);
-        }
-        if (Keyboard::isKeyPressed(Keyboard::D))
-        {
-            x += move_speed;
-            sprite.setScale(1.f, 1.f);
-            sprite.setOrigin(0, 0);
-        }
-            // Pulo
-        if (Keyboard::isKeyPressed(Keyboard::W) && (getNoChao()==true))
-        {
-            velocidade_y = pulo_velocidade;
-            setNoChao(false);
-        }
-        // Se estiver no ar mas nao estiver apertando a tecla de pular, ele vai fazer cair
-        if (!Keyboard::isKeyPressed(Keyboard::W) && velocidade_y < 0.0f)
-        {
-            velocidade_y = velocidade_y * 0.8f; 
-        }
-
-        // ATIRAR PEW PEW
-        if (Keyboard::isKeyPressed(Keyboard::LShift) && timer_atirar.getElapsedTime().asSeconds() >= 0.5)
-        {
-            atirar(false);
-        }
-    }
     
     if (getNoChao()==true)
     {
@@ -145,7 +146,7 @@ void Jogador :: aplicarLentidao(int nova_velocidade, float duracao)
 {
     move_speed = nova_velocidade;
     tempo_efeito = duracao;
-    timer_status.restart();
+    timer_lentidao.restart();
 }
 
 void Jogador::atirar(bool projJog1) 
