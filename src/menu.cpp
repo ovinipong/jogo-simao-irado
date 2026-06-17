@@ -8,7 +8,7 @@ using namespace sf;
 
 Menu::Menu(Jogo* pJ) : pJogo(pJ)
 {
-    inicializarSprite("assets/menu_fundo.png", 1, 640, 480, 0, 0, 0);
+    inicializarSprite("assets/menu_fundo.png", 1, 1024, 576, 0, 0, 0);
 
     tela = PRINCIPAL;
     
@@ -17,6 +17,45 @@ Menu::Menu(Jogo* pJ) : pJogo(pJ)
         std::cerr << "Erro ao carregar a fonte assets/m6x11.ttf!" << std::endl;
     }
     fase_escolhida = -1;
+
+    // Carrega as texturas dos botoes
+    if (!btn_jogar.loadFromFile("assets/botoes/btn_jogar.png")) { std::cerr << "Erro ao abrir btn_jogar.png!" << std::endl; }
+    if (!btn_ranking.loadFromFile("assets/botoes/btn_ranking.png")) { std::cerr << "Erro ao abrir btn_ranking.png!" << std::endl; }
+    if (!btn_fase1.loadFromFile("assets/botoes/btn_fase1.png")) { std::cerr << "Erro ao abrir btn_fase1.png!" << std::endl; }
+    if (!btn_fase2.loadFromFile("assets/botoes/btn_fase2.png")) { std::cerr << "Erro ao abrir btn_fase2.png!" << std::endl; }
+    if (!btn_um_jogador.loadFromFile("assets/botoes/btn_um_jogador.png")) { std::cerr << "Erro ao abrir btn_um_jogador.png!" << std::endl; }
+    if (!btn_dois_jogadores.loadFromFile("assets/botoes/btn_dois_jogadores.png")) { std::cerr << "Erro ao abrir btn_dois_jogadores.png!" << std::endl; }
+    if (!btn_voltar.loadFromFile("assets/botoes/btn_voltar.png")) { std::cerr << "Erro ao abrir btn_voltar.png!" << std::endl; }
+
+    // Atribui as texturas aos sprites
+    botao_jogar.setTexture(btn_jogar);
+    botao_ranking.setTexture(btn_ranking);
+    
+    botao_fase1.setTexture(btn_fase1);
+    botao_fase2.setTexture(btn_fase2);
+    
+    botao_um_jogador.setTexture(btn_um_jogador);
+    botao_dois_jogadores.setTexture(btn_dois_jogadores);
+    
+    botao_ranking_voltar.setTexture(btn_voltar);
+    botao_fase_voltar.setTexture(btn_voltar);
+    botao_jogador_voltar.setTexture(btn_voltar);
+    
+    // Coloca a posicao certa de cada sprite
+    // (Largura da tela / 2) - (Largura do botao / 2)
+    float centro_x = 362.f;
+    
+    botao_jogar.setPosition(centro_x, 220.f);
+    botao_ranking.setPosition(centro_x, 320.f);
+    botao_ranking_voltar.setPosition(centro_x, 450.f);
+    
+    botao_fase1.setPosition(centro_x, 220.f);
+    botao_fase2.setPosition(centro_x, 320.f);
+    botao_fase_voltar.setPosition(centro_x, 450.f);
+    
+    botao_um_jogador.setPosition(centro_x, 220.f);
+    botao_dois_jogadores.setPosition(centro_x, 320.f);
+    botao_jogador_voltar.setPosition(centro_x, 450.f);
 }
 
 Menu::~Menu()
@@ -80,72 +119,17 @@ void Menu :: carregar_ranking()
 void Menu::executar()
 {
     // ---------------------------------------------------------
-    // SETAR AS COISAS PARA OS BOTOES
+    // INTERACAO COM O MOUSE E CLIQUES
     // ---------------------------------------------------------
-    sf::RectangleShape btnJogar(sf::Vector2f(200.f, 50.f));
-    sf::RectangleShape btnRanking(sf::Vector2f(200.f, 50.f));
-    sf::RectangleShape btnFase1(sf::Vector2f(200.f, 50.f));
-    sf::RectangleShape btnFase2(sf::Vector2f(200.f, 50.f));
-    sf::RectangleShape btnVoltar(sf::Vector2f(200.f, 50.f));
 
-    btnJogar.setPosition(220.f, 180.f);
-    btnRanking.setPosition(220.f, 250.f);
-    btnFase1.setPosition(220.f, 180.f);
-    btnFase2.setPosition(220.f, 250.f);
-    btnVoltar.setPosition(220.f, 380.f);
-
-    btnJogar.setFillColor(sf::Color(50, 50, 200));
-    btnRanking.setFillColor(sf::Color(50, 50, 200));
-    btnFase1.setFillColor(sf::Color(50, 150, 50));
-    btnFase2.setFillColor(sf::Color(50, 150, 50));
-    btnVoltar.setFillColor(sf::Color(150, 50, 50));
-
-    sf::RectangleShape btn1Jog(sf::Vector2f(200.f, 50.f));
-    sf::RectangleShape btn2Jog(sf::Vector2f(200.f, 50.f));
-    btn1Jog.setPosition(220.f, 180.f);
-    btn2Jog.setPosition(220.f, 250.f);
-    btn1Jog.setFillColor(sf::Color(50, 150, 50));
-    btn2Jog.setFillColor(sf::Color(50, 150, 50));
-
-    sf::Text txt1Jog("1 Jogador", fonte, 30);
-    sf::Text txt2Jog("2 Jogadores", fonte, 30);
-    txt1Jog.setPosition(btn1Jog.getPosition().x + 40.f, btn1Jog.getPosition().y + 8.f);
-    txt2Jog.setPosition(btn2Jog.getPosition().x + 20.f, btn2Jog.getPosition().y + 8.f);
-    txt1Jog.setFillColor(sf::Color::White);
-    txt2Jog.setFillColor(sf::Color::White);
-
-    // ---------------------------------------------------------
-    // TEXTO NOS BOTOES
-    // ---------------------------------------------------------
-    sf::Text txtJogar("Jogar", fonte, 30);
-    sf::Text txtRanking("Ranking", fonte, 30);
-    sf::Text txtFase1("Fase 1", fonte, 30);
-    sf::Text txtFase2("Fase 2", fonte, 30);
-    sf::Text txtVoltar("Voltar", fonte, 30);
-    sf::Text txtTituloRanking("RANKING GERAL", fonte, 40); // Texto para a tela de ranking
-
-    txtJogar.setPosition(btnJogar.getPosition().x + 60.f, btnJogar.getPosition().y + 8.f);
-    txtRanking.setPosition(btnRanking.getPosition().x + 45.f, btnRanking.getPosition().y + 8.f);
-    txtFase1.setPosition(btnFase1.getPosition().x + 55.f, btnFase1.getPosition().y + 8.f);
-    txtFase2.setPosition(btnFase2.getPosition().x + 55.f, btnFase2.getPosition().y + 8.f);
-    txtVoltar.setPosition(btnVoltar.getPosition().x + 55.f, btnVoltar.getPosition().y + 8.f);
-    txtTituloRanking.setPosition(200.f, 100.f); // Posição do título na tela vazia
-
-    txtJogar.setFillColor(sf::Color::White);
-    txtRanking.setFillColor(sf::Color::White);
-    txtFase1.setFillColor(sf::Color::White);
-    txtFase2.setFillColor(sf::Color::White);
-    txtVoltar.setFillColor(sf::Color::White);
-    txtTituloRanking.setFillColor(sf::Color::Yellow);
-
-    // ---------------------------------------------------------
-    // INTERACAO COM O MOUSE
-    // ---------------------------------------------------------
     sf::RenderWindow* window = Ente::getGG()->getWindow(); 
     static bool mouseSegurado = false;
 
+    // Verifica se o botao esquerdo do mouse foi pressionado
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
+        // Verifica se o mouse nao estava segurado antes
+        // Isso porque, se o usuario segurar o mouse fora de um botao e depois colocar o mouse em cima do botao, nao vai ativar
         if (!mouseSegurado) 
         {
             mouseSegurado = true;
@@ -154,12 +138,12 @@ void Menu::executar()
 
             if (tela == PRINCIPAL)
             {
-                if (btnJogar.getGlobalBounds().contains(mousePosF))
+                if (botao_jogar.getGlobalBounds().contains(mousePosF))
                 {
                     nome_jogador = "";
                     tela = SELECAO_FASE; 
                 }
-                else if (btnRanking.getGlobalBounds().contains(mousePosF))
+                else if (botao_ranking.getGlobalBounds().contains(mousePosF))
                 {
                     carregar_ranking();
                     tela = PONTUACAO;
@@ -167,56 +151,55 @@ void Menu::executar()
             }
             else if (tela == SELECAO_FASE)
             {
-                if (btnFase1.getGlobalBounds().contains(mousePosF))
+                if (botao_fase1.getGlobalBounds().contains(mousePosF))
                 {
                     fase_escolhida = 1;
                     tela = SELECAO_JOGADORES;
                 }
-                else if (btnFase2.getGlobalBounds().contains(mousePosF))
+                else if (botao_fase2.getGlobalBounds().contains(mousePosF))
                 {
                     fase_escolhida = 2;
                     tela = SELECAO_JOGADORES; 
                 }
-                else if (btnVoltar.getGlobalBounds().contains(mousePosF))
+                else if (botao_fase_voltar.getGlobalBounds().contains(mousePosF))
                 {
                     tela = PRINCIPAL;
                 }
             }
             else if (tela == SELECAO_JOGADORES)
             {
-                if (btn1Jog.getGlobalBounds().contains(mousePosF))
+                if (botao_um_jogador.getGlobalBounds().contains(mousePosF))
                 {
                     pJogo->setDoisJogadores(false);
-                    
-                    if (fase_escolhida == 1)
+                    if (fase_escolhida == 1) 
                     {
                         pJogo->setEstado(PRIMEIRA_FASE);
                     }
                     else if (fase_escolhida == 2)
                     {
                         pJogo->setEstado(SEGUNDA_FASE);
-                    }
+                    } 
                 }
-                else if (btn2Jog.getGlobalBounds().contains(mousePosF))
+                else if (botao_dois_jogadores.getGlobalBounds().contains(mousePosF))
                 {
                     pJogo->setDoisJogadores(true);
-                    if (fase_escolhida == 1)
+                    if (fase_escolhida == 1) 
                     {
                         pJogo->setEstado(PRIMEIRA_FASE);
                     }
-                    else if (fase_escolhida == 2)
+                    else if (fase_escolhida == 2) 
                     {
                         pJogo->setEstado(SEGUNDA_FASE);
                     }
                 }
-                else if (btnVoltar.getGlobalBounds().contains(mousePosF))
+                else if (botao_jogador_voltar.getGlobalBounds().contains(mousePosF))
                 {
                     tela = SELECAO_FASE;
                 }
             }
             else if (tela == PONTUACAO)
             {
-                if (btnVoltar.getGlobalBounds().contains(mousePosF))
+                if (botao_ranking_voltar.getGlobalBounds().contains(mousePosF))
                 {
                     tela = PRINCIPAL;
                 }
@@ -229,19 +212,19 @@ void Menu::executar()
     }
 
     // ---------------------------------------------------------
-    // CAPTURA DO NOME DO JOGADOR
+    // LÓGICA DE CAPTURA DO NOME DO JOGADOR
     // ---------------------------------------------------------
     if (tela == SELECAO_FASE)
     {
         GerenciadorGrafico* gg = Ente::getGG();
 
-        // Verifica se o jogador apertou para apagar o nome dele
+        // Apaga o texto se o usuario apertar para apagar
         if (gg->getBackspacePressionado() && !nome_jogador.empty()) 
         {
-            // Apaga a ultima letra
             nome_jogador.pop_back();
         }
-        // Adiciona as novas letras
+
+        // Soma o texto digitado ao nome
         nome_jogador += gg->getTextoDigitado(); 
     }
 
@@ -250,71 +233,62 @@ void Menu::executar()
     // ---------------------------------------------------------
     if (tela == PRINCIPAL)
     {
-        window->draw(btnJogar);
-        window->draw(txtJogar);
-        window->draw(btnRanking);
-        window->draw(txtRanking);
+        window->draw(botao_jogar);
+        window->draw(botao_ranking);
     }
     else if (tela == SELECAO_FASE)
     {
-        window->draw(btnFase1);
-        window->draw(txtFase1);
-        window->draw(btnFase2);
-        window->draw(txtFase2);
-        window->draw(btnVoltar);
-        window->draw(txtVoltar);
+        window->draw(botao_fase1);
+        window->draw(botao_fase2);
+        window->draw(botao_fase_voltar);
     
-        // Desenhar as coisas do nome
         sf::Text texto_nome("Seu nome: " + nome_jogador + "_", fonte, 30);
-        texto_nome.setPosition(220.f, 100.f);
+        float largura_texto = texto_nome.getGlobalBounds().width;
+        float centro_x = (1024 / 2) - (largura_texto / 2);
+        texto_nome.setPosition(centro_x, 150.f); 
         texto_nome.setFillColor(sf::Color::Yellow);
         window->draw(texto_nome);
-    
-    }
-    else if (tela == PONTUACAO)
-    {
-        window->draw(txtTituloRanking);
-        window->draw(btnVoltar);
-        window->draw(txtVoltar);
-
-        float posY = 180.f;
-        int posicaoAtual = 1;
-
-        // Se tiver ranking
-        for (auto it = ordem_ranking.begin(); it != ordem_ranking.end() && posicaoAtual <= 5; ++it, posicaoAtual++)
-        {
-            std::string strExibicaoNome = std::to_string(posicaoAtual) + ". " + it->second;
-            sf::Text txtColocado(strExibicaoNome, fonte, 26);
-            txtColocado.setPosition(220.f, posY);
-            txtColocado.setFillColor(sf::Color::White);
-            window->draw(txtColocado);
-
-            std::string strExibicaoPontos = std::to_string(it->first) + " pts";
-            sf::Text txtPontos(strExibicaoPontos, fonte, 26);
-            txtPontos.setPosition(460.f, posY);
-            txtPontos.setFillColor(sf::Color::Cyan);
-            window->draw(txtPontos);
-
-            posY += 35.f;
-            
-        }
-
-        // Se nao tiver ranking
-        if (ordem_ranking.empty())
-        {
-            sf::Text txtVazio("Nenhum recorde registrado ainda!", fonte, 24);
-            txtVazio.setPosition(220.f, 220.f);
-            txtVazio.setFillColor(sf::Color(180, 180, 180));
-            window->draw(txtVazio);
-        }
     }
     else if (tela == SELECAO_JOGADORES)
     {
-        window->draw(btn1Jog);
-        window->draw(txt1Jog);
-        window->draw(btn2Jog);
-        window->draw(txt2Jog);
-        window->draw(btnVoltar);
-        window->draw(txtVoltar);
+        window->draw(botao_um_jogador);
+        window->draw(botao_dois_jogadores);
+        window->draw(botao_jogador_voltar);
+    }
+    else if (tela == PONTUACAO)
+    {
+        window->draw(botao_ranking_voltar);
+
+        float pos_y = 100.f;
+        int posicao_atual = 1;
+
+        // Percore a ordem de ranking
+        for (auto it = ordem_ranking.begin(); it != ordem_ranking.end() && posicao_atual <= 8; ++it, posicao_atual++)
+        {
+            // Coloca o nome do sujeito
+            std::string str_exibicao_nome = std::to_string(posicao_atual) + ". " + it->second;
+            sf::Text txt_colocado(str_exibicao_nome, fonte, 26);
+            txt_colocado.setPosition(350.f, pos_y);
+            txt_colocado.setFillColor(sf::Color::White);
+            window->draw(txt_colocado);
+
+            // Coloca a pontuacao
+            std::string str_exibicao_pontos = std::to_string(it->first) + " pts";
+            sf::Text txt_pontos(str_exibicao_pontos, fonte, 26);
+            txt_pontos.setPosition(600.f, pos_y);
+            txt_pontos.setFillColor(sf::Color::Cyan);
+            window->draw(txt_pontos);
+
+            // Pula para escrever o proximo
+            pos_y += 40.f;
+        }
+
+        if (ordem_ranking.empty())
+        {
+            sf::Text txt_vazio("Nenhum recorde registrado ainda!", fonte, 24);
+            txt_vazio.setPosition(380.f, 250.f);
+            txt_vazio.setFillColor(sf::Color(180, 180, 180));
+            window->draw(txt_vazio);
+        }
     }
 }
