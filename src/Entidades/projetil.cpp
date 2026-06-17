@@ -11,7 +11,8 @@ Entidade(_x, _y)
     setValido();
     Jogador1 = false;
     dano = 1;
-    velocidade_x = 8.f;
+    velocidade_x = 20.f;
+    velocidade_y = 0.0f;
 
     projetil = tp;
 
@@ -36,6 +37,7 @@ Entidade(-100, -100)
     
     dano = 1;
     velocidade_x = 8.f;
+    velocidade_y = 0.0f;
 
     inicializarSprite("assets/coracao.png", 1, 16, 16, 0, 0, 0, sf::Vector2f(0.f, 0.f));
     colisao.setSize(sf::Vector2f(16.0f, 16.0f));
@@ -55,6 +57,8 @@ void Projetil :: executar()
 
     // Se tiver ativo, por enquanto, so move para a direita
     x += velocidade_x;
+    velocidade_y = aplicarGravidade(velocidade_y, dt);
+    y += velocidade_y * dt;
     colisao.setPosition(x, y);
 
     // Se for longe, meio que reseta
@@ -62,6 +66,7 @@ void Projetil :: executar()
     {
         Jogador1 = false;
         setInativo();
+        velocidade_y=0.0f;
         x = -100;
         y = -100;
     }
@@ -79,6 +84,7 @@ void Projetil :: disparar(sf::Vector2f pos_inicial, bool olhando_esquerda)
     x = pos_inicial.x;
     y = pos_inicial.y;
     colisao.setPosition(x, y);
+    velocidade_y = 0.0f;
 
     if (olhando_esquerda)
     {

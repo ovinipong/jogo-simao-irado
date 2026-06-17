@@ -205,12 +205,19 @@ void GerenciadorColisoes :: tratarColisoesInimProj()
                 pProj->setXY(sf::Vector2f(-100.f, -100.f)); 
 
                 if((*pInimigo).get_vida()==1)
-                if ((pProj)->getProjJog1()==true)
-                    jogadores[0]->operator++();
-                else 
-                    jogadores[1]->operator++();
+                {
+                    if ((pProj)->getProjJog1()==true)
+                    {
+                        if (jogadores.size()>0)
+                            jogadores[0]->operator++();
+                    }
+                    else 
+                    {
+                        if(jogadores.size()>1)
+                            jogadores[1]->operator++();
+                    }
+                }
                 (*pInimigo).receberDano(1); 
-
             }
         }
     }

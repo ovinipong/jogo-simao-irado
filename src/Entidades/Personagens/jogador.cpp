@@ -82,7 +82,7 @@ void Jogador :: executar()
         // ATIRAR PEW PEW
         if (Keyboard::isKeyPressed(Keyboard::LShift) && timer_atirar.getElapsedTime().asSeconds() >= 0.5)
         {
-            atirar(false);
+            atirar(true);
         }
 
     }
@@ -115,7 +115,7 @@ void Jogador :: executar()
         // ATIRAR PEW PEW
         if (Keyboard::isKeyPressed(Keyboard::M) && timer_atirar.getElapsedTime().asSeconds() >= 0.5)
         {
-            atirar(true);
+            atirar(false);
         }
     }
     
