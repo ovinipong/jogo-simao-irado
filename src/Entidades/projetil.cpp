@@ -69,13 +69,15 @@ void Projetil::executar()
     else if (projetil == RATO && pRato != nullptr)
     {
         // Movimento em Y (MHS)
+        // Formula do movimento harmonico simples
+        // y(t) = yo + A * sen(w t)
+        // y = centro do movimento + amplitude * sen(quao rapido oscila * tempo percorrido)
         tempo_mhs += dt * 0.5f;
         y = y_inicial_mhs + sin(tempo_mhs) * 25.0f;
         
         float dist_x = pRato->getColisao().getPosition().x - x;
 
-        // Movimento em X (MH Amortecido)
-        velocidade_x += (dist_x * 0.01f);
+        velocidade_x += (dist_x * 0.005f);
         velocidade_x *= 0.95f;
         x += velocidade_x;
 
