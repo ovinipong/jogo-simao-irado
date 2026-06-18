@@ -44,6 +44,8 @@ class Jogador : public Personagem
         bool getInvulneravel(){return invulneravel;};
 
         bool getSegundo(){return segundo;};
+
+        void salvar();
 };
 
 

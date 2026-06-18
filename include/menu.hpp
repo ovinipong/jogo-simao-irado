@@ -8,7 +8,7 @@ class Jogo;
 
 enum TelaMenu
 {
-    PRINCIPAL, PONTUACAO, SELECAO_FASE, SELECAO_JOGADORES
+    PRINCIPAL, PONTUACAO, SELECAO_FASE, SELECAO_JOGADORES, PAUSE
 };
 
 class Menu : public Ente
@@ -28,6 +28,8 @@ class Menu : public Ente
         sf::Texture btn_um_jogador;
         sf::Texture btn_dois_jogadores;
         sf::Texture btn_voltar;
+        sf::Texture btn_continuar;
+        sf::Texture btn_menu;
 
         sf::Sprite botao_jogar;
         sf::Sprite botao_ranking;
@@ -38,6 +40,12 @@ class Menu : public Ente
         sf::Sprite botao_um_jogador;
         sf::Sprite botao_dois_jogadores;
         sf::Sprite botao_jogador_voltar;
+        sf::Sprite botao_pause_menu;
+        sf::Sprite botao_pause_continuar;
+
+        sf::Texture textura_fundo_pause;
+        sf::Sprite sprite_fundo_pause;
+        sf::RectangleShape retangulo_escuro;
 
     public:
         Menu(Jogo* pJ = NULL);
@@ -46,4 +54,5 @@ class Menu : public Ente
         const std::string &getNomeJogador() const {return(nome_jogador);}
         void carregar_ranking();
         void set_estado(TelaMenu e) {tela = e;}
+        void capturarFundo(sf::RenderWindow *window);
 };

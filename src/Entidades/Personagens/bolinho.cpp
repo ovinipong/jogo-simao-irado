@@ -54,3 +54,8 @@ void Bolinho:: danificar(Jogador* p)
     p->receberDano(dano);
     p->aplicarLentidao(reducao_velocidade, tempo);
 }
+
+void Bolinho :: salvar()
+{
+    
+}

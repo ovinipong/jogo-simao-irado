@@ -23,4 +23,6 @@ class Bloco : public entidades::Entidade
         void executar();
         void colisaoBloco(Personagem* pP);
         void colisaoBloco(Obstaculo* pO);
+
+        void salvar();
 };

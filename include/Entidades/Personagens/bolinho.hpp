@@ -15,7 +15,7 @@ class Bolinho : public Inimigo
         ~Bolinho();
         void executar();
         void danificar(Jogador* p); //sem implementação
-        //void salva()=0;
+        void salvar();
 };
 
 }

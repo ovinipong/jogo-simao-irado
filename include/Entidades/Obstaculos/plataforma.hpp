@@ -20,4 +20,6 @@ class Plataforma : public Obstaculo
         ~Plataforma();
         void executar();
         void obstaculizar(entidades::Jogador* pJog);
+
+        void salvar();
 };

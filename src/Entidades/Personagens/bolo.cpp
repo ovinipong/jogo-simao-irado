@@ -84,3 +84,8 @@ void Bolo::danificar(Jogador* p)
 
     p->receberDano(dano);
 }
+
+void Bolo :: salvar()
+{
+    
+}

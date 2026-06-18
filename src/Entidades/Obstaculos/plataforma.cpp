@@ -140,3 +140,8 @@ void Plataforma::obstaculizar(entidades::Jogador* pJog)
         }
     }
 }
+
+void Plataforma :: salvar()
+{
+    
+}

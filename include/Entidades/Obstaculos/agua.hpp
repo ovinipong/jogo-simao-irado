@@ -14,4 +14,6 @@ class Agua : public Obstaculo
         ~Agua();
         void executar();
         void obstaculizar(entidades::Jogador* pJog);
+
+        void salvar();
 };

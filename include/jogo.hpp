@@ -33,4 +33,6 @@ class Jogo
         void setEstado(Estado e);
         void setDoisJogadores(bool dois_jog) {dois_jogadores = dois_jog;}
         bool getDoisJogadores() const {return(dois_jogadores);}
+        void reiniciarFase();
+        void continuarFase() { estado = estado_anterior; };
 };

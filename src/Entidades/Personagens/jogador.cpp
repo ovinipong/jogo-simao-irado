@@ -188,3 +188,8 @@ void Jogador::operator++()
 {
     pontos+=1;
 }
+
+void Jogador :: salvar()
+{
+    
+}

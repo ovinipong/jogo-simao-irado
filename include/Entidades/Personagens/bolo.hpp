@@ -24,6 +24,7 @@ class Bolo : public Inimigo
         ~Bolo();
         void executar();
         void danificar(Jogador* p);
+        void salvar();
 };
 
 }

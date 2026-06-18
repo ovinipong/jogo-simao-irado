@@ -61,3 +61,7 @@ void Lustre::obstaculizar(entidades::Jogador* pJog)
     }
 }
 
+void Lustre :: salvar()
+{
+    
+}

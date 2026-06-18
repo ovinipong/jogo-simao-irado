@@ -15,4 +15,6 @@ class Obstaculo : public entidades::Entidade
         virtual void executar() = 0;
         virtual void obstaculizar(entidades::Jogador* pJog) = 0;
         void obstaculizar(entidades::Inimigo *pInim, sf::FloatRect *obst, sf::FloatRect *interseccao);
+
+        virtual void salvar() = 0;
 };

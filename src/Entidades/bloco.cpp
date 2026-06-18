@@ -108,3 +108,8 @@ void Bloco::colisaoBloco(Obstaculo* pO)
         }
     }
 }
+
+void Bloco :: salvar()
+{
+    
+}

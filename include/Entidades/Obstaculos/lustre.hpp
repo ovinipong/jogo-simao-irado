@@ -14,4 +14,6 @@ class Lustre : public Obstaculo
         ~Lustre();
         void executar();
         void obstaculizar(entidades::Jogador* pJog); 
+
+        void salvar();
 };

@@ -81,3 +81,8 @@ bool Rato :: getOlhandoEsquerda()
         return(true);
     }
 }
+
+void Rato :: salvar()
+{
+    
+}

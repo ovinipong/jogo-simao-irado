@@ -23,6 +23,8 @@ class Rato : public Inimigo
         void atirar();
         bool getOlhandoEsquerda();
         void zerarTimerAtirar() { timer_atirar.restart(); };
+
+        void salvar();
 };
 
 }

@@ -30,6 +30,7 @@ void Jogo :: executar()
         {
             case(PRIMEIRA_FASE):
             {
+                gg.setPausado(false);
                 if (!fase1)
                 {
                     // Apenas um jogador
@@ -74,6 +75,9 @@ void Jogo :: executar()
                 // Verifica se pausou o jogo
                 if (gg.getPausado())
                 {
+                    menu.capturarFundo(gg.getWindow());
+
+                    menu.set_estado(PAUSE);
                     estado_anterior = PRIMEIRA_FASE;
                     estado = PAUSADO;
                 }
@@ -89,6 +93,7 @@ void Jogo :: executar()
             }
             case(SEGUNDA_FASE):
             {
+                gg.setPausado(false);
                 if (!fase2)
                 {
                     // Apenas um jogador
@@ -149,6 +154,9 @@ void Jogo :: executar()
                 // Verifica se pausou o jogo
                 if (gg.getPausado())
                 {
+                    menu.capturarFundo(gg.getWindow());
+                    
+                    menu.set_estado(PAUSE);
                     estado_anterior = SEGUNDA_FASE;
                     estado = PAUSADO;
                 }
@@ -166,12 +174,16 @@ void Jogo :: executar()
             }
             case(PAUSADO):
             {
-                gg.executar();
-                gg.mostrar();
                 if (!gg.getPausado())
                 {
                     estado = estado_anterior;
                 }
+
+                gg.centralizarCamera(sf::Vector2f(512.f, 288.f));
+                gg.executar();
+                menu.desenhar();
+                menu.executar();
+                gg.mostrar();
             }
         }   
     }
@@ -180,4 +192,29 @@ void Jogo :: executar()
 void Jogo :: setEstado(Estado e)
 {
     estado = e;
+}
+
+void Jogo :: reiniciarFase()
+{
+    if (fase1)
+    {
+        delete(fase1);
+        fase1 = NULL;
+    }
+    if (fase2)
+    {
+        delete(fase2);
+        fase2 = NULL;
+    }
+    if (pJog1)
+    {
+        delete(pJog1);
+    }
+    if (pJog2)
+    {
+        delete(pJog2);
+    }
+
+    pJog1 = new Jogador(400, 100, false);
+    pJog2 = new Jogador(400, 100, true);
 }

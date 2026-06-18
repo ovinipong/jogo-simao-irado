@@ -38,6 +38,7 @@ class GerenciadorGrafico {
         bool const getBackspacePressionado() {return(backspace_pressionado);}
 
         bool getPausado() {return(pausado); }
+        void setPausado(bool p) { pausado = p; }
         
         sf::View getCamera();
 };

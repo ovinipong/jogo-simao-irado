@@ -21,6 +21,8 @@ class Inimigo : public Personagem
         void inverterDirecao();
         //virtual void salva() = 0;
         void setDano(){dano=nivel_maldade*2;};
+
+        virtual void salvar() = 0;
 };
 
 }

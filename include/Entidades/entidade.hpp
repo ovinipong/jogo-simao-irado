@@ -29,6 +29,8 @@ class Entidade : public Ente
         void setValido() {valido=true;};
         void setInvalido() {valido=false;};
         static float aplicarGravidade(float velocidade_y, float dt);
+
+        virtual void salvar() = 0;
     };
 
 }

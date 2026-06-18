@@ -41,3 +41,9 @@ void Agua::obstaculizar(Jogador* pJog)
 {
     pJog->aplicarLentidao(reducao_velocidade, tempo);
 }
+
+
+void Agua :: salvar()
+{
+    
+}

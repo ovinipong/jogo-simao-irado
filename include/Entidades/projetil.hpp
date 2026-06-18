@@ -28,7 +28,6 @@ class Projetil : public entidades::Entidade
         Projetil();
         ~Projetil();
         void executar();
-        void salvar();
         void disparar(sf::Vector2f pos_inicial, bool olhando_esquerda);
         void disparar();
         TipoProjetil getTipoProjetil();
@@ -41,4 +40,6 @@ class Projetil : public entidades::Entidade
 
         void setDonoRato(entidades::Rato* pR) { pRato = pR; }
         entidades::Rato* getDonoRato() { return(pRato); }
+
+        void salvar();
 };

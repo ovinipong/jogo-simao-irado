@@ -95,11 +95,6 @@ void Projetil::executar()
     colisao.setPosition(x, y);
 }
 
-void Projetil :: salvar()
-{
-
-}
-
 void Projetil :: disparar(sf::Vector2f pos_inicial, bool olhando_esquerda)
 {
     setAtivo();
@@ -138,4 +133,9 @@ void Projetil :: setInativo()
 void Projetil :: setAtivo()
 {
     ativo = true;
+}
+
+void Projetil :: salvar()
+{
+
 }

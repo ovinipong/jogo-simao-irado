@@ -26,7 +26,9 @@ Menu::Menu(Jogo* pJ) : pJogo(pJ)
     if (!btn_um_jogador.loadFromFile("assets/botoes/btn_um_jogador.png")) { std::cerr << "Erro ao abrir btn_um_jogador.png!" << std::endl; }
     if (!btn_dois_jogadores.loadFromFile("assets/botoes/btn_dois_jogadores.png")) { std::cerr << "Erro ao abrir btn_dois_jogadores.png!" << std::endl; }
     if (!btn_voltar.loadFromFile("assets/botoes/btn_voltar.png")) { std::cerr << "Erro ao abrir btn_voltar.png!" << std::endl; }
-
+    if (!btn_menu.loadFromFile("assets/botoes/btn_pause_menu.png")) { std::cerr << "Erro ao abrir btn_pause_menu.png" << std::endl; }
+    if (!btn_continuar.loadFromFile("assets/botoes/btn_pause_continuar.png")) { std::cerr << "Erro ao abrir btn_pause_continuar.png" << std::endl; }
+    
     // Atribui as texturas aos sprites
     botao_jogar.setTexture(btn_jogar);
     botao_ranking.setTexture(btn_ranking);
@@ -40,6 +42,9 @@ Menu::Menu(Jogo* pJ) : pJogo(pJ)
     botao_ranking_voltar.setTexture(btn_voltar);
     botao_fase_voltar.setTexture(btn_voltar);
     botao_jogador_voltar.setTexture(btn_voltar);
+
+    botao_pause_menu.setTexture(btn_menu);
+    botao_pause_continuar.setTexture(btn_continuar);
     
     // Coloca a posicao certa de cada sprite
     // (Largura da tela / 2) - (Largura do botao / 2)
@@ -49,13 +54,21 @@ Menu::Menu(Jogo* pJ) : pJogo(pJ)
     botao_ranking.setPosition(centro_x, 320.f);
     botao_ranking_voltar.setPosition(centro_x, 450.f);
     
-    botao_fase1.setPosition(centro_x, 220.f);
-    botao_fase2.setPosition(centro_x, 320.f);
+    botao_fase1.setPosition(centro_x, 120.f);
+    botao_fase2.setPosition(centro_x, 220.f);
     botao_fase_voltar.setPosition(centro_x, 450.f);
     
-    botao_um_jogador.setPosition(centro_x, 220.f);
-    botao_dois_jogadores.setPosition(centro_x, 320.f);
+    botao_um_jogador.setPosition(centro_x, 170.f);
+    botao_dois_jogadores.setPosition(centro_x, 270.f);
     botao_jogador_voltar.setPosition(centro_x, 450.f);
+
+    botao_pause_continuar.setPosition(centro_x, 250.f);
+    botao_pause_menu.setPosition(centro_x, 350.f);
+
+    // Retangulo para o pause
+    retangulo_escuro.setSize(sf::Vector2f(1024.f, 576.f));
+    retangulo_escuro.setPosition(0.f, 0.f);
+    retangulo_escuro.setFillColor(sf::Color(0, 0, 0, 150));
 }
 
 Menu::~Menu()
@@ -114,6 +127,23 @@ void Menu :: carregar_ranking()
         }
     }
     pontuacao.close();
+}
+
+void Menu::capturarFundo(sf::RenderWindow* window)
+{
+    sf::Vector2u tamanho_janela = window->getSize();
+    sf::Vector2f tamanaho_camera = window->getView().getSize();
+
+    textura_fundo_pause.create(tamanho_janela.x, tamanho_janela.y);
+    textura_fundo_pause.update(*window);
+    
+    sprite_fundo_pause.setTexture(textura_fundo_pause, true);
+    
+    float escala_x = tamanaho_camera.x / (float)tamanho_janela.x;
+    float escala_y = tamanaho_camera.y / (float)tamanho_janela.y;
+    sprite_fundo_pause.setScale(escala_x, escala_y);
+
+    sprite_fundo_pause.setPosition(0.f, 0.f);
 }
 
 void Menu::executar()
@@ -204,6 +234,19 @@ void Menu::executar()
                     tela = PRINCIPAL;
                 }
             }
+            else if (tela == PAUSE)
+            {
+                if (botao_pause_menu.getGlobalBounds().contains(mousePosF))
+                {
+                    tela = SELECAO_FASE;
+                    pJogo->reiniciarFase();
+                    pJogo->setEstado(MENU);
+                }
+                else if (botao_pause_continuar.getGlobalBounds().contains(mousePosF))
+                {
+                    pJogo->continuarFase();
+                }
+            }
         }
     }
     else
@@ -245,7 +288,7 @@ void Menu::executar()
         sf::Text texto_nome("Seu nome: " + nome_jogador + "_", fonte, 30);
         float largura_texto = texto_nome.getGlobalBounds().width;
         float centro_x = (1024 / 2) - (largura_texto / 2);
-        texto_nome.setPosition(centro_x, 150.f); 
+        texto_nome.setPosition(centro_x, 30.f); 
         texto_nome.setFillColor(sf::Color::Yellow);
         window->draw(texto_nome);
     }
@@ -290,5 +333,21 @@ void Menu::executar()
             txt_vazio.setFillColor(sf::Color(180, 180, 180));
             window->draw(txt_vazio);
         }
+    }
+    else if (tela == PAUSE)
+    {
+        window->draw(sprite_fundo_pause);
+        window->draw(retangulo_escuro);
+
+        std::string str_pause("JOGO PAUSADO!");
+        sf::Text txt_pause(str_pause, fonte, 26);
+        txt_pause.setFillColor(sf::Color::White);
+
+        float largura_texto = txt_pause.getGlobalBounds().width;
+        float centro_x = (1024 / 2) - (largura_texto / 2);
+        txt_pause.setPosition(centro_x, 100);
+        window->draw(txt_pause);
+        window->draw(botao_pause_continuar);
+        window->draw(botao_pause_menu);
     }
 }

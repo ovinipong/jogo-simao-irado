@@ -16,6 +16,8 @@ class Personagem : public Entidade
         void operator--();
         void receberDano(int dano);
         const int get_vida() const {return num_vidas;};
+
+        virtual void salvar() = 0;
 };
 
 }
