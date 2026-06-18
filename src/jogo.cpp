@@ -7,8 +7,8 @@ using namespace std;
 Jogo :: Jogo() : pJog1 (NULL), pJog2(NULL), menu(this), fase1(NULL), fase2(NULL)
 {
     Ente::setGG(&gg);
-    pJog1 = new Jogador(400, 100, false);
-    pJog2 = new Jogador(400, 100, true);
+    pJog1 = new Jogador(64, 400, false);
+    pJog2 = new Jogador(64, 400, true);
 
     estado = MENU;
     estado_anterior = MENU;
@@ -35,14 +35,14 @@ void Jogo :: executar()
                     // Apenas um jogador
                     if (!dois_jogadores)
                     {
-                        pJog1->setXY(sf::Vector2f(400, 100));
+                        pJog1->setXY(sf::Vector2f(64, 400));
                         pJog2->setInvalido();
                     }
                     // Os dois jogadores
                     else
                     {
-                        pJog1->setXY(sf::Vector2f(400, 100));
-                        pJog2->setXY(sf::Vector2f(400, 100));
+                        pJog1->setXY(sf::Vector2f(64, 400));
+                        pJog2->setXY(sf::Vector2f(64, 400));
                         pJog2->setValido();
                     }
                     fase1 = new PrimeiraFase(pJog1, pJog2);
@@ -66,8 +66,8 @@ void Jogo :: executar()
                     fase1 = NULL;
                     delete pJog1;
                     delete pJog2;
-                    pJog1 = new Jogador(400, 100, false);
-                    pJog2 = new Jogador(400, 100, true);
+                    pJog1 = new Jogador(64, 400, false);
+                    pJog2 = new Jogador(64, 400, true);
                     estado = MENU;
                     menu.set_estado(SELECAO_FASE);
                 }
@@ -94,14 +94,14 @@ void Jogo :: executar()
                     // Apenas um jogador
                     if (!dois_jogadores)
                     {
-                        pJog1->setXY(sf::Vector2f(400, 100));
+                        pJog1->setXY(sf::Vector2f(64, 400));
                         pJog2->setInvalido();
                     }
                     // Os dois jogadores
                     else
                     {
-                        pJog1->setXY(sf::Vector2f(400, 100));
-                        pJog2->setXY(sf::Vector2f(400, 100));
+                        pJog1->setXY(sf::Vector2f(64, 400));
+                        pJog2->setXY(sf::Vector2f(64, 400));
                         pJog2->setValido();
                     }
                     fase2 = new SegundaFase(pJog1, pJog2);
@@ -141,8 +141,8 @@ void Jogo :: executar()
                     fase2 = NULL;
                     delete pJog1;
                     delete pJog2;
-                    pJog1 = new Jogador(400, 100, false);
-                    pJog2 = new Jogador(400, 100, true);
+                    pJog1 = new Jogador(64, 400, false);
+                    pJog2 = new Jogador(64, 400, true);
                     estado = MENU;
                 }
 

@@ -16,7 +16,7 @@ entidades::Entidade(_x, _y)
     if (tipo==CHAO)
         inicializarSprite("assets/chao.png", 1, 64, 48, 0, 0, 0, sf::Vector2f(0.f, -4.f));
     else if (tipo==TETO)
-        inicializarSprite("assets/teto.png", 1, 1408, 32, 0, 0, 0, sf::Vector2f(0.f, -4.f));
+        inicializarSprite("assets/teto.png", 1, 1408, 6, 0, 0, 0, sf::Vector2f(0.f, -4.f));
     else if (tipo==PAREDE)
         inicializarSprite("assets/parede.png", 1, 3, 550, 0, 0, 0, sf::Vector2f(0.f, -4.f));
 

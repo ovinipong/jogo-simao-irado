@@ -175,7 +175,7 @@ void Fase::criarCenario(const std::string& caminhoFundo)
     lista_ents.incluir(paredeesq);
     gc.incluirBloco(paredeesq);
 
-    Bloco* teto = new Bloco(0, 0, 1408, 32, TETO);
+    Bloco* teto = new Bloco(0, 0, 1408, 6, TETO);
     lista_ents.incluir(teto);
     gc.incluirBloco(teto);
 

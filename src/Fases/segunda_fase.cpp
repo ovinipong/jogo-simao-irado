@@ -96,7 +96,7 @@ void SegundaFase :: criarObstLustres()
         {   
             if (linha[x]=='L')//compara com o txt 
             {
-                posicoes.push_back({x * 64, y * 64});
+                posicoes.push_back({x * 64, (y * 64)-58});
             }
         }
         y++;
