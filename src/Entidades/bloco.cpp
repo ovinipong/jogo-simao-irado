@@ -3,7 +3,7 @@
 using namespace std;
 using namespace sf;
 
-Bloco::Bloco(int _x, int _y, float largura, float altura):
+Bloco::Bloco(int _x, int _y, float largura, float altura, TipoBloco tipo):
 entidades::Entidade(_x, _y)
 {
     setValido();
@@ -13,7 +13,15 @@ entidades::Entidade(_x, _y)
     colisao.setFillColor(cor);
     colisao.setPosition(_x, _y);
 
-    inicializarSprite("assets/chao.png", 1, 64, 64, 0, 0, 0, sf::Vector2f(0.f, -32.f));
+    if (tipo==CHAO)
+        inicializarSprite("assets/chao.png", 1, 64, 48, 0, 0, 0, sf::Vector2f(0.f, -4.f));
+    else if (tipo==TETO)
+        inicializarSprite("assets/teto.png", 1, 64, 32, 0, 0, 0, sf::Vector2f(0.f, 0.f));
+    else if (tipo==PAREDEDIR)
+        inicializarSprite("assets/parededir.png", 1, 6, 480, 0, 0, 0, sf::Vector2f(0.f, 0.f));
+    else if (tipo==PAREDEESQ) 
+        inicializarSprite("assets/paredeesq.png", 1, 64, 480, 0, 0, 0, sf::Vector2f(0.f, 0.f));
+
 }
 
 Bloco::~Bloco()

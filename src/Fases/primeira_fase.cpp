@@ -9,7 +9,7 @@ PrimeiraFase:: PrimeiraFase(Jogador* pJog1, Jogador* pJog2) : Fase("assets/mapas
                                                               maxAgua(5)
 {
     srand(time(nullptr));
-    criarCenario("assets/fundo1.png");
+    criarCenario("assets/fundofase1.png");
     criarInimigos();
     criarObstaculos();
     lista_ents.incluir(pJog1);

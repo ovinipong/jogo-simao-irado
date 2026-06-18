@@ -10,11 +10,11 @@ Inimigo(_x, _y)
     setValido();
 
     nivel_maldade=2;
-    setDano(nivel_maldade);
+    setDano();
     velocidade_x = 0;
     estado = PARADO;
     tempo_parado = 2.0f;
-    pulo_velocidade = 20.0f;
+    pulo_velocidade = 7.0f;
     num_vidas = 5;
 
     inicializarSprite("assets/bolo.png", 1, 64, 64, 8, 0, 0, sf::Vector2f(0.f, 0.f));

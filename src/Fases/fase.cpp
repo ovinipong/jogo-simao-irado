@@ -6,7 +6,7 @@ using namespace fases;
 
 Fase :: Fase(const std::string& caminhoMapa, Jogador* pJog1, Jogador* pJog2) : minimo_ent(3),
                                                                                maxInimFaceis(5),
-                                                                               maxPlataformas(5),
+                                                                               maxPlataformas(20),
                                                                                concluida(false)
 {
     pJogador1 = pJog1;
@@ -162,8 +162,8 @@ void Fase :: criarPlataformas()//P M C no txt
 
 void Fase::criarCenario(const std::string& caminhoFundo)
 {
-    Bloco* fundo = new Bloco(0, 0, 1024, 576);
-    fundo->inicializarSprite(caminhoFundo, 1, 1024, 576, 0, 0, 0, sf::Vector2f(0.f, 0.f));
+    Bloco* fundo = new Bloco(0, 0, 1408, 576, FUNDO);
+    fundo->inicializarSprite(caminhoFundo, 1, 1408, 576, 0, 0, 0, sf::Vector2f(0.f, -4.f));
     //nao incluir no g_colisoes
     lista_ents.incluir(fundo);
 
@@ -179,7 +179,25 @@ void Fase::criarCenario(const std::string& caminhoFundo)
         {
             if (linha[x]=='1')//compara com o txt
             {
-                Bloco* bloco = new Bloco(x * 64, y * 64, 64, 40);
+                Bloco* bloco = new Bloco(x * 64, y * 64, 64, 44, CHAO);
+                lista_ents.incluir(bloco);
+                gc.incluirBloco(bloco);
+            }
+            else if (linha[x]=='6')//compara com o txt
+            {
+                Bloco* bloco = new Bloco(x * 64, y * 64, 64, 32, TETO);
+                lista_ents.incluir(bloco);
+                gc.incluirBloco(bloco);
+            }
+            else if (linha[x]=='7')//compara com o txt
+            {
+                Bloco* bloco = new Bloco(x * 64, y * 64, 6, 480, PAREDEDIR);
+                lista_ents.incluir(bloco);
+                gc.incluirBloco(bloco);
+            }
+            else if (linha[x]=='8')//compara com o txt
+            {
+                Bloco* bloco = new Bloco(x * 64, y * 64, 6, 480, PAREDEESQ);
                 lista_ents.incluir(bloco);
                 gc.incluirBloco(bloco);
             }

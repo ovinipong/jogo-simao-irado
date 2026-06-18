@@ -8,7 +8,7 @@ Inimigo(_x, _y)
 {
     num_vidas = 5;
     nivel_maldade=3;
-    setDano(nivel_maldade);
+    setDano();
     setNoChao(false);
 
     inicializarSprite("assets/rato.png", 1, 78, 96, 1, 0, 0, sf::Vector2f(8.f, 0.f));

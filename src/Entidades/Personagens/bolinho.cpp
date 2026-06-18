@@ -9,7 +9,7 @@ Bolinho :: Bolinho(int _x, int _y): Inimigo(_x, _y)
     setValido();
     id =3;
     nivel_maldade=1;
-    setDano(nivel_maldade);
+    setDano();
     velocidade_y = 0;
     num_vidas = 3;
     tempo=1.0f;

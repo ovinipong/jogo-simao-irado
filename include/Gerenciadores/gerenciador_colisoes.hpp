@@ -34,7 +34,6 @@ class GerenciadorColisoes
         void tratarColisioesJogBloco();
         void tratarColisoesInimBloco();
         void tratarColisoesObstBloco();
-        void arrumarColisoes(Entidade *pEnt, sf::FloatRect *bloco, sf::FloatRect *interseccao);
 
     public:
         GerenciadorColisoes();

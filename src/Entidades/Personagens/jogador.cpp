@@ -21,7 +21,7 @@ Personagem(_x, _y)
     move_speed = velocidade_padrao;
     tempo_efeito = 0.0f;
     tempo_invulneravel= 1.0f;
-    pulo_velocidade = -20.0f;
+    pulo_velocidade = -7.0f;
 
     inicializarSprite("assets/jogador.png", 17, 64, 128, 8, 2, 9, sf::Vector2f(0.f, -45.f));
 

@@ -5,13 +5,21 @@
 
 using namespace entidades;
 
+enum TipoBloco{
+    CHAO,
+    TETO,
+    PAREDEDIR,
+    PAREDEESQ,
+    FUNDO
+};
+
 class Bloco : public entidades::Entidade
 {
     private:
         sf::Color cor;
 
     public:
-        Bloco(int _x=0, int _y=0, float largura=0.f, float altura=0.f);
+        Bloco(int _x=0, int _y=0, float largura=0.f, float altura=0.f, TipoBloco tipo=CHAO);
         ~Bloco();
         void executar();
         void colisaoBloco(Personagem* pP);

@@ -2,6 +2,8 @@
 
 #include "entidade.hpp"
 #include "jogador.hpp"
+#include "inimigo.hpp"
+
 
 class Obstaculo : public entidades::Entidade
 {
@@ -12,4 +14,5 @@ class Obstaculo : public entidades::Entidade
         virtual ~Obstaculo();
         virtual void executar() = 0;
         virtual void obstaculizar(entidades::Jogador* pJog) = 0;
+        void obstaculizar(entidades::Inimigo *pInim, sf::FloatRect *obst, sf::FloatRect *interseccao);
 };
