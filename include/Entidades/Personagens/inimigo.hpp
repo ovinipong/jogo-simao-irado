@@ -18,9 +18,9 @@ class Inimigo : public Personagem
         //void salvarDataBuffer();
         virtual void executar()=0;
         virtual void danificar(Jogador* p) = 0;
-        //virtual void salva() = 0;
         void inverterDirecao();
-        void setDano(int n_maldade){dano=nivel_maldade*2;};
+        //virtual void salva() = 0;
+        void setDano(){dano=nivel_maldade*2;};
 };
 
 }

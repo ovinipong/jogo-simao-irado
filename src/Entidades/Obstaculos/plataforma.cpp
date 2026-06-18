@@ -15,7 +15,7 @@ Obstaculo(_x, _y), altura(0), pode_colidir (false)
             setNoChao(true);
             id=7;
 
-            altura = (rand() % 64) + 32;
+            altura = (rand() % 32) + 32;
             y -= altura;
             
             inicializarSprite("assets/prateleira.png", 1, 64, 64, 0, 0, 0, sf::Vector2f(0.f, 0.f));
@@ -80,7 +80,7 @@ void Plataforma::obstaculizar(entidades::Jogador* pJog)
     // Se apertar para descer
     if (pJog->getSegundo()==false)//primeiro jogador
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         {
             sf::Vector2f pos = pJog->getXY();
             pos.y += 2.0f;
@@ -92,7 +92,7 @@ void Plataforma::obstaculizar(entidades::Jogador* pJog)
     }
     else //segundo jogador
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
             sf::Vector2f pos = pJog->getXY();
             pos.y += 2.0f;

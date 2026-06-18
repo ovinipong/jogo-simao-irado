@@ -6,7 +6,7 @@ using namespace fases;
 
 Fase :: Fase(const std::string& caminhoMapa, Jogador* pJog1, Jogador* pJog2) : minimo_ent(3),
                                                                                maxInimFaceis(5),
-                                                                               maxPlataformas(5),
+                                                                               maxPlataformas(20),
                                                                                concluida(false)
 {
     pJogador1 = pJog1;
@@ -162,10 +162,22 @@ void Fase :: criarPlataformas()//P M C no txt
 
 void Fase::criarCenario(const std::string& caminhoFundo)
 {
-    Bloco* fundo = new Bloco(0, 0, 1024, 576);
-    fundo->inicializarSprite(caminhoFundo, 1, 1024, 576, 0, 0, 0, sf::Vector2f(0.f, 0.f));
+    Bloco* fundo = new Bloco(0, 0, 1408, 576, FUNDO);
+    fundo->inicializarSprite(caminhoFundo, 1, 1408, 576, 0, 0, 0, sf::Vector2f(0.f, -4.f));
     //nao incluir no g_colisoes
     lista_ents.incluir(fundo);
+
+    Bloco* parededir = new Bloco(0, 0, 6, 576, PAREDE);
+    lista_ents.incluir(parededir);
+    gc.incluirBloco(parededir);
+
+    Bloco* paredeesq = new Bloco(1405, 0, 6, 576, PAREDE);
+    lista_ents.incluir(paredeesq);
+    gc.incluirBloco(paredeesq);
+
+    Bloco* teto = new Bloco(0, 0, 1408, 32, TETO);
+    lista_ents.incluir(teto);
+    gc.incluirBloco(teto);
 
     arquivo.clear();
     arquivo.seekg(0);
@@ -179,7 +191,7 @@ void Fase::criarCenario(const std::string& caminhoFundo)
         {
             if (linha[x]=='1')//compara com o txt
             {
-                Bloco* bloco = new Bloco(x * 64, y * 64, 64, 40);
+                Bloco* bloco = new Bloco(x * 64, y * 64, 64, 44, CHAO);
                 lista_ents.incluir(bloco);
                 gc.incluirBloco(bloco);
             }

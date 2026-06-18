@@ -11,7 +11,7 @@ SegundaFase :: SegundaFase(Jogador *pJog1, Jogador* pJog2): Fase("assets/mapas/m
                                                             maxLustre(5)
 {
     srand(time(nullptr));
-    criarCenario("assets/fundo1.png");
+    criarCenario("assets/fundofase1.png");
     criarInimigos();
     criarObstaculos();
     lista_ents.incluir(pJog1);
@@ -150,7 +150,7 @@ void SegundaFase :: executar()
     // Se for apenas um jogador
     if (!pJogador2->getValido())
     {
-        if (pJogador1->getXY().x >= 2200)
+        if (pJogador1->getXY().x >= 1350)
         {
             concluida = true;
         }
@@ -158,9 +158,9 @@ void SegundaFase :: executar()
     // Se for os dois jogadores
     else
     {
-        if (((pJogador1->getXY().x >= 2200) && (pJogador2->getXY().x >=2200))
-            || ((!(pJogador1->getValido())) && (pJogador2->getXY().x >=2200))
-            || ((pJogador1->getXY().x >= 2200) && (!(pJogador2->getValido()))))
+        if (((pJogador1->getXY().x >= 1350) && (pJogador2->getXY().x >=1350))
+            || ((!(pJogador1->getValido())) && (pJogador2->getXY().x >=1350))
+            || ((pJogador1->getXY().x >= 1350) && (!(pJogador2->getValido()))))
         {
             concluida = true;
         }

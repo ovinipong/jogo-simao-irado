@@ -71,6 +71,12 @@ void Jogo :: executar()
                     estado = MENU;
                     menu.set_estado(SELECAO_FASE);
                 }
+                // Verifica se pausou o jogo
+                if (gg.getPausado())
+                {
+                    estado_anterior = PRIMEIRA_FASE;
+                    estado = PAUSADO;
+                }
 
                 // Verifica se pausou o jogo
                 if (gg.getPausado())

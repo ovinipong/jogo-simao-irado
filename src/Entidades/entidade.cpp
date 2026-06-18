@@ -5,7 +5,7 @@ using namespace std;
 using namespace sf;
 using namespace entidades;
 
-const float Entidade::gravidade = 0.98f;
+const float Entidade::gravidade = 0.16f;//gravidade lua
 float Entidade::dt = 1.0f;
 float Entidade::aplicarGravidade(float velocidade_y, float dt)
 {
