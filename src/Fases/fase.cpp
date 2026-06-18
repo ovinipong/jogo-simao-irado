@@ -167,6 +167,18 @@ void Fase::criarCenario(const std::string& caminhoFundo)
     //nao incluir no g_colisoes
     lista_ents.incluir(fundo);
 
+    Bloco* parededir = new Bloco(0, 0, 6, 576, PAREDE);
+    lista_ents.incluir(parededir);
+    gc.incluirBloco(parededir);
+
+    Bloco* paredeesq = new Bloco(1405, 0, 6, 576, PAREDE);
+    lista_ents.incluir(paredeesq);
+    gc.incluirBloco(paredeesq);
+
+    Bloco* teto = new Bloco(0, 0, 1408, 32, TETO);
+    lista_ents.incluir(teto);
+    gc.incluirBloco(teto);
+
     arquivo.clear();
     arquivo.seekg(0);
     
@@ -180,24 +192,6 @@ void Fase::criarCenario(const std::string& caminhoFundo)
             if (linha[x]=='1')//compara com o txt
             {
                 Bloco* bloco = new Bloco(x * 64, y * 64, 64, 44, CHAO);
-                lista_ents.incluir(bloco);
-                gc.incluirBloco(bloco);
-            }
-            else if (linha[x]=='6')//compara com o txt
-            {
-                Bloco* bloco = new Bloco(x * 64, y * 64, 64, 32, TETO);
-                lista_ents.incluir(bloco);
-                gc.incluirBloco(bloco);
-            }
-            else if (linha[x]=='7')//compara com o txt
-            {
-                Bloco* bloco = new Bloco(x * 64, y * 64, 6, 480, PAREDEDIR);
-                lista_ents.incluir(bloco);
-                gc.incluirBloco(bloco);
-            }
-            else if (linha[x]=='8')//compara com o txt
-            {
-                Bloco* bloco = new Bloco(x * 64, y * 64, 6, 480, PAREDEESQ);
                 lista_ents.incluir(bloco);
                 gc.incluirBloco(bloco);
             }

@@ -22,6 +22,8 @@ GerenciadorGrafico::GerenciadorGrafico()
     window->setFramerateLimit(60);
 
     fonte.loadFromFile("assets/m6x11.ttf");
+
+    pausado = false;
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()
@@ -76,6 +78,14 @@ void GerenciadorGrafico::executar()
             else if (event.text.unicode < 128 && event.text.unicode > 31)
             {
                 texto_digitado += static_cast<char>(event.text.unicode);
+            }
+        }
+
+        if (event.type == sf::Event::KeyReleased)
+        {
+            if (event.key.code == sf::Keyboard::P)
+            {
+                pausado = !pausado;
             }
         }
     }

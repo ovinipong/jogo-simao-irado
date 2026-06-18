@@ -8,8 +8,7 @@ using namespace entidades;
 enum TipoBloco{
     CHAO,
     TETO,
-    PAREDEDIR,
-    PAREDEESQ,
+    PAREDE,
     FUNDO
 };
 
