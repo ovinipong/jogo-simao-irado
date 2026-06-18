@@ -81,6 +81,7 @@ void GerenciadorGrafico::executar()
             }
         }
 
+        // Verifica se apertou para pausar
         if (event.type == sf::Event::KeyReleased)
         {
             if (event.key.code == sf::Keyboard::P)

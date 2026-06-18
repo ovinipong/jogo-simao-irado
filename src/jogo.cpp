@@ -78,6 +78,13 @@ void Jogo :: executar()
                     estado = PAUSADO;
                 }
 
+                // Verifica se pausou o jogo
+                if (gg.getPausado())
+                {
+                    estado_anterior = PRIMEIRA_FASE;
+                    estado = PAUSADO;
+                }
+
                 break;
             }
             case(SEGUNDA_FASE):
@@ -138,12 +145,14 @@ void Jogo :: executar()
                     pJog2 = new Jogador(400, 100, true);
                     estado = MENU;
                 }
+
                 // Verifica se pausou o jogo
                 if (gg.getPausado())
                 {
                     estado_anterior = SEGUNDA_FASE;
                     estado = PAUSADO;
                 }
+
                 break;
             }
             case(MENU):

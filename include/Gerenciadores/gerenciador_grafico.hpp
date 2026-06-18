@@ -36,6 +36,7 @@ class GerenciadorGrafico {
         }
         std::string const getTextoDigitado() {return(texto_digitado);}
         bool const getBackspacePressionado() {return(backspace_pressionado);}
+
         bool getPausado() {return(pausado); }
         
         sf::View getCamera();
