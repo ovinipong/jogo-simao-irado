@@ -1,5 +1,9 @@
 #include "lista_entidades.hpp"
 
+#include <fstream>
+#include <iostream>
+#include <string>
+
 using namespace listas;
 
 ListaEntidades :: ListaEntidades() : LEs()
@@ -57,4 +61,31 @@ void ListaEntidades :: remover(Entidade* pE)
 void ListaEntidades :: limpar()
 {
     LEs.limpar();
+}
+
+void ListaEntidades :: percorrerSalvar()
+{
+    // Abre o arquivo e ja limpa o que estava escrito la
+    std::ofstream arquivo("assets/salvar/salvar_fase.txt", std::ios::out | std::ios::trunc);
+
+    // Se nao conseguir abrir o arquivo, imprime a mensagem de erro e sai
+    if (!arquivo.is_open())
+    {
+        std::cerr << "Nao foi possivel abrir o salvar_fase.txt" << std::endl;
+        return;
+    }
+
+    // Vai percorrer a lista
+    auto aux = LEs.getPrimeiro();
+    while(aux != LEs.getUltimo())
+    {
+        if (aux->pInfo->getID() != 1)
+        {
+            aux->pInfo->salvar(arquivo);
+        }
+
+        aux = aux->getProx();
+    }
+
+    arquivo.close();
 }

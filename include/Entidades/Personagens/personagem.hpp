@@ -16,8 +16,9 @@ class Personagem : public Entidade
         void operator--();
         void receberDano(int dano);
         const int get_vida() const {return num_vidas;};
+        void setVida(int v) { num_vidas = v; }
 
-        virtual void salvar() = 0;
+        virtual void salvar(std::ofstream& arquivo) = 0;
 };
 
 }

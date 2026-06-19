@@ -29,7 +29,6 @@ class Projetil : public entidades::Entidade
         ~Projetil();
         void executar();
         void disparar(sf::Vector2f pos_inicial, bool olhando_esquerda);
-        void disparar();
         TipoProjetil getTipoProjetil();
 
         void setAtivo();
@@ -41,5 +40,9 @@ class Projetil : public entidades::Entidade
         void setDonoRato(entidades::Rato* pR) { pRato = pR; }
         entidades::Rato* getDonoRato() { return(pRato); }
 
-        void salvar();
+        void salvar(std::ofstream& arquivo);
+        
+        void setVelocidadeX(float v_x) { velocidade_x = v_x; }
+        void setTempoMhs(float t_mhs) { tempo_mhs = t_mhs; }
+        void setYInicialMhs(float y_i_m) { y_inicial_mhs = y_i_m; }
 };

@@ -109,7 +109,7 @@ void Bloco::colisaoBloco(Obstaculo* pO)
     }
 }
 
-void Bloco :: salvar()
+void Bloco :: salvar(std::ofstream& arquivo)
 {
-    
+    arquivo << id << " " << x << " " << y << std::endl;
 }

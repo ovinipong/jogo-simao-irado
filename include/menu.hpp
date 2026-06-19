@@ -37,6 +37,7 @@ class Menu : public Ente
         sf::Sprite botao_fase1;
         sf::Sprite botao_fase2;
         sf::Sprite botao_fase_voltar;
+        sf::Sprite botao_fase_continuar;
         sf::Sprite botao_um_jogador;
         sf::Sprite botao_dois_jogadores;
         sf::Sprite botao_jogador_voltar;

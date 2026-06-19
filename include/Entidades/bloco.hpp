@@ -24,5 +24,5 @@ class Bloco : public entidades::Entidade
         void colisaoBloco(Personagem* pP);
         void colisaoBloco(Obstaculo* pO);
 
-        void salvar();
+        void salvar(std::ofstream& arquivo);
 };

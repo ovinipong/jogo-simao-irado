@@ -2,6 +2,10 @@
 
 #include "ente.hpp"
 
+#include <fstream>
+#include <iostream>
+#include <string>
+
 namespace entidades{
 
 class Entidade : public Ente
@@ -30,7 +34,7 @@ class Entidade : public Ente
         void setInvalido() {valido=false;};
         static float aplicarGravidade(float velocidade_y, float dt);
 
-        virtual void salvar() = 0;
+        virtual void salvar(std::ofstream& arquivo) = 0;
     };
 
 }

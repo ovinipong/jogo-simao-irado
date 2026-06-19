@@ -55,7 +55,7 @@ void Bolinho:: danificar(Jogador* p)
     p->aplicarLentidao(reducao_velocidade, tempo);
 }
 
-void Bolinho :: salvar()
+void Bolinho :: salvar(std::ofstream& arquivo)
 {
-    
+    arquivo << id << " " << x << " " << y << " " << num_vidas << " " << velocidade_y << " " << move_speed << std::endl;
 }

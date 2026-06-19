@@ -35,4 +35,5 @@ class Jogo
         bool getDoisJogadores() const {return(dois_jogadores);}
         void reiniciarFase();
         void continuarFase() { estado = estado_anterior; };
+        void voltarFase();
 };

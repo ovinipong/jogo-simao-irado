@@ -4,22 +4,37 @@
 #include <iostream>
 #include <string>
 
-PrimeiraFase:: PrimeiraFase(Jogador* pJog1, Jogador* pJog2) : Fase("assets/mapas/mapa1.txt", pJog1, pJog2),
+PrimeiraFase:: PrimeiraFase(Jogador* pJog1, Jogador* pJog2, bool carregar_fase) : Fase("assets/mapas/mapa1.txt", pJog1, pJog2),
                                                               maxInimBolo(5),
                                                               maxAgua(5)
 {
     srand(time(nullptr));
-    criarCenario("assets/fundofase1.png");
-    criarInimigos();
-    criarObstaculos();
-    lista_ents.incluir(pJog1);
-    gc.incluirJogadores(pJog1);
-    if (pJog2->getValido()==true)//opção de 2 jogadores selecionada no menu
+    
+    // Se nao for preciso carregar fase 
+    if (!carregar_fase)
     {
-        lista_ents.incluir(pJog2);
-        gc.incluirJogadores(pJog2);
+        criarCenario("assets/fundofase1.png");
+        std::cout << "Entrando a primeira vez" << std::endl;
+        criarInimigos();
+        criarObstaculos();
+
+        lista_ents.incluir(pJog1);
+        gc.incluirJogadores(pJog1);
+        if (pJog2->getValido()==true)//opção de 2 jogadores selecionada no menu
+        {
+            lista_ents.incluir(pJog2);
+            gc.incluirJogadores(pJog2);
+        }
+        criarProjeteisJogador();
+
     }
-    criarProjeteisJogador();
+    // Se for preciso carregar fase
+    else if (carregar_fase)
+    {
+        std::cout << "Continuando" << std::endl;
+        carregarFase();
+    }
+
 }
 
 PrimeiraFase :: ~PrimeiraFase()

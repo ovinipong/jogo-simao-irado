@@ -141,7 +141,7 @@ void Plataforma::obstaculizar(entidades::Jogador* pJog)
     }
 }
 
-void Plataforma :: salvar()
+void Plataforma :: salvar(std::ofstream& arquivo)
 {
-    
+    arquivo << id << " " << x << " " << y << std::endl;
 }

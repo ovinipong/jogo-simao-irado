@@ -22,7 +22,8 @@ class Inimigo : public Personagem
         //virtual void salva() = 0;
         void setDano(){dano=nivel_maldade*2;};
 
-        virtual void salvar() = 0;
+        virtual void salvar(std::ofstream& arquivo) = 0;
+        void setMoveSpeed(int mp) { move_speed = mp; }
 };
 
 }

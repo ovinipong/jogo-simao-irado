@@ -61,7 +61,21 @@ void Lustre::obstaculizar(entidades::Jogador* pJog)
     }
 }
 
-void Lustre :: salvar()
+void Lustre :: setCaindo(bool c)
 {
-    
+    caindo = c;
+
+    if (caindo)
+    {
+        colisao.setSize(sf::Vector2f(54.f, 46.f));
+    }
+    else if (!caindo)
+    {
+        colisao.setSize(sf::Vector2f(54.f, 448.f));
+    }
+}
+
+void Lustre :: salvar(std::ofstream& arquivo)
+{
+    arquivo << id << " " << x << " " << y << " " << caindo << " " << y_inicial << " " << velocidade_y << std::endl;
 }

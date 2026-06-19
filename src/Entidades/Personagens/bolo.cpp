@@ -17,6 +17,8 @@ Inimigo(_x, _y)
     pulo_velocidade = 7.0f;
     num_vidas = 5;
 
+    id = 4;
+
     inicializarSprite("assets/bolo.png", 1, 64, 64, 8, 0, 0, sf::Vector2f(0.f, 0.f));
 
     colisao.setSize(sf::Vector2f(64.0f, 64.0f));
@@ -85,7 +87,7 @@ void Bolo::danificar(Jogador* p)
     p->receberDano(dano);
 }
 
-void Bolo :: salvar()
+void Bolo :: salvar(std::ofstream& arquivo)
 {
-    
+    arquivo << id << " " << x << " " << y << " " << num_vidas << " " << velocidade_x << " " << velocidade_y << " " << estado << std::endl;
 }
