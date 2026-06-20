@@ -13,7 +13,7 @@ Lustre::Lustre(int _x, int _y) : Obstaculo(_x, _y)
     id=11 ;
     inicializarSprite("assets/lustre.png", 0, 64, 64, 0, 0, 0, sf::Vector2f(0.f, 0.f));
 
-    colisao.setSize(sf::Vector2f(54.0f, 448));
+    colisao.setSize(sf::Vector2f(54.0f, 500.0f));
     colisao.setFillColor(sf::Color::Red);
     colisao.setPosition(x, y);
 }
@@ -71,7 +71,7 @@ void Lustre :: setCaindo(bool c)
     }
     else if (!caindo)
     {
-        colisao.setSize(sf::Vector2f(54.f, 448.f));
+        colisao.setSize(sf::Vector2f(54.f, 500.f));
     }
 }
 
