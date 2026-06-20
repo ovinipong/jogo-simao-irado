@@ -47,6 +47,17 @@ class Menu : public Ente
 
         sf::Texture textura_fundo_pause;
         sf::Sprite sprite_fundo_pause;
+
+        sf::Texture fnd_menu;
+        sf::Texture fnd_ranking;
+        sf::Texture fnd_fases;
+        sf::Texture fnd_jogadores;
+
+        sf::Sprite fundo_menu;
+        sf::Sprite fundo_ranking;
+        sf::Sprite fundo_fases;
+        sf::Sprite fundo_jogadores;
+
         sf::RectangleShape retangulo_escuro;
 
     public:

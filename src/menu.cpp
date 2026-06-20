@@ -47,26 +47,43 @@ Menu::Menu(Jogo* pJ) : pJogo(pJ)
 
     botao_pause_menu.setTexture(btn_menu);
     botao_pause_continuar.setTexture(btn_continuar);
-    
+
+    // Carrega a textura dos fundos
+    if(!fnd_menu.loadFromFile("assets/menu_fundo.png")) { std::cerr << "Erro ao abrir o menu_fundo.png" << std::endl; }
+    if(!fnd_fases.loadFromFile("assets/fases_fundo.png")) { std::cerr << "Erro ao abrir o fases_fundo.png" << std::endl; }
+    if (!fnd_ranking.loadFromFile("assets/ranking_fundo.png")) { std::cerr << "Erro ao abrir o ranking_fundo.png" << std::endl; }
+    if (!fnd_jogadores.loadFromFile("assets/jogadores_fundo.png")) { std::cerr << "Erro ao abrir o jogadores_fundo.png" << std::endl; }
+
+    // Atribui as texturas aos fundos
+    fundo_menu.setTexture(fnd_menu);
+    fundo_fases.setTexture(fnd_fases);
+    fundo_ranking.setTexture(fnd_ranking);
+    fundo_jogadores.setTexture(fnd_jogadores);
+
+    fundo_menu.setPosition(0.f, 0.f);
+    fundo_fases.setPosition(0.f, 0.f);
+    fundo_ranking.setPosition(0.f, 0.f);
+    fundo_ranking.setPosition(0.f, 0.f);
+
     // Coloca a posicao certa de cada sprite
     // (Largura da tela / 2) - (Largura do botao / 2)
-    float centro_x = 362.f;
+    float centro_x = 264.f;
     
-    botao_jogar.setPosition(centro_x, 220.f);
-    botao_ranking.setPosition(centro_x, 320.f);
+    botao_jogar.setPosition(centro_x, 289.f);
+    botao_ranking.setPosition(centro_x, 385.f);
     botao_ranking_voltar.setPosition(centro_x, 450.f);
     
-    botao_fase1.setPosition(centro_x, 120.f);
-    botao_fase2.setPosition(centro_x, 220.f);
-    botao_fase_voltar.setPosition(centro_x, 450.f);
-    botao_fase_progresso.setPosition(centro_x, 320.f);
+    botao_fase1.setPosition(centro_x, 217.f);
+    botao_fase2.setPosition(centro_x, 305.f);
+    botao_fase_voltar.setPosition(452, 510.f);
+    botao_fase_progresso.setPosition(centro_x, 399.f);
     
-    botao_um_jogador.setPosition(centro_x, 170.f);
-    botao_dois_jogadores.setPosition(centro_x, 270.f);
-    botao_jogador_voltar.setPosition(centro_x, 450.f);
+    botao_um_jogador.setPosition(centro_x, 289.f);
+    botao_dois_jogadores.setPosition(centro_x, 385.f);
+    botao_jogador_voltar.setPosition(452, 510.f);
 
-    botao_pause_continuar.setPosition(centro_x, 250.f);
-    botao_pause_menu.setPosition(centro_x, 350.f);
+    botao_pause_continuar.setPosition(362, 289.f);
+    botao_pause_menu.setPosition(362, 385.f);
 
     // Retangulo para o pause
     retangulo_escuro.setSize(sf::Vector2f(1024.f, 576.f));
@@ -283,11 +300,13 @@ void Menu::executar()
     // ---------------------------------------------------------
     if (tela == PRINCIPAL)
     {
+        window->draw(fundo_menu);
         window->draw(botao_jogar);
         window->draw(botao_ranking);
     }
     else if (tela == SELECAO_FASE)
     {
+        window->draw(fundo_fases);
         window->draw(botao_fase1);
         window->draw(botao_fase2);
         window->draw(botao_fase_progresso);
@@ -296,18 +315,20 @@ void Menu::executar()
         sf::Text texto_nome("Seu nome: " + nome_jogador + "_", fonte, 30);
         float largura_texto = texto_nome.getGlobalBounds().width;
         float centro_x = (1024 / 2) - (largura_texto / 2);
-        texto_nome.setPosition(centro_x, 30.f); 
-        texto_nome.setFillColor(sf::Color::Yellow);
+        texto_nome.setPosition(centro_x, 150.f); 
+        texto_nome.setFillColor(sf::Color::Black);
         window->draw(texto_nome);
     }
     else if (tela == SELECAO_JOGADORES)
     {
+        window->draw(fundo_jogadores);
         window->draw(botao_um_jogador);
         window->draw(botao_dois_jogadores);
         window->draw(botao_jogador_voltar);
     }
     else if (tela == PONTUACAO)
     {
+        window->draw(fundo_ranking);
         window->draw(botao_ranking_voltar);
 
         float pos_y = 100.f;
