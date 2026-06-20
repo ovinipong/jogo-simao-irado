@@ -22,7 +22,10 @@ Personagem(_x, _y)
     tempo_invulneravel= 1.0f;
     pulo_velocidade = -7.0f;
 
-    inicializarSprite("assets/jogador.png", 17, 64, 128, 8, 2, 9, sf::Vector2f(0.f, -45.f));
+    if (!segundo_jog)
+        inicializarSprite("assets/jogador1.png", 10, 64, 128, 8, 2, 9, sf::Vector2f(0.f, -45.f));
+    else
+        inicializarSprite("assets/jogador2.png", 10, 64, 128, 8, 2, 9, sf::Vector2f(0.f, -45.f));
 
     colisao.setSize(sf::Vector2f(50.0f, 50.0f));
     colisao.setFillColor(sf::Color::Green);

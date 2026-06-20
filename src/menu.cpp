@@ -71,7 +71,7 @@ Menu::Menu(Jogo* pJ) : pJogo(pJ)
     
     botao_jogar.setPosition(centro_x, 289.f);
     botao_ranking.setPosition(centro_x, 385.f);
-    botao_ranking_voltar.setPosition(centro_x, 450.f);
+    botao_ranking_voltar.setPosition(452, 510.f);
     
     botao_fase1.setPosition(centro_x, 217.f);
     botao_fase2.setPosition(centro_x, 305.f);
@@ -331,7 +331,7 @@ void Menu::executar()
         window->draw(fundo_ranking);
         window->draw(botao_ranking_voltar);
 
-        float pos_y = 100.f;
+        float pos_y = 289.f;
         int posicao_atual = 1;
 
         // Percore a ordem de ranking
@@ -339,20 +339,20 @@ void Menu::executar()
         {
             // Coloca o nome do sujeito
             std::string str_exibicao_nome = std::to_string(posicao_atual) + ". " + it->second;
-            sf::Text txt_colocado(str_exibicao_nome, fonte, 26);
-            txt_colocado.setPosition(350.f, pos_y);
-            txt_colocado.setFillColor(sf::Color::White);
+            sf::Text txt_colocado(str_exibicao_nome, fonte, 24);
+            txt_colocado.setPosition(264.f, pos_y);
+            txt_colocado.setFillColor(sf::Color::Black);
             window->draw(txt_colocado);
 
             // Coloca a pontuacao
-            std::string str_exibicao_pontos = std::to_string(it->first) + " pts";
+            std::string str_exibicao_pontos = std::to_string(it->first) + " pontos";
             sf::Text txt_pontos(str_exibicao_pontos, fonte, 26);
-            txt_pontos.setPosition(600.f, pos_y);
-            txt_pontos.setFillColor(sf::Color::Cyan);
+            txt_pontos.setPosition(670.f, pos_y);
+            txt_pontos.setFillColor(sf::Color::Black);
             window->draw(txt_pontos);
 
             // Pula para escrever o proximo
-            pos_y += 40.f;
+            pos_y += 25.f;
         }
 
         if (ordem_ranking.empty())
