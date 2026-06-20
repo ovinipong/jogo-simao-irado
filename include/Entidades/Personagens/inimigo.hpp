@@ -19,7 +19,6 @@ class Inimigo : public Personagem
         virtual void executar()=0;
         virtual void danificar(Jogador* p) = 0;
         void inverterDirecao();
-        //virtual void salva() = 0;
         void setDano(){dano=nivel_maldade*2;};
 
         virtual void salvar(std::ofstream& arquivo) = 0;

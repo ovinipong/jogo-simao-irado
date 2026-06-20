@@ -26,6 +26,9 @@ void Jogo :: executar()
 {
     while (gg.janelaAberta())
     {
+        std::cout << "SFML " << SFML_VERSION_MAJOR << "."
+              << SFML_VERSION_MINOR << "."
+              << SFML_VERSION_PATCH << std::endl;
         switch(estado)
         {
             case(PRIMEIRA_FASE):

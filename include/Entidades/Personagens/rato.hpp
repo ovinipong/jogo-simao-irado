@@ -2,11 +2,12 @@
 
 #include "inimigo.hpp"
 #include "projetil.hpp"
+#include "thread.hpp"
 
 namespace entidades
 {
 
-class Rato : public Inimigo
+class Rato : public Inimigo, public Thread
 {
     private:
         std::vector<Projetil*>* pListaProjeteis;
@@ -18,7 +19,8 @@ class Rato : public Inimigo
     public:
         Rato(int _x=0, int _y=0, Jogador *pJ = NULL);
         ~Rato();
-        void executar();
+        void executar(); //chamado pela thread principal 
+        void* executarThread(); //chamado pela thread própria do rato 
         void danificar(Jogador* p);
         void inverterDirecao();
         void setListaProjeteis(std::vector<Projetil*>* pLista) { pListaProjeteis = pLista; }

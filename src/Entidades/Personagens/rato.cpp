@@ -8,7 +8,7 @@ using namespace entidades;
 int Rato :: contador_instancias = 0;
 
 Rato::Rato(int _x, int _y, Jogador *pJ):
-Inimigo(_x, _y)
+Inimigo(_x, _y), Thread()
 {
     num_vidas = 5;
     nivel_maldade=3;
@@ -23,20 +23,18 @@ Inimigo(_x, _y)
     colisao.setSize(sf::Vector2f(60.0f, 96.0f));
     colisao.setFillColor(sf::Color::Green);
     pJogador = pJ;
+
+    iniciarThread(); //inicia a thread do rato 
 }
 
 Rato::~Rato()
 {
-    
+
 }
 
-void Rato::executar()
+void Rato::executar() //no executar da fase 
 {
-    // ATIRAR PEW PEW
-    if (timer_atirar.getElapsedTime().asSeconds() >= 2)
-    {
-        atirar();
-    }
+    lock();
 
     if (getNoChao()==true)
     {
@@ -48,8 +46,33 @@ void Rato::executar()
     }
 
     y += velocidade_y * dt;
-    
     colisao.setPosition((float)x, (float)y);
+
+    unlock();
+}
+
+void* Rato::executarThread() //ao executar cria a sensação que o rato decidiu atirar
+{
+    if (!getValido())
+    {
+        pararThread();
+        return NULL; //esperado pelo tipo da função (void*)
+    }
+    while (getExecutando())
+    {
+        lock();
+        if (timer_atirar.getElapsedTime().asSeconds() >= 2)
+        {
+            atirar();
+        }
+        unlock();
+
+        struct timespec ts; //<time.h>
+        ts.tv_sec = 0;
+        ts.tv_nsec = 50000000;
+        nanosleep(&ts, NULL); // 0,05s, evita o uso total da CPU sem necessidade definindo um tempo de checagem do timer
+    }
+    return NULL; //esperado pelo tipo da função (void*)
 }
 
 void Rato :: atirar()
@@ -74,7 +97,9 @@ void Rato :: atirar()
 //dano ao contato e atira de novo
 void Rato:: danificar(Jogador* p)
 {
+    lock();
     p->receberDano(dano);
+    unlock();
     atirar();
 }
 
@@ -92,5 +117,7 @@ bool Rato :: getOlhandoEsquerda()
 
 void Rato :: salvar(std::ofstream& arquivo)
 {
+    lock();
     arquivo << id << " " << x << " " << y << " " << num_vidas << " " << id_instancia << std::endl;
+    unlock();
 }

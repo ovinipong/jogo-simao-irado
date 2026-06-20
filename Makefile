@@ -18,6 +18,7 @@ CPPFLAGS = -I$(INC_DIR) \
            -I$(INC_DIR)/Listas \
            -I"C:/msys64/ucrt64/include"
 LDFLAGS = -L"C:/msys64/ucrt64/lib" -lsfml-graphics -lsfml-window -lsfml-system
+LDFLAGS += -lpthread
 
 all:
 	$(CXX) $(SRC_DIR)/*.cpp \
