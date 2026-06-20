@@ -43,7 +43,7 @@ void Agua::obstaculizar(Jogador* pJog)
 }
 
 
-void Agua :: salvar()
+void Agua :: salvar(std::ofstream& arquivo)
 {
-    
+    arquivo << id << " " << x << " " << y << std::endl;
 }

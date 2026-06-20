@@ -41,6 +41,7 @@ class Fase : public Ente
         Jogador* pJogador1;
         Jogador* pJogador2;
         std::vector<Projetil*> projeteis_jogador;
+        std::vector<Projetil*> projeteis_rato;
         bool concluida;
         sf::Clock clock;//para ajustes de gravidade;
 
@@ -49,6 +50,9 @@ class Fase : public Ente
         ~Fase();
         void executar();
         bool getConcluida() { return concluida; }
+        void salvarEntidades() { lista_ents.percorrerSalvar(); }
+        void carregarFase();
+        
     protected:
         void move_camera();
 

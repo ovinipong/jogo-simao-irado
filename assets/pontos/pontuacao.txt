@@ -1,4 +1,2 @@
-CLAUDIO: 4 pontos
-: 2 pontos
-: 0 pontos
-: 0 pontos
+PAULINHO: 3 pontos
+LEO: 6 pontos

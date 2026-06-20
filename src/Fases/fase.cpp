@@ -294,3 +294,240 @@ void Fase :: ajustarProjeteisJogador()
         }
     }
 }
+
+void Fase :: carregarFase()
+{
+    std::ifstream arquivo_save("assets/salvar/salvar_fase.txt", std::ios::in);
+
+    if (!arquivo_save.is_open())
+    {
+        std::cerr << "Arquivo de jogo salvo nao encontrado ou nao pode ser aberto!" << std::endl;
+        return;
+    }
+
+    int id_entidade;
+
+    lista_ents.limpar();
+
+    // Cria o cenario depois de limpar a fase
+    criarCenario("assets/fundofase1.png");
+
+    std::map<int, Rato*> mapa_ratos;
+    std::vector<std::pair<Projetil*, int>> projeteis_donos_carregados;
+
+    // Percorre levando em conta o id
+    while ( arquivo_save >> id_entidade)
+    {
+        switch(id_entidade)
+        {
+            // Primeiro Jogador
+            case(2):
+            {
+                int x, y, pontos, num_vidas;
+                float velocidade_y;
+                arquivo_save >> x >> y >> num_vidas >> pontos >> velocidade_y;
+                pJogador1->setXY(x, y);
+                pJogador1->setVida(num_vidas);
+                pJogador1->setPontos(pontos);
+                pJogador1->setVelocidadeY(velocidade_y);
+                
+                gc.incluirJogadores(pJogador1);
+                lista_ents.incluir(pJogador1);
+                break;
+            }
+            // Bolinho
+            case(3):
+            {
+                int x, y, num_vidas, move_speed;
+                float velocidade_y;
+                arquivo_save >> x >> y >> num_vidas >> velocidade_y >> move_speed;
+                Bolinho *pBolinho = new Bolinho(x, y);
+                pBolinho->setVida(num_vidas);
+                pBolinho->setVelocidadeY(velocidade_y);
+                pBolinho->setMoveSpeed(move_speed);
+
+                gc.incluirInimigo(pBolinho);
+                lista_ents.incluir(pBolinho);
+                break;
+            }
+            // Bolo
+            case(4):
+            {
+                int x, y, num_vidas, velocidade_x, estado;
+                float velocidade_y;
+                arquivo_save >> x >> y >> num_vidas >> velocidade_x >> velocidade_y >> estado;
+                Bolo *pBolo = new Bolo(x, y);
+                pBolo->setVida(num_vidas);
+                pBolo->setVelocidadeX(velocidade_x);
+                pBolo->setVelocidadeY(velocidade_y);
+                pBolo->setEstado(static_cast<entidades::EstadoBolo>(estado));
+
+                gc.incluirInimigo(pBolo);
+                lista_ents.incluir(pBolo);
+                break;
+            }
+            // Rato
+            case(5):
+            {
+                int x, y, num_vidas, id_instancia;
+                arquivo_save >> x >> y >> num_vidas >> id_instancia;
+                Rato *pRato = new Rato(x, y, pJogador1);
+                pRato->setVida(num_vidas);
+
+                gc.incluirInimigo(pRato);
+                lista_ents.incluir(pRato);
+                mapa_ratos[id_instancia] = pRato;
+                break;
+            }
+            // Projetil jogador
+            case(6):
+            {
+                int x, y;
+                bool ativo;
+                float velocidade_x, velocidade_y, mhs;
+                arquivo_save >> x >> y >> ativo >> velocidade_x >> velocidade_y >> mhs;
+                Projetil *pProj = new Projetil(x, y, JOGADOR);
+                if (ativo) pProj->setAtivo(); else pProj->setInativo();
+                pProj->setXY(x, y);
+                pProj->setVelocidadeX(velocidade_x);
+                pProj->setVelocidadeY(velocidade_y);
+                pProj->setTempoMhs(mhs);
+
+                gc.incluirProjetil(pProj);
+                lista_ents.incluir(pProj);
+                projeteis_jogador.push_back(pProj);
+                break;
+            }
+            // Plataforma
+            case(7):
+            {
+                int x, y;
+                arquivo_save >> x >> y;
+                Plataforma *pPlat = new Plataforma(x, y, PRATELEIRA);
+                pPlat->setXY(x, y);
+
+                gc.incluirObstaculo(pPlat);
+                lista_ents.incluir(pPlat);
+                break;
+            }
+            // Mesa
+            case(8):
+            {
+                int x, y;
+                arquivo_save >> x >> y;
+                Plataforma *pPlat = new Plataforma (x, y, MESA);
+                gc.incluirObstaculo(pPlat);
+                lista_ents.incluir(pPlat);
+                break;
+            }
+            // Cristaleira
+            case(9):
+            {
+                int x, y;
+                arquivo_save >> x >> y;
+                Plataforma *pPlat = new Plataforma (x, y, CRISTALEIRA);
+
+                gc.incluirObstaculo(pPlat);
+                lista_ents.incluir(pPlat);
+                break;
+            }
+            // Agua
+            case(10):
+            {
+                int x, y;
+                arquivo_save >> x >> y;
+                Agua *pAgua = new Agua(x, y);
+
+                gc.incluirObstaculo(pAgua);
+                lista_ents.incluir(pAgua);
+                break;
+            }
+            // Lustre
+            case(11):
+            {
+                int x, y;
+                bool caindo;
+                float y_incial, velocidade_y;
+                arquivo_save >> x >> y >> caindo >> y_incial >> velocidade_y;
+                Lustre *pLustre = new Lustre(x, y);
+                pLustre->setCaindo(caindo);
+                pLustre->setYInicial(y_incial);
+                pLustre->setVelocidadeY(velocidade_y);
+
+                gc.incluirObstaculo(pLustre);
+                lista_ents.incluir(pLustre);
+                break;
+            }
+            // Segundo jogador
+            case(12):
+            {
+                int x, y, pontos, num_vidas;
+                float velocidade_y;
+                arquivo_save >> x >> y >> num_vidas >> pontos >> velocidade_y;
+                pJogador2->setXY(x, y);
+                pJogador2->setVida(num_vidas);
+                pJogador2->setPontos(pontos);
+                pJogador2->setVelocidadeY(velocidade_y);
+                
+                gc.incluirJogadores(pJogador2);
+                lista_ents.incluir(pJogador2);
+                break;
+            }
+            // Projetil Rato
+            case(13):
+            {
+                int x, y, id_dono;
+                bool ativo;
+                float velocidade_x, velocidade_y, mhs, y_inicial_mhs;
+                arquivo_save >> x >> y >> ativo >> velocidade_x >> velocidade_y >> mhs >> y_inicial_mhs >> id_dono;
+                Projetil *pProj = new Projetil(x, y, RATO);
+
+                if (ativo)
+                {
+                    pProj->setAtivo();
+                    pProj->setXY(x, y);
+                }
+                else
+                {
+                    pProj->setInativo();
+                }
+
+                pProj->setVelocidadeX(velocidade_x);
+                pProj->setVelocidadeY(velocidade_y);
+                pProj->setTempoMhs(mhs);
+                pProj->setYInicialMhs(y_inicial_mhs);
+                projeteis_donos_carregados.push_back({pProj, id_dono});
+
+
+                gc.incluirProjetil(pProj);
+                lista_ents.incluir(pProj);
+                projeteis_rato.push_back(pProj);
+                break;
+            }
+        }
+    }
+    
+    pJogador1->setListaProjeteis(&projeteis_jogador);
+
+    for (auto& par : mapa_ratos)
+    {
+        par.second->setListaProjeteis(&projeteis_rato);
+    }
+
+    for (auto& par : projeteis_donos_carregados)
+    {
+        Projetil* pProj = par.first;
+        int id_dono = par.second;
+
+        auto it = mapa_ratos.find(id_dono);
+        if (it != mapa_ratos.end())
+        {
+            pProj->setDonoRato(it->second);
+        }
+        else
+        {
+            pProj->setDonoRato(NULL);
+        }
+    }
+    arquivo_save.close();
+}

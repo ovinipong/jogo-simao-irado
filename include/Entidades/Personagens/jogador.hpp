@@ -45,7 +45,7 @@ class Jogador : public Personagem
 
         bool getSegundo(){return segundo;};
 
-        void salvar();
+        void salvar(std::ofstream& arquivo);
 };
 
 

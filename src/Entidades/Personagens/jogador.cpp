@@ -14,7 +14,6 @@ Personagem(_x, _y)
 {
     num_vidas = 40;
     pListaProjeteis = nullptr;
-    id =2;
     segundo = segundo_jog;
     pontos = 0;
     velocidade_padrao = 4;
@@ -27,6 +26,9 @@ Personagem(_x, _y)
 
     colisao.setSize(sf::Vector2f(50.0f, 50.0f));
     colisao.setFillColor(sf::Color::Green);
+
+    if (!segundo_jog) id =2;
+    else id = 12;
 }
 
 // Destrutora
@@ -189,7 +191,7 @@ void Jogador::operator++()
     pontos+=1;
 }
 
-void Jogador :: salvar()
+void Jogador :: salvar(std::ofstream& arquivo)
 {
-    
+    arquivo << id << " " << x << " " << y << " " << num_vidas << " " << pontos << " " << velocidade_y << std::endl;
 }

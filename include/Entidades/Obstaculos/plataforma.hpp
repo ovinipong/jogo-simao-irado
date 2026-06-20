@@ -21,5 +21,5 @@ class Plataforma : public Obstaculo
         void executar();
         void obstaculizar(entidades::Jogador* pJog);
 
-        void salvar();
+        void salvar(std::ofstream& arquivo);
 };

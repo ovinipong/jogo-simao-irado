@@ -1,7 +1,11 @@
 #include "rato.hpp"
 #include <iostream>
+#include <stdexcept>
+#include <map>
 
 using namespace entidades;
+
+int Rato :: contador_instancias = 0;
 
 Rato::Rato(int _x, int _y, Jogador *pJ):
 Inimigo(_x, _y)
@@ -10,6 +14,10 @@ Inimigo(_x, _y)
     nivel_maldade=3;
     setDano();
     setNoChao(false);
+    pListaProjeteis = NULL;
+    id_instancia = contador_instancias++;
+
+    id = 5;
 
     inicializarSprite("assets/rato.png", 1, 78, 96, 1, 0, 0, sf::Vector2f(8.f, 0.f));
     colisao.setSize(sf::Vector2f(60.0f, 96.0f));
@@ -19,7 +27,7 @@ Inimigo(_x, _y)
 
 Rato::~Rato()
 {
-
+    
 }
 
 void Rato::executar()
@@ -82,7 +90,7 @@ bool Rato :: getOlhandoEsquerda()
     }
 }
 
-void Rato :: salvar()
+void Rato :: salvar(std::ofstream& arquivo)
 {
-    
+    arquivo << id << " " << x << " " << y << " " << num_vidas << " " << id_instancia << std::endl;
 }

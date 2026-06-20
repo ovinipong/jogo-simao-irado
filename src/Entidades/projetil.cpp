@@ -26,12 +26,14 @@ Entidade(_x, _y)
         inicializarSprite("assets/coracao.png", 1, 16, 16, 0, 0, 0, sf::Vector2f(0.f, 0.f));
         colisao.setSize(sf::Vector2f(16.0f, 16.0f));
         colisao.setFillColor(sf::Color::Green);
+        id = 6;
     }
     else if (projetil == RATO)
     {
         inicializarSprite("assets/queijo.png", 1, 32, 32, 0, 0, 0, sf::Vector2f(0.f, 0.f));
         colisao.setSize(sf::Vector2f(32.0f, 32.0f));
         colisao.setFillColor(sf::Color::Green);
+        id = 13;
     }
 }
 
@@ -137,7 +139,16 @@ void Projetil :: setAtivo()
     ativo = true;
 }
 
-void Projetil :: salvar()
+void Projetil :: salvar(std::ofstream& arquivo)
 {
-
+    int id_dono_rato;
+    if (pRato != NULL)
+    {
+        id_dono_rato = pRato->getIdInstancia();
+    }
+    else
+    {
+        id_dono_rato = -1;
+    }
+    arquivo << id << " " << x << " " << y << " " << ativo << " " << velocidade_x << " " << velocidade_y << " " << tempo_mhs << " " << y_inicial_mhs << " " << id_dono_rato << std::endl;
 }

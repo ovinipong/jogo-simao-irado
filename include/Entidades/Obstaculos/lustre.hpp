@@ -15,5 +15,7 @@ class Lustre : public Obstaculo
         void executar();
         void obstaculizar(entidades::Jogador* pJog); 
 
-        void salvar();
+        void salvar(std::ofstream& arquivo);
+        void setCaindo(bool c);
+        void setYInicial(float y_i) { y_inicial = y_i; }
 };

@@ -196,6 +196,46 @@ void Jogo :: setEstado(Estado e)
 
 void Jogo :: reiniciarFase()
 {
+    std::ofstream arquivo("assets/salvar/estado_jogo.txt", std::ios::out);
+
+    if (!arquivo.is_open())
+    {
+        std::cerr << "Nao foi possivel salvar o arquivo estado_jogo.txt" << std::endl;
+        return;
+    }
+
+    // Salva a fase que voce esta
+    if (estado_anterior == PRIMEIRA_FASE)
+    {
+        arquivo << 1 << std::endl;
+    }
+    else if (estado_anterior == SEGUNDA_FASE)
+    {
+        arquivo << 2 << std::endl;
+    }
+
+    // Salva a quantidade de jogadores
+    if (!dois_jogadores)
+    {
+        arquivo << 1 << std::endl;
+    }
+    else if (dois_jogadores)
+    {
+        arquivo << 2 << std::endl;
+    }
+
+    arquivo.close();
+
+    // Salva
+    if (estado_anterior == PRIMEIRA_FASE)
+    {
+        fase1->salvarEntidades();
+    }
+    else if (estado_anterior == SEGUNDA_FASE)
+    {
+        fase2->salvarEntidades();
+    }
+
     if (fase1)
     {
         delete(fase1);
@@ -217,4 +257,45 @@ void Jogo :: reiniciarFase()
 
     pJog1 = new Jogador(400, 100, false);
     pJog2 = new Jogador(400, 100, true);
+}
+
+void Jogo :: voltarFase()
+{
+    std::ifstream arquivo("assets/salvar/estado_jogo.txt", std::ios::in);
+    
+    if (!arquivo.is_open())
+    {
+        std::cerr << "Nenhum save encontrado!" << std::endl;
+        return;
+    }
+
+    int fase_salva = 1;
+    int num_jogadores = 1;
+    
+    arquivo >> fase_salva >> num_jogadores;
+    arquivo.close();
+
+    dois_jogadores = (num_jogadores == 2);
+
+    if (dois_jogadores) 
+    {
+        pJog2->setValido();
+    } 
+    else 
+    {
+        pJog2->setInvalido();
+    }
+    
+    if (fase_salva == 1)
+    {
+        if (fase1) delete fase1;
+        fase1 = new PrimeiraFase(pJog1, pJog2, true);
+        estado = PRIMEIRA_FASE;
+    }
+    else if (fase_salva == 2)
+    {
+        if (fase2) delete fase2;
+        fase2 = new SegundaFase(pJog1, pJog2, true);
+        estado = SEGUNDA_FASE;
+    }
 }
