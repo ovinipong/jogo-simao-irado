@@ -25,6 +25,7 @@ class Menu : public Ente
         sf::Texture btn_ranking;
         sf::Texture btn_fase1;
         sf::Texture btn_fase2;
+        sf::Texture btn_progresso;
         sf::Texture btn_um_jogador;
         sf::Texture btn_dois_jogadores;
         sf::Texture btn_voltar;
@@ -37,7 +38,7 @@ class Menu : public Ente
         sf::Sprite botao_fase1;
         sf::Sprite botao_fase2;
         sf::Sprite botao_fase_voltar;
-        sf::Sprite botao_fase_continuar;
+        sf::Sprite botao_fase_progresso;
         sf::Sprite botao_um_jogador;
         sf::Sprite botao_dois_jogadores;
         sf::Sprite botao_jogador_voltar;

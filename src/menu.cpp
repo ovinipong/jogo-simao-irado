@@ -28,6 +28,7 @@ Menu::Menu(Jogo* pJ) : pJogo(pJ)
     if (!btn_voltar.loadFromFile("assets/botoes/btn_voltar.png")) { std::cerr << "Erro ao abrir btn_voltar.png!" << std::endl; }
     if (!btn_menu.loadFromFile("assets/botoes/btn_pause_menu.png")) { std::cerr << "Erro ao abrir btn_pause_menu.png" << std::endl; }
     if (!btn_continuar.loadFromFile("assets/botoes/btn_pause_continuar.png")) { std::cerr << "Erro ao abrir btn_pause_continuar.png" << std::endl; }
+    if (!btn_progresso.loadFromFile("assets/botoes/btn_recuperar_progresso.png")) { std::cerr << "Erro ao abrir btn_pause_continuar.png" << std::endl; }
     
     // Atribui as texturas aos sprites
     botao_jogar.setTexture(btn_jogar);
@@ -35,7 +36,7 @@ Menu::Menu(Jogo* pJ) : pJogo(pJ)
     
     botao_fase1.setTexture(btn_fase1);
     botao_fase2.setTexture(btn_fase2);
-    botao_fase_continuar.setTexture(btn_continuar);
+    botao_fase_progresso.setTexture(btn_progresso);
     
     botao_um_jogador.setTexture(btn_um_jogador);
     botao_dois_jogadores.setTexture(btn_dois_jogadores);
@@ -58,7 +59,7 @@ Menu::Menu(Jogo* pJ) : pJogo(pJ)
     botao_fase1.setPosition(centro_x, 120.f);
     botao_fase2.setPosition(centro_x, 220.f);
     botao_fase_voltar.setPosition(centro_x, 450.f);
-    botao_fase_continuar.setPosition(centro_x, 320.f);
+    botao_fase_progresso.setPosition(centro_x, 320.f);
     
     botao_um_jogador.setPosition(centro_x, 170.f);
     botao_dois_jogadores.setPosition(centro_x, 270.f);
@@ -193,7 +194,7 @@ void Menu::executar()
                     fase_escolhida = 2;
                     tela = SELECAO_JOGADORES; 
                 }
-                else if (botao_fase_continuar.getGlobalBounds().contains(mousePosF))
+                else if (botao_fase_progresso.getGlobalBounds().contains(mousePosF))
                 {
                     pJogo->voltarFase();
                 }
@@ -289,7 +290,7 @@ void Menu::executar()
     {
         window->draw(botao_fase1);
         window->draw(botao_fase2);
-        window->draw(botao_fase_continuar);
+        window->draw(botao_fase_progresso);
         window->draw(botao_fase_voltar);
     
         sf::Text texto_nome("Seu nome: " + nome_jogador + "_", fonte, 30);
