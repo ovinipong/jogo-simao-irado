@@ -68,6 +68,8 @@ void Projetil::executar()
     }
     else if (projetil == RATO && pRato != nullptr)
     {
+        velocidade_y = aplicarGravidade (velocidade_y, dt);
+        y += velocidade_y * dt;
         // Movimento em Y (MHS)
         // Formula do movimento harmonico simples
         // y(t) = yo + A * sen(w t)
