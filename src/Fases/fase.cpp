@@ -384,14 +384,18 @@ void Fase :: carregarFase()
             {
                 int x, y;
                 bool ativo;
-                float velocidade_x, velocidade_y, mhs;
-                arquivo_save >> x >> y >> ativo >> velocidade_x >> velocidade_y >> mhs;
+                float velocidade_x, velocidade_y, mhs, y_inicial_mhs;
+                int campo_auxiliar; // projétil de jogador não tem dono-rato, mas precisa consumir o valor do stream
+
+                arquivo_save >> x >> y >> ativo >> velocidade_x >> velocidade_y >> mhs >> y_inicial_mhs >> campo_auxiliar;
+
                 Projetil *pProj = new Projetil(x, y, JOGADOR);
                 if (ativo) pProj->setAtivo(); else pProj->setInativo();
                 pProj->setXY(x, y);
                 pProj->setVelocidadeX(velocidade_x);
                 pProj->setVelocidadeY(velocidade_y);
                 pProj->setTempoMhs(mhs);
+                pProj->setYInicialMhs(y_inicial_mhs); // bônus: agora também restaura esse campo, que antes era ignorado
 
                 gc.incluirProjetil(pProj);
                 lista_ents.incluir(pProj);

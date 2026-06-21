@@ -29,7 +29,7 @@ Inimigo(_x, _y), Thread()
 
 Rato::~Rato()
 {
-
+    pararThread();
 }
 
 void Rato::executar() //no executar da fase 
@@ -53,14 +53,14 @@ void Rato::executar() //no executar da fase
 
 void* Rato::executarThread() //ao executar cria a sensação que o rato decidiu atirar
 {
-    if (!getValido())
-    {
-        pararThread();
-        return NULL; //esperado pelo tipo da função (void*)
-    }
     while (getExecutando())
     {
         lock();
+        if (!getValido())
+        {
+            pararThread();
+            return NULL; //esperado pelo tipo da função (void*)
+        }
         if (timer_atirar.getElapsedTime().asSeconds() >= 2)
         {
             atirar();
@@ -120,4 +120,9 @@ void Rato :: salvar(std::ofstream& arquivo)
     lock();
     arquivo << id << " " << x << " " << y << " " << num_vidas << " " << id_instancia << std::endl;
     unlock();
+}
+
+void Rato :: inverterDirecao()
+{
+
 }

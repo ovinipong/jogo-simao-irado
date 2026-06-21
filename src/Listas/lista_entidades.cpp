@@ -77,7 +77,7 @@ void ListaEntidades :: percorrerSalvar()
 
     // Vai percorrer a lista
     auto aux = LEs.getPrimeiro();
-    while(aux != LEs.getUltimo())
+    while(aux != NULL)
     {
         if (aux->pInfo->getID() != 1)
         {

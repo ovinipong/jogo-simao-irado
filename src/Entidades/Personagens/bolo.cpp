@@ -91,3 +91,8 @@ void Bolo :: salvar(std::ofstream& arquivo)
 {
     arquivo << id << " " << x << " " << y << " " << num_vidas << " " << velocidade_x << " " << velocidade_y << " " << estado << std::endl;
 }
+
+void Bolo :: inverterDirecao()
+{
+
+}

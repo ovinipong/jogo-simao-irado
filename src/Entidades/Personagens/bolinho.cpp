@@ -6,6 +6,7 @@ using namespace entidades;
 
 Bolinho :: Bolinho(int _x, int _y): Inimigo(_x, _y)
 {
+    move_speed=3;
     setValido();
     id =3;
     nivel_maldade=1;
@@ -58,4 +59,9 @@ void Bolinho:: danificar(Jogador* p)
 void Bolinho :: salvar(std::ofstream& arquivo)
 {
     arquivo << id << " " << x << " " << y << " " << num_vidas << " " << velocidade_y << " " << move_speed << std::endl;
+}
+
+void Bolinho :: inverterDirecao()
+{
+    move_speed = -move_speed;
 }

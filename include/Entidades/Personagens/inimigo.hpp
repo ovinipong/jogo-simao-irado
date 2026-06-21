@@ -9,7 +9,6 @@ class Inimigo : public Personagem
 {
     protected:
         int nivel_maldade;
-        int move_speed;
         int dano;
 
     public:
@@ -18,11 +17,10 @@ class Inimigo : public Personagem
         //void salvarDataBuffer();
         virtual void executar()=0;
         virtual void danificar(Jogador* p) = 0;
-        void inverterDirecao();
+        virtual void inverterDirecao() = 0;
         void setDano(){dano=nivel_maldade*2;};
 
         virtual void salvar(std::ofstream& arquivo) = 0;
-        void setMoveSpeed(int mp) { move_speed = mp; }
 };
 
 }

@@ -100,7 +100,8 @@ void Lista<TL>::limpar()
     {
         Elemento<TL>* aux = pPrimeiro;
         pPrimeiro = pPrimeiro->pProx;
-        delete(aux);
+        //delete aux->pInfo;
+        delete aux;
     }
     pUltimo = NULL;
 }
@@ -123,6 +124,7 @@ void Lista<TL>::remover(TL* p)
             if (aux == pUltimo)
                 pUltimo = ant;
 
+            //delete aux->pInfo;
             delete aux;
             return;
         }

@@ -26,9 +26,6 @@ void Jogo :: executar()
 {
     while (gg.janelaAberta())
     {
-        std::cout << "SFML " << SFML_VERSION_MAJOR << "."
-              << SFML_VERSION_MINOR << "."
-              << SFML_VERSION_PATCH << std::endl;
         switch(estado)
         {
             case(PRIMEIRA_FASE):
@@ -147,8 +144,8 @@ void Jogo :: executar()
                 {
                     delete fase2;
                     fase2 = NULL;
-                    delete pJog1;
-                    delete pJog2;
+                    //delete pJog1;
+                    //delete pJog2;
                     pJog1 = new Jogador(64, 400, false);
                     pJog2 = new Jogador(64, 400, true);
                     estado = MENU;

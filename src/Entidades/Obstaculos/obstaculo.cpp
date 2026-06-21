@@ -52,5 +52,6 @@ void Obstaculo::obstaculizar(entidades::Inimigo *pInim, sf::FloatRect *obst, sf:
 
     // Aplica a nova posição e atualiza a caixa de colisão da entidade
     pInim->setXY(pos);
+    
     pInim->inverterDirecao();
 }

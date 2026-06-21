@@ -24,6 +24,7 @@ class Bolo : public Inimigo
         ~Bolo();
         void executar();
         void danificar(Jogador* p);
+        void inverterDirecao();
         void salvar(std::ofstream& arquivo);
         void setVelocidadeX(int vel_x) { velocidade_x = vel_x; }
         void setEstado(EstadoBolo e) { estado = e; }
