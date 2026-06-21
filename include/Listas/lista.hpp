@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-namespace listas{
+namespace listas {
     
 template <typename TL>
 class Lista
@@ -11,17 +11,34 @@ class Lista
         template <typename TE>
         class Elemento
         {
-            public:
+            private:
                 Elemento<TE>* pProx;
                 TE* pInfo;
+                
             public:
                 Elemento();
                 ~Elemento();
-                void incluir(TE* p);
+                
+                void setInfo(TE* p)
+                {
+                    pInfo = p;
+                }
+                
+                TE* getInfo() const
+                {
+                    return pInfo;
+                }
+
                 void setProx(Elemento<TE>* pE)
                 {
-                    pProx=pE;
+                    pProx = pE;
                 }
+                
+                Elemento<TE>* getProx()
+                {
+                    return pProx;
+                }
+                
                 const Elemento<TE>* getProx() const
                 {
                     return pProx;
@@ -31,16 +48,29 @@ class Lista
     private:
         Elemento<TL>* pPrimeiro;
         Elemento<TL>* pUltimo;
+        
     public:
         Lista();
         ~Lista();
         void incluir(TL* p);
         void limpar();
         void remover(TL* p);
+        
+        Elemento<TL>* getPrimeiro()
+        {
+            return pPrimeiro;
+        }
+        
         const Elemento<TL>* getPrimeiro() const
         {
             return pPrimeiro;
         }
+        
+        Elemento<TL>* getUltimo()
+        {
+            return pUltimo;
+        }
+        
         const Elemento<TL>* getUltimo() const
         {
             return pUltimo;
@@ -57,8 +87,8 @@ template <typename TL>
 Lista<TL>::~Lista()
 {
     limpar();
-    pPrimeiro=NULL;
-    pUltimo=NULL;
+    pPrimeiro = NULL;
+    pUltimo = NULL;
 }
 
 template <typename TL>
@@ -67,8 +97,8 @@ void Lista<TL>::incluir(TL* p)
     if (p == NULL) return;
 
     Elemento<TL>* novo = new Elemento<TL>();
-    novo->incluir(p);
-    novo->pProx = NULL;
+    novo->setInfo(p);
+    novo->setProx(NULL);
 
     if (pUltimo == NULL)
     {
@@ -77,7 +107,7 @@ void Lista<TL>::incluir(TL* p)
     }
     else
     {
-        pUltimo->pProx = novo;
+        pUltimo->setProx(novo);
         pUltimo = novo;
     }
 }
@@ -88,8 +118,8 @@ void Lista<TL>::limpar()
     while(pPrimeiro != NULL)
     {
         Elemento<TL>* aux = pPrimeiro;
-        pPrimeiro = pPrimeiro->pProx;
-        delete aux->pInfo;
+        pPrimeiro = pPrimeiro->getProx();
+        delete aux->getInfo();
         delete aux;
     }
     pUltimo = NULL;
@@ -103,22 +133,22 @@ void Lista<TL>::remover(TL* p)
 
     while (aux != NULL)
     {
-        if (aux->pInfo == p)
+        if (aux->getInfo() == p)
         {
             if (ant == NULL)
-                pPrimeiro = aux->pProx;
+                pPrimeiro = aux->getProx();
             else
-                ant->pProx = aux->pProx;
+                ant->setProx(aux->getProx());
 
             if (aux == pUltimo)
                 pUltimo = ant;
 
-            delete aux->pInfo;
+            delete aux->getInfo();
             delete aux;
             return;
         }
         ant = aux;
-        aux = aux->pProx;
+        aux = aux->getProx();
     }
 }
 
@@ -133,15 +163,9 @@ template <typename TL>
 template <typename TE>
 Lista<TL> :: Elemento<TE> :: ~Elemento()
 {
-    pProx=NULL;
-    pInfo=NULL;
-}
-
-template <typename TL>
-template <typename TE>
-void Lista<TL> :: Elemento<TE> :: incluir(TE* p)
-{
-    pInfo=p;
+    pProx = NULL;
+    pInfo = NULL;
 }
 
 }
+

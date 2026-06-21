@@ -26,9 +26,9 @@ void ListaEntidades :: percorrer()
     auto aux = LEs.getPrimeiro();
     while (aux != NULL)
     {
-        if (aux->pInfo != NULL)
+        if (aux->getInfo() != NULL)
         {
-            aux->pInfo->executar();
+            aux->getInfo()->executar();
         }
         aux = aux->getProx();
     }
@@ -39,10 +39,10 @@ void ListaEntidades :: percorrer_remover()
     auto aux = LEs.getPrimeiro();
     while (aux != NULL)
     {
-        auto aux2 = aux->getProx();//arrumar lista
-        if(aux->pInfo->getValido()==false)
+        auto aux2 = aux->getProx(); // arrumar lista
+        if(aux->getInfo()->getValido() == false)
         {
-            LEs.remover(aux->pInfo);
+            LEs.remover(aux->getInfo());
         }
         aux = aux2;
     }
@@ -54,9 +54,9 @@ void ListaEntidades :: percorrer_desenhar()
     
     while (aux != NULL)
     {
-        if (aux->pInfo != NULL)
+        if (aux->getInfo() != NULL)
         {
-            aux->pInfo->desenhar();
+            aux->getInfo()->desenhar();
         }
         aux = aux->getProx();
     }
@@ -88,9 +88,9 @@ void ListaEntidades :: percorrerSalvar()
     auto aux = LEs.getPrimeiro();
     while(aux != NULL)
     {
-        if (aux->pInfo->getID() != 1)
+        if (aux->getInfo()->getID() != 1)
         {
-            aux->pInfo->salvar(arquivo);
+            aux->getInfo()->salvar(arquivo);
         }
 
         aux = aux->getProx();

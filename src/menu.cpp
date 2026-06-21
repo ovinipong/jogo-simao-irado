@@ -300,9 +300,12 @@ void Menu::executar()
     // ---------------------------------------------------------
     if (tela == PRINCIPAL)
     {
-        window->draw(fundo_menu);
-        window->draw(botao_jogar);
-        window->draw(botao_ranking);
+        // window->draw(fundo_menu);
+        pGG->desenharSprite(fundo_menu);
+        // window->draw(botao_jogar);
+        pGG->desenharSprite(botao_jogar);
+        // window->draw(botao_ranking);
+        pGG->desenharSprite(botao_ranking);
     }
     else if (tela == SELECAO_FASE)
     {

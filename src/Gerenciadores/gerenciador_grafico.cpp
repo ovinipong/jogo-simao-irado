@@ -50,7 +50,7 @@ void GerenciadorGrafico :: desenharEnte(Ente *pE)
         pE->getColisao().getPosition().y + pE->getOffset().y
     );
 
-    window->draw(pE->getSprite());
+    desenharSprite(pE->getSprite());
 }
 
 void GerenciadorGrafico::executar()

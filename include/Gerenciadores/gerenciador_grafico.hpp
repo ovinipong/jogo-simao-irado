@@ -41,6 +41,9 @@ class GerenciadorGrafico {
         void setPausado(bool p) { pausado = p; }
         
         sf::View getCamera();
+
+        void desenharSprite(sf::Sprite sprite) { window->draw(sprite); }
+        void desenharTexto(sf::Text texto) { window->draw(texto); }
 };
 
 }
