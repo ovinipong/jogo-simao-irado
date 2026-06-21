@@ -44,6 +44,7 @@ class GerenciadorGrafico {
 
         void desenharSprite(sf::Sprite sprite) { window->draw(sprite); }
         void desenharTexto(sf::Text texto) { window->draw(texto); }
+        void desenharRetangulo(sf::RectangleShape retangulo) { window->draw(retangulo); }
 };
 
 }

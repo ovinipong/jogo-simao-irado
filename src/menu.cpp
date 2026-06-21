@@ -300,39 +300,37 @@ void Menu::executar()
     // ---------------------------------------------------------
     if (tela == PRINCIPAL)
     {
-        // window->draw(fundo_menu);
         pGG->desenharSprite(fundo_menu);
-        // window->draw(botao_jogar);
         pGG->desenharSprite(botao_jogar);
-        // window->draw(botao_ranking);
         pGG->desenharSprite(botao_ranking);
     }
     else if (tela == SELECAO_FASE)
     {
-        window->draw(fundo_fases);
-        window->draw(botao_fase1);
-        window->draw(botao_fase2);
-        window->draw(botao_fase_progresso);
-        window->draw(botao_fase_voltar);
-    
+        pGG->desenharSprite(fundo_fases);
+        pGG->desenharSprite(botao_fase1);
+        pGG->desenharSprite(botao_fase2);
+        pGG->desenharSprite(botao_fase_progresso);
+        pGG->desenharSprite(botao_fase_voltar);
+
         sf::Text texto_nome("Seu nome: " + nome_jogador + "_", fonte, 30);
         float largura_texto = texto_nome.getGlobalBounds().width;
         float centro_x = (1024 / 2) - (largura_texto / 2);
         texto_nome.setPosition(centro_x, 150.f); 
         texto_nome.setFillColor(sf::Color::Black);
-        window->draw(texto_nome);
+        
+        pGG->desenharTexto(texto_nome);
     }
     else if (tela == SELECAO_JOGADORES)
     {
-        window->draw(fundo_jogadores);
-        window->draw(botao_um_jogador);
-        window->draw(botao_dois_jogadores);
-        window->draw(botao_jogador_voltar);
+        pGG->desenharSprite(fundo_jogadores);
+        pGG->desenharSprite(botao_um_jogador);
+        pGG->desenharSprite(botao_dois_jogadores);
+        pGG->desenharSprite(botao_jogador_voltar);
     }
     else if (tela == PONTUACAO)
     {
-        window->draw(fundo_ranking);
-        window->draw(botao_ranking_voltar);
+        pGG->desenharSprite(fundo_ranking);
+        pGG->desenharSprite(botao_ranking_voltar);
 
         float pos_y = 270.f;
         int posicao_atual = 1;
@@ -345,14 +343,16 @@ void Menu::executar()
             sf::Text txt_colocado(str_exibicao_nome, fonte, 24);
             txt_colocado.setPosition(264.f, pos_y);
             txt_colocado.setFillColor(sf::Color::Black);
-            window->draw(txt_colocado);
+            
+            pGG->desenharTexto(txt_colocado);
 
             // Coloca a pontuacao
             std::string str_exibicao_pontos = std::to_string(it->first) + " pontos";
             sf::Text txt_pontos(str_exibicao_pontos, fonte, 26);
             txt_pontos.setPosition(670.f, pos_y);
             txt_pontos.setFillColor(sf::Color::Black);
-            window->draw(txt_pontos);
+
+            pGG->desenharTexto(txt_pontos);
 
             // Pula para escrever o proximo
             pos_y += 25.f;
@@ -363,13 +363,14 @@ void Menu::executar()
             sf::Text txt_vazio("Nenhum recorde registrado ainda!", fonte, 24);
             txt_vazio.setPosition(380.f, 250.f);
             txt_vazio.setFillColor(sf::Color(180, 180, 180));
-            window->draw(txt_vazio);
+        
+            pGG->desenharTexto(txt_vazio);
         }
     }
     else if (tela == PAUSE)
     {
-        window->draw(sprite_fundo_pause);
-        window->draw(retangulo_escuro);
+        pGG->desenharSprite(sprite_fundo_pause);
+        pGG->desenharRetangulo(retangulo_escuro);
 
         std::string str_pause("JOGO PAUSADO!");
         sf::Text txt_pause(str_pause, fonte, 26);
@@ -378,8 +379,9 @@ void Menu::executar()
         float largura_texto = txt_pause.getGlobalBounds().width;
         float centro_x = (1024 / 2) - (largura_texto / 2);
         txt_pause.setPosition(centro_x, 100);
-        window->draw(txt_pause);
-        window->draw(botao_pause_continuar);
-        window->draw(botao_pause_menu);
+    
+        pGG->desenharTexto(txt_pause);
+        pGG->desenharSprite(botao_pause_continuar);
+        pGG->desenharSprite(botao_pause_menu);
     }
 }
