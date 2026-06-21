@@ -58,8 +58,9 @@ void* Rato::executarThread() //ao executar cria a sensação que o rato decidiu 
         lock();
         if (!getValido())
         {
-            pararThread();
-            return NULL; //esperado pelo tipo da função (void*)
+            executando=false;
+            unlock();
+            return NULL;
         }
         if (timer_atirar.getElapsedTime().asSeconds() >= 2)
         {

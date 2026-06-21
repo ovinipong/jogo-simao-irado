@@ -194,7 +194,8 @@ void Jogador::operator++()
     pontos+=1;
 }
 
+
 void Jogador :: salvar(std::ofstream& arquivo)
 {
-    arquivo << id << " " << x << " " << y << " " << num_vidas << " " << pontos << " " << velocidade_y << std::endl;
+    arquivo << id << " " << x << " " << y << " " << num_vidas << " " << pontos << " " << velocidade_y << " " << getValido() << std::endl;
 }

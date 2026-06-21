@@ -331,7 +331,7 @@ void Menu::executar()
         window->draw(fundo_ranking);
         window->draw(botao_ranking_voltar);
 
-        float pos_y = 289.f;
+        float pos_y = 270.f;
         int posicao_atual = 1;
 
         // Percore a ordem de ranking

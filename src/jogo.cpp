@@ -18,6 +18,7 @@ Jogo :: Jogo() : pJog1 (NULL), pJog2(NULL), menu(this), fase1(NULL), fase2(NULL)
 Jogo :: ~Jogo()
 {
     pJog1=NULL;
+    pJog2=NULL;
     fase1=NULL;
     fase2=NULL;
 }
@@ -51,13 +52,15 @@ void Jogo :: executar()
                 fase1->executar();
                 if (fase1->getConcluida())
                 {
+                    int pontos1 = pJog1->getPontos();
+                    int pontos2 = pJog2->getPontos();
                     delete fase1;
                     fase1 = NULL;
                     std::cout << "trocando pra fase 2" << std::endl;
-                    pJog1->setVida(40);
-                    pJog2->setVida(40);
-                    pJog1->setValido();
-                    pJog2->setValido();
+                    pJog1 = new Jogador(64, 400, false);
+                    pJog2 = new Jogador(64, 400, true);
+                    pJog1->setPontos(pontos1);
+                    pJog2->setPontos(pontos2);
                     estado = SEGUNDA_FASE;
                 }
                 if (!pJog1->getValido() && !pJog2->getValido())
@@ -65,8 +68,8 @@ void Jogo :: executar()
                     std::cout << "jogador 1 morreu, voltando ao menu" << std::endl;
                     delete fase1;
                     fase1 = NULL;
-                    delete pJog1;
-                    delete pJog2;
+                    //delete pJog1;
+                    //delete pJog2;
                     pJog1 = new Jogador(64, 400, false);
                     pJog2 = new Jogador(64, 400, true);
                     estado = MENU;
@@ -245,14 +248,6 @@ void Jogo :: reiniciarFase()
     {
         delete(fase2);
         fase2 = NULL;
-    }
-    if (pJog1)
-    {
-        delete(pJog1);
-    }
-    if (pJog2)
-    {
-        delete(pJog2);
     }
 
     pJog1 = new Jogador(400, 100, false);

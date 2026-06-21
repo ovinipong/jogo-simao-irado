@@ -207,7 +207,8 @@ void Fase::executar()
 
     pGG->executar();                    // Limpa tela
     lista_ents.percorrer();             // Percorre executando
-    gc.executar();                      // Ajusta a colisao
+    gc.executar();
+    lista_ents.percorrer_remover();                      // Ajusta a colisao
     lista_ents.percorrer_desenhar();    // Desenha na posicao correta
     pGG->mostrarVida(pJogador1->getVida(), pJogador2->getVida(), pJogador2->getValido());
     pGG->mostrarPontos(pJogador1->getPontos(), pJogador2->getPontos(), pJogador2->getValido());
@@ -325,11 +326,17 @@ void Fase :: carregarFase()
             {
                 int x, y, pontos, num_vidas;
                 float velocidade_y;
-                arquivo_save >> x >> y >> num_vidas >> pontos >> velocidade_y;
+                bool valido;
+                arquivo_save >> x >> y >> num_vidas >> pontos >> velocidade_y >> valido;
+
                 pJogador1->setXY(x, y);
                 pJogador1->setVida(num_vidas);
                 pJogador1->setPontos(pontos);
                 pJogador1->setVelocidadeY(velocidade_y);
+                if (valido)
+                    pJogador1->setValido();
+                else 
+                    pJogador1->setInvalido();
                 
                 gc.incluirJogadores(pJogador1);
                 lista_ents.incluir(pJogador1);
@@ -467,11 +474,16 @@ void Fase :: carregarFase()
             {
                 int x, y, pontos, num_vidas;
                 float velocidade_y;
-                arquivo_save >> x >> y >> num_vidas >> pontos >> velocidade_y;
+                bool valido;
+                arquivo_save >> x >> y >> num_vidas >> pontos >> velocidade_y >> valido;
                 pJogador2->setXY(x, y);
                 pJogador2->setVida(num_vidas);
                 pJogador2->setPontos(pontos);
                 pJogador2->setVelocidadeY(velocidade_y);
+                if (valido)
+                    pJogador2->setValido();
+                else 
+                    pJogador2->setInvalido();
                 
                 gc.incluirJogadores(pJogador2);
                 lista_ents.incluir(pJogador2);
@@ -534,4 +546,7 @@ void Fase :: carregarFase()
         }
     }
     arquivo_save.close();
+
+    std::cout << pJogador1->getValido() << std::endl;
+    std::cout << pJogador2->getValido() << std::endl;
 }

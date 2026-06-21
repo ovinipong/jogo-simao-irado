@@ -16,6 +16,7 @@ class ListaEntidades
         ~ListaEntidades();
         void incluir(Entidade* pE);
         void percorrer();
+        void percorrer_remover();
         void percorrer_desenhar();
         void remover(Entidade* pE);
         void limpar();

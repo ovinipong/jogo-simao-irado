@@ -3,14 +3,15 @@
 using namespace std;
 using namespace sf;
 
-Bloco::Bloco(int _x, int _y, float largura, float altura, TipoBloco tipo):
+Bloco::Bloco(int _x, int _y, float larg, float alt, TipoBloco tipo):
 entidades::Entidade(_x, _y)
 {
     setValido();
     id = 1;
-    cor = sf::Color::White;
+    largura=larg;
+    altura=alt;
     colisao.setSize(sf::Vector2f(largura, altura));
-    colisao.setFillColor(cor);
+    colisao.setFillColor(sf::Color::White);
     colisao.setPosition(_x, _y);
 
     if (tipo==CHAO)

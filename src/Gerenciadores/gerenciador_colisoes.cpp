@@ -13,7 +13,7 @@ GerenciadorColisoes :: GerenciadorColisoes()
 
 GerenciadorColisoes :: ~GerenciadorColisoes()
 {
-    //desalocar vector
+
 }
 
 /* =============================================== */
@@ -41,23 +41,6 @@ void GerenciadorColisoes :: tratarColisoesJogObst()
             }
         }        
     }
-
-
-    /*if(!pJog->getValido()) return;
-    std::list<Obstaculo*>::iterator it;
-    for (it = obstaculos.begin(); it != obstaculos.end(); ++it)
-    {
-        FloatRect interseccao;
-        FloatRect jogador_colisao = pJog->getColisao().getGlobalBounds();
-        FloatRect bloco_colisao = (*it)->getColisao().getGlobalBounds();
-
-        // Se estiver colidindo
-        if (jogador_colisao.intersects(bloco_colisao, interseccao))
-        {
-            // arrumarColisoes(pJog, &bloco_colisao, &interseccao);
-            (*it)->obstaculizar(pJog);
-        }
-    }*/
 }
 
 void GerenciadorColisoes :: tratarColisoesJogInim()
@@ -82,22 +65,6 @@ void GerenciadorColisoes :: tratarColisoesJogInim()
             }
         }        
     }
-
-    /*if(!pJog->getValido()) return;
-    if(pJog->getInvulneravel()) return;
-    vector<Inimigo*>::iterator it2;
-    for (it=inimigos.begin(); it != inimigos.end(); it++)
-    {
-        if ((*it)->getValido())
-        {
-            if(verificarColisao(pJog, *it))
-            {
-                pJog->reverterPosicao();
-                pJog->setInvulneravel();
-                (*it)->inverterDirecao();
-            }
-        }
-    }*/
 }
 
 void GerenciadorColisoes :: tratarColisoesInimObst()
@@ -137,15 +104,6 @@ void GerenciadorColisoes :: tratarColisioesJogBloco()
             }
         }
     }
-    /*if(!pJog->getValido()) return;
-    vector<Bloco*>::iterator it;
-    for (it = blocos.begin(); it != blocos.end(); it++)
-    {
-        if (verificarColisao((*it), pJog))
-        {
-            (*it)->obstaculizar(pJog);
-        }
-    }*/
 }
 
 void GerenciadorColisoes :: tratarColisoesInimBloco()
@@ -258,30 +216,6 @@ void GerenciadorColisoes :: tratarColisoesJogProj()
             }
         }
     }
-    /*if(!pJog->getValido()) return;
-    if(pJog->getInvulneravel()) return;
-    std::set<Projetil*>::iterator it;
-    for (it = projeteis.begin(); it != projeteis.end(); ++it)
-    {
-        Projetil* pProj = *it;
-
-       // Só testa a colisão se o projétil estiver voando pela tela (ativo)
-        if (!pProj->getAtivo() || pProj->getTipoProjetil() == JOGADOR) 
-            continue;
-
-        sf::FloatRect proj_colisao = pProj->getColisao().getGlobalBounds();
-        sf::FloatRect jog_colisao = pJog->getColisao().getGlobalBounds();
-
-        if (jog_colisao.intersects(proj_colisao))
-        {
-            pProj->setInvalido();
-                
-            pProj->setXY(sf::Vector2f(-100.f, -100.f)); 
-
-            pJog->receberDano(1); 
-            pJog->setInvulneravel();
-        }
-    }*/
 }
 
 void GerenciadorColisoes::tratarColisoesObstBloco()
@@ -307,9 +241,9 @@ void GerenciadorColisoes::tratarColisoesObstBloco()
 }
 
 
-/* ================================================== */
-/* =============== INCLUIR NAS LISTAS =============== */
-/* ================================================== */
+/* ============================================================ */
+/* =============== INCLUIR E REMOVER NAS LISTAS =============== */
+/* ============================================================ */
 
 void GerenciadorColisoes :: incluirInimigo (Inimigo *pi)
 {
@@ -334,6 +268,101 @@ void GerenciadorColisoes :: incluirBloco(Bloco *pb)
 void GerenciadorColisoes :: incluirProjetil(Projetil *pp)
 {
     if (pp != nullptr) projeteis.insert(pp);
+}
+
+void GerenciadorColisoes :: removerInimigo(Inimigo *pi)
+{
+    std::vector<Inimigo*>::iterator it;
+    for (it = inimigos.begin(); it != inimigos.end(); ++it)
+    {
+        if (*it == pi)
+        {
+            inimigos.erase(it);
+            break;
+        }
+    }
+}
+
+void GerenciadorColisoes :: removerJogador(Jogador *pj)
+{
+    std::vector<Jogador*>::iterator it;
+    for (it = jogadores.begin(); it != jogadores.end(); ++it)
+    {
+        if (*it == pj)
+        {
+            jogadores.erase(it);
+            break;
+        }
+    }
+}
+
+void GerenciadorColisoes :: removerObstaculo(Obstaculo *po)
+{
+    obstaculos.remove(po);
+}
+
+/* ============================================================ */
+/* =============== VERIFICAR VALIDADE ENTIDADES =============== */
+/* ============================================================ */
+
+void GerenciadorColisoes :: verificaInimigos()
+{
+    std::vector<Inimigo*> mortos;
+    std::vector<Inimigo*>::iterator it1;
+    std::vector<Inimigo*>::iterator it2;
+
+    for (it1 = inimigos.begin(); it1 != inimigos.end(); ++it1)
+    {
+        if ((*it1)->getValido() == false)
+        {
+            mortos.push_back(*it1);
+        }
+    }
+
+    for (it2 = mortos.begin(); it2 != mortos.end(); ++it2)
+    {
+        removerInimigo(*it2);
+    }
+}
+
+void GerenciadorColisoes :: verificaJogadores()
+{
+    std::vector<Jogador*> mortos;
+    std::vector<Jogador*>::iterator it1;
+    std::vector<Jogador*>::iterator it2;
+
+    for (it1 = jogadores.begin(); it1 != jogadores.end(); ++it1)
+    {
+        if ((*it1)->getValido() == false)
+        {
+            mortos.push_back(*it1);
+        }
+    }
+
+    for (it2 = mortos.begin(); it2 != mortos.end(); ++it2)
+    {
+        removerJogador(*it2);
+    }
+}
+
+void GerenciadorColisoes :: verificaObstaculos()
+{
+    std::vector<Obstaculo*> mortos;
+    std::list<Obstaculo*>::iterator it1;
+    std::vector<Obstaculo*>::iterator it2;
+
+    for (it1 = obstaculos.begin(); it1 != obstaculos.end(); ++it1)
+    {
+        if ((*it1)->getValido() == false)
+        {
+            mortos.push_back(*it1);
+        }
+    }
+
+    for (it2 = mortos.begin(); it2 != mortos.end(); ++it2)
+    {
+        removerObstaculo(*it2);
+    }
 }
 
 /* ===================================================== */
@@ -362,4 +391,7 @@ void GerenciadorColisoes :: executar()
     tratarColisoesInimProj();
     tratarColisoesJogProj();
     tratarColisoesObstBloco();
+    verificaInimigos();
+    verificaJogadores();
+    verificaObstaculos();
 }

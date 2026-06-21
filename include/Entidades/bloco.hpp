@@ -15,10 +15,11 @@ enum TipoBloco{
 class Bloco : public entidades::Entidade
 {
     private:
-        sf::Color cor;
+        int altura;
+        int largura;
 
     public:
-        Bloco(int _x=0, int _y=0, float largura=0.f, float altura=0.f, TipoBloco tipo=CHAO);
+        Bloco(int _x=0, int _y=0, float larg=0.f, float alt=0.f, TipoBloco tipo=CHAO);
         ~Bloco();
         void executar();
         void colisaoBloco(Personagem* pP);

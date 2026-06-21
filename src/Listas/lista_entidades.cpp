@@ -30,12 +30,21 @@ void ListaEntidades :: percorrer()
         {
             aux->pInfo->executar();
         }
+        aux = aux->getProx();
+    }
+}
+
+void ListaEntidades :: percorrer_remover()
+{
+    auto aux = LEs.getPrimeiro();
+    while (aux != NULL)
+    {
         auto aux2 = aux->getProx();//arrumar lista
         if(aux->pInfo->getValido()==false)
         {
             LEs.remover(aux->pInfo);
         }
-        aux=aux2;
+        aux = aux2;
     }
 }
 

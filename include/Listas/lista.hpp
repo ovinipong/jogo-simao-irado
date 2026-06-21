@@ -80,17 +80,6 @@ void Lista<TL>::incluir(TL* p)
         pUltimo->pProx = novo;
         pUltimo = novo;
     }
-    /*if (p == NULL) return;
-
-    Elemento<TL>* novo = new Elemento<TL>();
-    novo->incluir(p);
-    novo->pProx = pPrimeiro;
-    pPrimeiro = novo;
-
-    if (pUltimo == NULL)
-    {
-        pUltimo = novo;
-    }*/
 }
 
 template <typename TL>
@@ -100,7 +89,7 @@ void Lista<TL>::limpar()
     {
         Elemento<TL>* aux = pPrimeiro;
         pPrimeiro = pPrimeiro->pProx;
-        //delete aux->pInfo;
+        delete aux->pInfo;
         delete aux;
     }
     pUltimo = NULL;
@@ -124,7 +113,7 @@ void Lista<TL>::remover(TL* p)
             if (aux == pUltimo)
                 pUltimo = ant;
 
-            //delete aux->pInfo;
+            delete aux->pInfo;
             delete aux;
             return;
         }

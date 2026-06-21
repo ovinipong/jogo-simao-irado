@@ -34,6 +34,9 @@ class GerenciadorColisoes
         void tratarColisioesJogBloco();
         void tratarColisoesInimBloco();
         void tratarColisoesObstBloco();
+        void verificaInimigos();
+        void verificaJogadores();
+        void verificaObstaculos();
 
     public:
         GerenciadorColisoes();
@@ -44,6 +47,9 @@ class GerenciadorColisoes
         void incluirBloco(Bloco *pb);
         void incluirProjetil(Projetil *pp);
         void executar();
+        void removerInimigo(Inimigo *pi);
+        void removerObstaculo(Obstaculo *po);
+        void removerJogador(Jogador *pj);
 };
 
 }
