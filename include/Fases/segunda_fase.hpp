@@ -19,8 +19,6 @@ class SegundaFase : public Fase
         void executar();
         void criarProjeteisRatos();
         void ajustarProjeteisRatos();
-
-    public:
         void criarInimRatos();
         void criarObstLustres();
         void criarInimigos();

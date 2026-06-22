@@ -70,7 +70,6 @@ void Plataforma::executar()
 
     y += velocidade_y * dt;
     colisao.setPosition(x, y);
-    //sprite.setPosition(x, y);
 }
 
 void Plataforma::obstaculizar(entidades::Jogador* pJog)

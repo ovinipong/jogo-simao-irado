@@ -6,7 +6,7 @@ using namespace fases;
 
 Fase :: Fase(const std::string& caminhoMapa, Jogador* pJog1, Jogador* pJog2) : minimo_ent(3),
                                                                                maxInimBolinhos(5),
-                                                                               maxPlataformas(20),
+                                                                               maxPlataformas(15),
                                                                                concluida(false)
 {
     pJogador1 = pJog1;
@@ -90,7 +90,7 @@ void Fase :: criarInimBolinhos()//F no txt
     }
 }
 
-void Fase :: criarPlataformas()//P M C no txt
+void Fase :: criarPlataformas()
 {
     arquivo.clear();
     arquivo.seekg(0);
@@ -207,8 +207,8 @@ void Fase::executar()
 
     pGG->executar();                    // Limpa tela
     lista_ents.percorrer();             // Percorre executando
-    gc.executar();
-    lista_ents.percorrer_remover();                      // Ajusta a colisao
+    gc.executar();                      // Ajusta a colisao
+    lista_ents.percorrer_remover();     // Remove do gc entidades inválidas
     lista_ents.percorrer_desenhar();    // Desenha na posicao correta
     pGG->mostrarVida(pJogador1->getVida(), pJogador2->getVida(), pJogador2->getValido());
     pGG->mostrarPontos(pJogador1->getPontos(), pJogador2->getPontos(), pJogador2->getValido());
@@ -546,7 +546,4 @@ void Fase :: carregarFase()
         }
     }
     arquivo_save.close();
-
-    std::cout << pJogador1->getValido() << std::endl;
-    std::cout << pJogador2->getValido() << std::endl;
 }

@@ -133,8 +133,6 @@ void GerenciadorColisoes :: tratarColisoesInimBloco()
 
 void GerenciadorColisoes :: tratarColisoesInimProj()
 {
-    //std::vector<Jogador*>::iterator itJ;
-
     // Percorre todos os inimigos
     for (int i = 0; i < inimigos.size(); i++)
     {
@@ -208,8 +206,6 @@ void GerenciadorColisoes :: tratarColisoesJogProj()
             {
                 pProj->getDonoRato()->zerarTimerAtirar();
                 pProj->setInativo();
-                                  
-                // pProj->setXY(sf::Vector2f(-100.f, -100.f)); 
 
                 (*it1)->receberDano(1); 
                 (*it1)->setInvulneravel();

@@ -361,7 +361,7 @@ void Menu::executar()
         if (ordem_ranking.empty())
         {
             sf::Text txt_vazio("Nenhum recorde registrado ainda!", fonte, 24);
-            txt_vazio.setPosition(380.f, 250.f);
+            txt_vazio.setPosition(350.f, 270.f);
             txt_vazio.setFillColor(sf::Color(180, 180, 180));
         
             pGG->desenharTexto(txt_vazio);

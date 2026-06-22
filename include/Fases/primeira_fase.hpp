@@ -9,7 +9,6 @@ namespace fases{
 class PrimeiraFase : public Fase
 {
     private:
-        //lembrar: na implementação min é 3
         int maxInimBolo;
         int maxAgua;
 
@@ -17,8 +16,6 @@ class PrimeiraFase : public Fase
         PrimeiraFase(Jogador* pJog1=NULL, Jogador* pJog2=NULL, bool carregar_fase = false);
         ~PrimeiraFase();
         virtual void executar();
-
-    public:
         void criarInimBolos();
         void criarObstAguas();
         virtual void criarInimigos();

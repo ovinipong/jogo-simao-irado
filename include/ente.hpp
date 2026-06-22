@@ -18,7 +18,6 @@ class Ente : public Figura
         Ente();
         ~Ente();
         virtual void executar() = 0;
-        //void desenhar(sf::RenderWindow &window);
         void desenhar();
         const sf::RectangleShape& getColisao() const;
         static void setGG(GerenciadorGrafico *pG);

@@ -108,7 +108,6 @@ void GerenciadorGrafico::centralizarCamera(sf::Vector2f posicao)
 
 void GerenciadorGrafico::mostrarVida(int vidas1, int vidas2, bool jog2)
 {
-    //by claude para poder testar as vidas do player melhor
     sf::View view_jogo = window->getView();
     window->setView(window->getDefaultView());
 
@@ -140,7 +139,6 @@ void GerenciadorGrafico::mostrarVida(int vidas1, int vidas2, bool jog2)
 
 void GerenciadorGrafico::mostrarPontos(int pontos1, int pontos2, bool jog2)
 {
-    //by claude para poder testar as vidas do player melhor
     sf::View view_jogo = window->getView();
     window->setView(window->getDefaultView());
 

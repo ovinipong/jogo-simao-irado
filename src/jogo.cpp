@@ -68,8 +68,6 @@ void Jogo :: executar()
                     std::cout << "jogador 1 morreu, voltando ao menu" << std::endl;
                     delete fase1;
                     fase1 = NULL;
-                    //delete pJog1;
-                    //delete pJog2;
                     pJog1 = new Jogador(64, 400, false);
                     pJog2 = new Jogador(64, 400, true);
                     estado = MENU;
@@ -132,13 +130,11 @@ void Jogo :: executar()
                         cerr << "Deu erro ao abrir o arquivo" << endl;
                     }
 
-                    // Zera a pontuacao
-                    pJog1->setPontos(0);
-                    pJog2->setPontos(0);
-                    pJog1->setVida(40);
-                    pJog2->setVida(40);
                     delete fase2;
                     fase2 = NULL;
+
+                    pJog1 = new Jogador(64, 400, false);
+                    pJog2 = new Jogador(64, 400, true);
                     std::cout << "fase 2 concluída, retornando para o menu" << std::endl;
                     estado = MENU;
                     menu.set_estado(SELECAO_FASE);
@@ -147,8 +143,6 @@ void Jogo :: executar()
                 {
                     delete fase2;
                     fase2 = NULL;
-                    //delete pJog1;
-                    //delete pJog2;
                     pJog1 = new Jogador(64, 400, false);
                     pJog2 = new Jogador(64, 400, true);
                     estado = MENU;

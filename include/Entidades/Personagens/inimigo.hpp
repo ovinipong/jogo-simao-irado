@@ -14,7 +14,6 @@ class Inimigo : public Personagem
     public:
         Inimigo(int _x=0, int _y=0);
         ~Inimigo();
-        //void salvarDataBuffer();
         virtual void executar()=0;
         virtual void danificar(Jogador* p) = 0;
         virtual void inverterDirecao() = 0;
