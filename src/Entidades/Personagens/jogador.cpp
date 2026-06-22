@@ -197,5 +197,5 @@ void Jogador::operator++()
 
 void Jogador :: salvar(std::ofstream& arquivo)
 {
-    arquivo << id << " " << x << " " << y << " " << num_vidas << " " << pontos << " " << velocidade_y << " " << getValido() << std::endl;
+    arquivo << id << " " << x << " " << y << " " << num_vidas << " " << pontos << " " << velocidade_y << " " << valido << std::endl;
 }

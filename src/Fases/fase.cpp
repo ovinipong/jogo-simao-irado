@@ -232,7 +232,7 @@ void Fase::move_camera()
         pos_camera.x = pos_jog2.x + 32;
     }
     else
-    {
+    { 
         pos_camera.x = ((pos_jog1.x + pos_jog2.x) / 2) + 32;
     }
     

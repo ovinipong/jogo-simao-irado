@@ -272,14 +272,8 @@ void Jogo :: voltarFase()
 
     dois_jogadores = (num_jogadores == 2);
 
-    if (dois_jogadores) 
-    {
-        pJog2->setValido();
-    } 
-    else 
-    {
-        pJog2->setInvalido();
-    }
+    pJog1->setInvalido();
+    pJog2->setInvalido();
     
     if (fase_salva == 1)
     {
