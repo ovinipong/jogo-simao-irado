@@ -5,7 +5,7 @@
 using namespace fases;
 
 Fase :: Fase(const std::string& caminhoMapa, Jogador* pJog1, Jogador* pJog2) : minimo_ent(3),
-                                                                               maxInimFaceis(5),
+                                                                               maxInimBolinhos(5),
                                                                                maxPlataformas(20),
                                                                                concluida(false)
 {
@@ -70,7 +70,7 @@ void Fase :: criarInimBolinhos()//F no txt
     std::mt19937 rng(time(nullptr));
     std::shuffle(posicoes.begin(), posicoes.end(), rng);
     
-    int max = maxInimFaceis;
+    int max = maxInimBolinhos;
     int qntd = rand() % ((int)posicoes.size() + 1);
     if (qntd<minimo_ent)
         qntd=minimo_ent;

@@ -20,12 +20,11 @@ class SegundaFase : public Fase
         void criarProjeteisRatos();
         void ajustarProjeteisRatos();
 
-    protected:
+    public:
         void criarInimRatos();
         void criarObstLustres();
-        virtual void criarInimigos();
-        virtual void criarObstaculos();
-    public:
+        void criarInimigos();
+        void criarObstaculos();
         int getMaxInimRato()
         {
             return (maxInimRato);

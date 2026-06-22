@@ -17,12 +17,12 @@ class PrimeiraFase : public Fase
         PrimeiraFase(Jogador* pJog1=NULL, Jogador* pJog2=NULL, bool carregar_fase = false);
         ~PrimeiraFase();
         virtual void executar();
-    protected:
+
+    public:
         void criarInimBolos();
         void criarObstAguas();
         virtual void criarInimigos();
         virtual void criarObstaculos();
-    public:
         int getMaxInimBolo()
         {
             return (maxInimBolo);

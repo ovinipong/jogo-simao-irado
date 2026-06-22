@@ -34,7 +34,7 @@ class Fase : public Ente
         GerenciadorColisoes gc;
         std::ifstream arquivo;
         int minimo_ent;
-        int maxInimFaceis;
+        int maxInimBolinhos;
         int maxPlataformas;
         float mapa_largura;
         float mapa_altura;
@@ -43,7 +43,6 @@ class Fase : public Ente
         std::vector<Projetil*> projeteis_jogador;
         std::vector<Projetil*> projeteis_rato;
         bool concluida;
-        sf::Clock clock;//para ajustes de gravidade;
 
     public:
         Fase(const std::string& caminhoMapa="", Jogador* pJog1=NULL, Jogador* pJog2=NULL);
